@@ -3,7 +3,7 @@
 <html lang="en">
 
   <head>
-    <title>Tutor &mdash; Free Website Template by Colorlib</title>
+    <title>에러블러 &mdash; Free Website Template by Colorlib</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -18,8 +18,6 @@
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
-
-    {% comment %} <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"> {% endcomment %}
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -59,20 +57,16 @@
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
                   <li class="active"><a href="{% url 'Mainapp:home' %}" class="nav-link">Home</a></li>
                   <li><a href="{% url 'Boardapp:board' %}" class="nav-link">Board</a></li>
-                  <li><a href="about.html" class="nav-link">Mypage</a></li>
+                  <li><a href="{% url 'Mainapp:login' %}" class="nav-link">Mypage</a></li>
                   {% comment %} <li><a href="{% url 'Boardapp:board' %}" class="nav-link">Board</a></li>
                   <li><a href="about.html" class="nav-link">About</a></li>
                   <li><a href="contact.html" class="nav-link">Contact</a></li> {% endcomment %}
                 </ul>
               </nav>
-
             </div>
 
-            
           </div>
-        </div>
-
-        
+        </div>     
       </header>
 
       
@@ -103,10 +97,10 @@
                           <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" id="password" placeholder="Password">
-                            {% comment %} <i class="fa fa-eye fa-lg"></i> {% endcomment %}
                           </div>
                           <div class="form-group">
                             <input type="submit" value="Log In" class="btn btn-primary btn-md text-white">
+                            <input type="button" value="Sign Up" class="btn btn-primary btn-md text-white", onClick="location.href='{% url 'Mainapp:signup' %}'">
                           </div>
                         </form>
                       </div>
