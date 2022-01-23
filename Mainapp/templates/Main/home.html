@@ -43,7 +43,7 @@
 
             <div class="col-3">
               <div class="site-logo">
-                <a href="{% url 'Mainapp:home' %}"><strong>Tutor</strong></a>
+                <a href="{% url 'Mainapp:home' %}"><strong>에러블러</strong></a>
               </div>
             </div>
 
@@ -54,13 +54,14 @@
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
                   <li class="active"><a href="{% url 'Mainapp:home' %}" class="nav-link">Home</a></li>
-                  <li><a href="tutorials.html" class="nav-link">Tutorials</a></li>
-                  <li><a href="testimonials.html" class="nav-link">Testimonials</a></li>
                   <li><a href="{% url 'Boardapp:board' %}" class="nav-link">Board</a></li>
+                  <li><a href="about.html" class="nav-link">Mypage</a></li>
+                  {% comment %} <li><a href="{% url 'Boardapp:board' %}" class="nav-link">Board</a></li>
                   <li><a href="about.html" class="nav-link">About</a></li>
-                  <li><a href="contact.html" class="nav-link">Contact</a></li>
+                  <li><a href="contact.html" class="nav-link">Contact</a></li> {% endcomment %}
                 </ul>
               </nav>
+
             </div>
 
             
@@ -88,7 +89,7 @@
       <div class="site-section bg-light">
         <div class="container">
           <div class="row mb-5 align-items-center">
-            <div class="col-lg-6 mb-4 mb-lg-0">
+            {% comment %} <div class="col-lg-6 mb-4 mb-lg-0">
               <form action="#" class="d-flex search-form">
                 <span class="icon-"></span>
                 <input type="search" class="form-control mr-2" placeholder="Search subjects">
@@ -102,13 +103,13 @@
               <a href="#" class="mx-2 social-item"><span class="icon-twitter"></span></a>
               <a href="#" class="mx-2 social-item"><span class="icon-linkedin"></span></a>
               </div>
-            </div>
+            </div> {% endcomment %}
           </div>
           <div class="row">
             <div class="col-12">
               <div class="heading mb-4">
-                <span class="caption">Latest</span>
-                <h2>Tutorials</h2>
+                {% comment %} <span class="caption">Latest</span> {% endcomment %}
+                <h2>인기 게시글</h2>
               </div>
             </div>
             <div class="col-lg-8">
@@ -198,7 +199,7 @@
               </div>
 
 
-              <div class="custom-pagination">
+              {% comment %} <div class="custom-pagination">
                 <ul class="list-unstyled">
                   <li><a href="#"><span>1</span></a></li>
                   <li><span>2</span></li>
@@ -206,11 +207,11 @@
                   <li><a href="#"><span>4</span></a></li>
                   <li><a href="#"><span>5</span></a></li>
                 </ul>
-              </div>
+              </div> {% endcomment %}
             </div>
 
 
-            <div class="col-lg-4">
+            {% comment %} <div class="col-lg-4">
               <div class="box-side mb-3">
                 <a href="#"><img src="{% static 'images/img_1_horizontal.jpg' %}" alt="Image" class="img-fluid"></a>
                 <h3><a href="#">Learning React Native</a></h3>
@@ -223,14 +224,14 @@
                 <a href="#"><img src="{% static 'images/img_3_horizontal.jpg' %}" alt="Image" class="img-fluid"></a>
                 <h3><a href="#">Learning React Native</a></h3>
               </div>  
-            </div>
+            </div> {% endcomment %}
           </div>
         </div>
       </div>
       
       <div class="site-section bg-light">
       <div class="container">
-        <div class="row justify-content-center">
+        {% comment %} <div class="row justify-content-center">
           <div class="col-lg-7 text-center mb-5">
             <div class="heading">
               <span class="caption">Testimonials</span>
@@ -305,12 +306,12 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
       </div>
     </div>
       
       
-      <footer class="site-footer">
+      {% comment %} <footer class="site-footer">
         <div class="container">
           <div class="row">
             <div class="col-lg-3">
@@ -381,7 +382,7 @@
 
           </div>
         </div>
-      </footer>
+      </footer> {% endcomment %}
 
     </div>
 
@@ -402,4 +403,5 @@
   </body>
 
 </html>
+
 
