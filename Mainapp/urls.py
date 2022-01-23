@@ -7,4 +7,5 @@ app_name = 'Mainapp'
 urlpatterns = [
     path('home/', views.home, name='home'),
     path('join/', views.join, name='join'),
+    path('login/', views.login, name='login'),
 ]

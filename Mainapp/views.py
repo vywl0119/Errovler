@@ -11,3 +11,5 @@ def home(request):
 def join(request):
     return render(request, 'Main/join.html')
 
+def login(request):
+    return render(request, 'Main/login.html')
