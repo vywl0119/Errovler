@@ -3,7 +3,7 @@
 <html lang="en">
 
   <head>
-    <title>에러블러 &mdash; Free Website Template by Colorlib</title>
+    <title>에러블러 &mdash; Log In</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -55,9 +55,10 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li class="active"><a href="{% url 'Mainapp:home' %}" class="nav-link">Home</a></li>
+                  <li><a href="{% url 'Mainapp:home' %}" class="nav-link">Home</a></li>
                   <li><a href="{% url 'Boardapp:board' %}" class="nav-link">Board</a></li>
-                  <li><a href="{% url 'Mainapp:login' %}" class="nav-link">Mypage</a></li>
+                  <li><a href="about.html" class="nav-link">Mypage</a></li>
+                  <li class="active"><a href="{% url 'Mainapp:login' %}" class="nav-link">SignUp/In</a></li>
                 </ul>
               </nav>
             </div>
@@ -80,11 +81,11 @@
                           </div>
                           <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input type="password" class="form-control" id="password" placeholder="Enter password...">
                           </div>
                           <div class="form-group">
-                            <input type="submit" value="Log In" class="btn btn-primary btn-md text-white">
-                            <input type="button" value="Sign Up" class="btn btn-primary btn-md text-white", onClick="location.href='{% url 'Mainapp:signup' %}'">
+                            <input type="submit" value="Log In" class="btn btn-secondary">
+                            <input type="button" value="Sign Up" class="btn btn-secondary", onClick="location.href='{% url 'Mainapp:signup' %}'">
                           </div>
                         </form>
                       </div>
