@@ -8,6 +8,6 @@ from django.shortcuts import render, redirect
 def home(request):
     return render(request, 'Main/home.html')
 
-def join(request):
-    return render(request, 'Main/join.html')
+def signup(request):
+    return render(request, 'Main/signup.html')
 
