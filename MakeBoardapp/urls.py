@@ -6,5 +6,5 @@ app_name = 'MakeBoardapp'
 
 urlpatterns = [
     path('reading/', views.reading, name='reading'),
-   
+    path('writing/', views.writing, name='writing'),
 ]

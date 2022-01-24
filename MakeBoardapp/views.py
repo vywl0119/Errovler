@@ -7,3 +7,6 @@ from django.shortcuts import render, redirect
 
 def reading(request):
     return render(request, 'MakeBoard/reading.html')
+
+def writing(request):
+    return render(request, 'MakeBoard/writing.html')
