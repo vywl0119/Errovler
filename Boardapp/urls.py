@@ -6,6 +6,7 @@ app_name = 'Boardapp'
 
 urlpatterns = [
     path('board/', views.board, name='board'),
+    path('solboard/', views.solboard, name='solboard'),
     path('scrap/', views.scrap, name='scrap'),
    
 ]
