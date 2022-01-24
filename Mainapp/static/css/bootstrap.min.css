@@ -463,7 +463,7 @@ pre {
   @media (min-width: 992px) {
     .container {
       max-width: 960px; 
-      background-color: #78ECD9 ;} }
+      background-color: #fff ;} }
   @media (min-width: 1200px) {
     .container {
       max-width: 1140px; } }
