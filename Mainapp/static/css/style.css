@@ -1396,3 +1396,9 @@ ul{
   line-height: 50px;
   font-size: 15px;
 }
+
+/* 로고 이미지 */
+#logo_image{
+  width: 50px;
+  height: 50px;
+}
