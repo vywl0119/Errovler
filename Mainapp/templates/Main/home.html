@@ -60,10 +60,11 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li class="active"><a href="{% url 'Mainapp:home' %}" class="nav-link">Home</a></li>
-                  <li><a href="{% url 'Boardapp:board' %}" class="nav-link">Board</a></li>
-                  <li><a href="{% url 'Boardapp:scrap' %}" class="nav-link">Mypage</a></li>
-                  <li><a href="{% url 'Mainapp:login' %}" class="nav-link">SignUp/In</a></li>
+                  <li class="active"><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
+                  <li><a href="{% url 'Boardapp:board' %}" class="nav-link">질문 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:solboard' %}" class="nav-link">해결 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:scrap' %}" class="nav-link">마이 페이지</a></li>
+                  <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
                 </ul>
               </nav>
             </div>
@@ -79,7 +80,7 @@
               <form action="{% url 'Boardapp:board' %}" class="d-flex search-form">
                 <span class="icon-"></span>
                 <input type="search" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!">
-                <Button type="button" class="btn btn-primary px-4"> 검색 </Button>
+                <Button type="button" class="btn btn-primary px-4"> <span> 검색 </span></Button>
               </form>
             </div>
           </div>
