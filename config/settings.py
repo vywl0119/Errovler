@@ -80,8 +80,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'errovler',
+        'USER': 'errovler',
+        'PASSWORD': 'aivle202101',
+        'HOST': '13.125.52.234',
+        'PORT': 3306,
+        'OPTIONS': {
+            'sql_mode': 'traditional' ,
+        },
     },
 }
 

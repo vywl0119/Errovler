@@ -237,6 +237,7 @@ a {
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   font-weight: 300;
+  font-family: 'EliceDigitalBaeum_Bold';
   color: #364d59; }
 
 .border-2 {
@@ -464,7 +465,8 @@ h1, h2, h3, h4, h5,
     .site-navbar .site-logo strong {
       font-weight: 900; }
     .site-navbar .site-logo a {
-      color: black; }
+      color: black;
+      font-family: 'EliceDigitalBaeum_Bold'; }
     @media (max-width: 991.98px) {
       .site-navbar .site-logo {
         float: left;
@@ -488,7 +490,8 @@ h1, h2, h3, h4, h5,
         padding: 20px 0px;
         color: rgba(0, 0, 0, 0.7);
         display: inline-block;
-        text-decoration: none !important; }
+        text-decoration: none !important; 
+        font-family: 'EliceDigitalBaeum_Bold';}
         .site-navbar .site-navigation .site-menu > li > a:hover {
           color: #000; }
       .site-navbar .site-navigation .site-menu > li.active > a {
@@ -1196,7 +1199,7 @@ h1, h2, h3, h4, h5,
         width: 50px;
         border-radius: 50%; }
     .comment-list li .comment-body {
-      float: right;
+      float: left;
       width: calc(100% - 80px); }
       .comment-list li .comment-body h3 {
         font-size: 20px;
