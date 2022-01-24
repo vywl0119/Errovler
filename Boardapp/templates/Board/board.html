@@ -56,9 +56,10 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li><a href="{% url 'Mainapp:home' %}" class="nav-link">Home</a></li>
-                  <li class="active"><a href="{% url 'Boardapp:board' %}" class="nav-link">Board</a></li>
-                  <li><a href="{% url 'Boardapp:scrap' %}" class="nav-link">Mypage</a></li>
+                  <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
+                  <li class="active"><a href="{% url 'Boardapp:board' %}" class="nav-link">질문 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:solboard' %}" class="nav-link">해결 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:scrap' %}" class="nav-link">마이 페이지</a></li>
                   <li><a href="{% url 'Mainapp:login' %}" class="nav-link">SignUp/In</a></li>
                 </ul>
               </nav>
@@ -77,9 +78,8 @@
               <form action="#" class="d-flex search-form">
                 <span class="icon-"></span>
                 <input type="search" class="form-control mr-2 w-100" placeholder="Search subjects">
-                <input type="submit" class="btn btn-primary px-4 mr-2" value="검색">
-                <input type="submit" class="btn btn-primary px-4" value="글쓰기" >
-         
+                <Button type="button" class="btn btn-primary px-4 mr-2"> 검색 </Button>
+                <input type="button" class="btn btn-primary px-4 " value="글쓰기">  
               </form>
             </div>
           </div>

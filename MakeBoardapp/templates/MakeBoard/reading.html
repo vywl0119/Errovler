@@ -55,12 +55,11 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li><a href="{% url 'Mainapp:home' %}" class="nav-link">Home</a></li>
-                  <li><a href="tutorials.html" class="nav-link">Tutorials</a></li>
-                  <li><a href="testimonials.html" class="nav-link">Testimonials</a></li>
-                  <li class="active"><a href="{% url 'Boardapp:board' %}" class="nav-link">Board</a></li>
-                  <li><a href="about.html" class="nav-link">About</a></li>
-                  <li><a href="contact.html" class="nav-link">Contact</a></li>
+                  <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
+                  <li class="active"><a href="{% url 'Boardapp:board' %}" class="nav-link">질문 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:solboard' %}" class="nav-link">해결 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:scrap' %}" class="nav-link">마이 페이지</a></li>
+                  <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</li>
                 </ul>
               </nav>
             </div>
