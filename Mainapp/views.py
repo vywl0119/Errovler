@@ -1,7 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .forms import UserForm
-from .models import Member
 
 def home(request):
     return render(request, 'Main/home.html')
