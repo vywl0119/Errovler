@@ -1,4 +1,11 @@
 /* Base */
+@font-face {
+  font-family: 'EliceDigitalBaeum_Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/EliceDigitalBaeum_Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
   overflow-x: hidden; }
 
@@ -265,7 +272,7 @@ h1, h2, h3, h4, h5,
 .form-control {
   height: 55px;
   background-color: #fff !important;
-  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+  font-family: 'EliceDigitalBaeum_Bold'; }
   .form-control:active, .form-control:focus {
     border-color: #0779e4; }
   .form-control:hover, .form-control:active, .form-control:focus {
@@ -274,7 +281,7 @@ h1, h2, h3, h4, h5,
 
 .form-control {
   border: none;
-  background: #efefef !important; }
+  background: #f8f9fa !important; }
   .form-control:focus {
     background: #e2e2e2 !important; }
 
@@ -402,7 +409,7 @@ h1, h2, h3, h4, h5,
       left: 0;
       font-size: 20px;
       top: -.3rem;
-      font-family: "icomoon";
+      font-family: "'EliceDigitalBaeum_Bold'";
       content: "\e5ca";
       position: absolute; }
   .ul-check.white li:before {
@@ -507,7 +514,7 @@ h1, h2, h3, h4, h5,
           -webkit-transform: translateY(-50%);
           -ms-transform: translateY(-50%);
           transform: translateY(-50%);
-          font-family: 'icomoon'; }
+          font-family: 'EliceDigitalBaeum_Bold'; }
       .site-navbar .site-navigation .site-menu .has-children .dropdown {
         visibility: hidden;
         opacity: 0;
@@ -682,7 +689,7 @@ h1, h2, h3, h4, h5,
       .site-mobile-menu .site-nav-wrap .arrow-collapse:before {
         font-size: 12px;
         z-index: 20;
-        font-family: "icomoon";
+        font-family: 'EliceDigitalBaeum_Bold';
         content: "\f078";
         position: absolute;
         top: 50%;
@@ -824,10 +831,10 @@ h1, h2, h3, h4, h5,
 
 }
 .site-section {
-  padding: 70px 0; }
+  padding: 50px 0; }
   @media (max-width: 991.98px) {
     .site-section {
-      padding: 30px 0; } }
+      padding: 10px 0; } }
 
 /*Tutor*/
 .box {
@@ -992,7 +999,7 @@ h1, h2, h3, h4, h5,
 
 .course {
   display: block;
-  padding: 20px 10px;
+  padding: 10px 10px;
   background: #f8f9fa;
   color: #0779e4;
   border-radius: 4px;
