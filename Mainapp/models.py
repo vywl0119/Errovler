@@ -13,6 +13,7 @@ class Member(models.Model):
         app_label = 'Mainapp'
         managed = False
 
+        
 
 class Board(models.Model):
     b_no = models.AutoField(primary_key=True)
