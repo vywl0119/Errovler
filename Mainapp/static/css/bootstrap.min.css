@@ -451,7 +451,9 @@ pre {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
-  margin-left: auto; }
+  margin-left: auto;
+  margin-top: 0; }
+  
   @media (min-width: 576px) {
     .container {
       max-width: 540px; } }
@@ -460,7 +462,8 @@ pre {
       max-width: 720px; } }
   @media (min-width: 992px) {
     .container {
-      max-width: 960px; } }
+      max-width: 960px; 
+      background-color: #fff;} }
   @media (min-width: 1200px) {
     .container {
       max-width: 1140px; } }
@@ -2071,9 +2074,11 @@ fieldset:disabled a.btn {
   pointer-events: none; }
 
 .btn-primary {
-  color: #fff;
+  width: 100px;
+  color: black;
   background-color: #78ECD9;
-  border-color: #78ECD9; }
+  border-color: #78ECD9;
+  border-radius: 15px; }
   .btn-primary:hover {
     color: #fff;
     background-color: #06b3bf;
@@ -5397,7 +5402,7 @@ button.bg-danger:focus {
   background-color: #bd2130 !important; }
 
 .bg-light {
-  background-color: #fff !important; }
+  background-color: #fff; !important; }
 
 a.bg-light:hover, a.bg-light:focus,
 button.bg-light:hover,
@@ -6639,7 +6644,7 @@ button.bg-dark:focus {
   margin-left: 1.5rem !important; }
 
 .m-5 {
-  margin: 3rem !important; }
+  margin-top: 4rem !important; }
 
 .mt-5,
 .my-5 {

@@ -362,7 +362,8 @@ h1, h2, h3, h4, h5,
       background: rgba(0, 0, 0, 0.7); }
   .bg-image > .container {
     position: relative;
-    z-index: 1; }
+    z-index: 1;
+    background-color: #fff; }
 
 @media (max-width: 991.98px) {
   .img-md-fluid {
@@ -440,6 +441,7 @@ h1, h2, h3, h4, h5,
 
 /* Navbar */
 .site-navbar {
+  background-color: #fff;
   margin-bottom: 0px;
   z-index: 9;
   position: absolute;
@@ -831,7 +833,7 @@ h1, h2, h3, h4, h5,
 
 }
 .site-section {
-  padding: 50px 0; }
+  padding: 40px 0; }
   @media (max-width: 991.98px) {
     .site-section {
       padding: 10px 0; } }
@@ -902,7 +904,7 @@ h1, h2, h3, h4, h5,
 .heading h2 {
   font-size: 30px;
   font-weight: 700;
-  color: #0779e4; }
+  color: black; }
 
 .custom-pagination ul li {
   display: inline-block; }
@@ -993,9 +995,11 @@ h1, h2, h3, h4, h5,
 
 .search-form .form-control {
   border: none;
-  background: #efefef !important; }
+  background: #efefef !important;
+  border-radius: 15px; }
   .search-form .form-control:focus {
-    background: #e2e2e2 !important; }
+    background: #e2e2e2 !important;
+     }
 
 .course {
   display: block;
@@ -1225,6 +1229,7 @@ h1, h2, h3, h4, h5,
   height: 300px;
   position: relative;
   overflow: hidden;
+  background-color: #fff;
 
 }
 
@@ -1268,15 +1273,20 @@ ul{
   list-style:none;
   padding-left:0px;
 }
+#slider-wrap{
 
+}
 
 #slider-wrap ul#slider li img {
   display: block;
   width: 96%;
   height: 100%;
+  padding-top: 3%;
   padding-left: 13%;
   padding-right: 10%;
   opacity: 0.5;
+  z-index: 10;
+  
 }
 
 /*btns*/
@@ -1368,3 +1378,21 @@ ul{
   transition: all 0.3s cubic-bezier(1, .01, .32, 1);
 }
       
+/* board.html의 카테고리 컨테이너 */
+.category_container {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 15%;
+  padding-top: 10px;
+}
+
+.category_container > div {
+  background-color: #78ECD9;
+  width: 70px;
+  margin: 5px;
+  border-radius: 15px;
+  font-family: 'EliceDigitalBaeum_Bold';
+  text-align: center;
+  line-height: 50px;
+  font-size: 15px;
+}
