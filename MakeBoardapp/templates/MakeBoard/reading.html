@@ -260,15 +260,18 @@
                 </ul>
                 <!-- END comment-list -->
                 <div class="comment-form-wrap pt-5">
-                  <form action="#" class="">
+                  <form action="{% url 'MakeBoardapp:comment' %}" class="" method='post'>
+                    {% csrf_token %}
                     <div class="form-group">
                       <hr>
+                      <input type="hidden" id="gameToken" name="b_no" value="{{one_board.b_no}}">
+    
                       <label for="message" style="font-size: 125%" class="mb-3">댓글</label>
-                      <textarea name="" id="message" placeholder="내용을 입력하세요." cols="30" rows="5"
+                      <textarea name="contents" id="message" placeholder="내용을 입력하세요." cols="30" rows="5" 
                         class="form-control"></textarea>
                     </div>
                     <div class="form-group">
-                      <input type="submit" value="등록" class="btn btn-primary">
+                      <input type="submit" value="등록" class="btn btn-primary btn-md text-white">
                     </div>
 
                     </form>
