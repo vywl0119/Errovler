@@ -8,16 +8,17 @@ from django.shortcuts import render, redirect
 from matplotlib.style import context
 
 from .forms import BoardPost
-from Mainapp.models import Board, Comment, Scrap
+from Mainapp.models import Board, Comment
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+from Mainapp.models import Board
 
-def reading(request):
-    return render(request, 'MakeBoard/reading.html')
-
-def board_detail(request):
-    return render(request, 'MakeBoard/reading.html')
+def board_detail(request, b_no):
+    board_detail = Board.objects.get(b_no = b_no)
+    print(board_detail.title)
+    context = {'board_detail': board_detail}
+    return render(request, 'MakeBoard/reading.html',context)
 
 def writing(request):
     return render(request, 'MakeBoard/writing.html')
