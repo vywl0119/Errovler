@@ -1,10 +1,11 @@
 from unicodedata import category
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, JsonResponse
 
 # Create your views here.
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+from matplotlib.style import context
 
 from .forms import BoardPost
 from Mainapp.models import Board
@@ -16,6 +17,7 @@ def reading(request):
 
 def writing(request):
     return render(request, 'MakeBoard/writing.html')
+
 
 def board_write(request):
     login_session = request.session.get('login_session','')
@@ -34,14 +36,15 @@ def board_write(request):
             board = Board(
                 title=write_form.title,
                 contents=write_form.contents,
-                writer=writer,
+                writer =writer,
                 category=write_form.category
             )
             board.save()
-            return redirect('' + str(board.b_no))
+            return redirect('/Board/board')
         else:
             context['forms'] = write_form
             if write_form.errors:
                 for value in write_form.errors.values():
                     context['error'] = value
             return render(request, 'MakeBoard/writing_error.html', context)
+
