@@ -12,13 +12,12 @@ from Mainapp.models import Board, Comment, Scrap
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from Mainapp.models import Board
 
-def board_detail(request, b_no):
-    board_detail = Board.objects.get(b_no = b_no)
-    print(board_detail.title)
-    context = {'board_detail': board_detail}
-    return render(request, 'MakeBoard/reading.html',context)
+def reading(request):
+    return render(request, 'MakeBoard/reading.html')
+
+def board_detail(request):
+    return render(request, 'MakeBoard/reading.html')
 
 def writing(request):
     return render(request, 'MakeBoard/writing.html')
@@ -70,16 +69,19 @@ def comment(request):
 
     return render(request, 'MakeBoard/writing.html')
 
-
-# # def scrap(request):
-# #     if request.method == 'POST':
-# #         b_no=request.POST.get('b_no')
-# #         qna_no=request.POST.get('qna_no')
+# def scrap(request):
+#      if request.method == 'POST':
+#          b_no=request.POST.get('b_no')
+#          qna_no=request.POST.get('qna_no')
     
-# #     try:
-# #         username=request.user.username
-# #         scrap=Scrap.objects.create()
+#      try:
+#         username=request.user.username
+#         scrap=Scrap.objects.create(b_no=b_no, qna_no=qna_no)
+#         scrap.save()
+#         return render(request,'MakeBoard/reading.html')
+#      except:
+#          return render(request,'Main/home.html')
 
 
 
-#     return render(request,'MakeBoard/reading.html')
+#      return render(request,'MakeBoard/reading.html')
