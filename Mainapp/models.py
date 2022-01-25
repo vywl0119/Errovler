@@ -11,7 +11,9 @@ class Board(models.Model):
     contents = models.TextField(null=False)
     view = models.IntegerField(null=False, default=0)
     like = models.IntegerField( null=False, default=0)
-
+    
+    def summary(self):
+        return self.contents[:100]
 
     class Meta:
         db_table = 'Board'
