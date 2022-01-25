@@ -30,11 +30,12 @@ def board_write(request):
         write_form = BoardPost(request.POST)
 
         if write_form.is_valid():
-            writer = User.objects.get(id=login_session)
+            writer = request.user.username
+            print('writer' , writer)
             board = Board(
                 title=write_form.title,
                 contents=write_form.contents,
-                id=writer,
+                writer =writer,
                 category=write_form.category
             )
             board.save()
