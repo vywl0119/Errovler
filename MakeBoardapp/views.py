@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 from Mainapp.models import Board
+from Mainapp.models import QnA_Board
 
 def board_detail(request, b_no):
     board_detail = Board.objects.get(b_no = b_no)
@@ -27,8 +28,35 @@ def board_detail(request, b_no):
 def writing(request):
     return render(request, 'MakeBoard/writing.html')
 
+def qna_board_write(request):
+    login_session = request.session.get('login_session','')
+    context = {'login_session': login_session}
 
-def board_write(request):
+    if request.method == 'GET':
+        write_form = BoardPost()
+        context['forms'] = write_form
+        return render(request, 'MakeBoard/writing.html', context)
+
+    elif request.method == 'POST':
+        write_form = BoardPost(request.POST)
+        if write_form.is_valid():
+            writer = request.user.first_name
+            board = QnA_Board(
+                title=write_form.title,
+                contents=write_form.contents,
+                writer =writer,
+                category=write_form.category
+            )
+            board.save()
+            return redirect('/Board/board')
+        else:
+            context['forms'] = write_form
+            if write_form.errors:
+                for value in write_form.errors.values():
+                    context['error'] = value
+            return render(request, 'MakeBoard/writing_error.html', context)
+
+def solboard_write(request):
     login_session = request.session.get('login_session','')
     context = {'login_session': login_session}
 
@@ -48,7 +76,7 @@ def board_write(request):
                 category=write_form.category
             )
             board.save()
-            return redirect('/Board/board')
+            return redirect('/Board/solboard')
         else:
             context['forms'] = write_form
             if write_form.errors:
@@ -74,4 +102,7 @@ def comment(request):
 
     return render(request, 'MakeBoard/writing.html')
 
+def photoboard(request):
+    portfolios = Portfolio.objects
+    return render(request, 'portfolio/portfolio.html', {'portfolios': portfolios})
 
