@@ -30,15 +30,15 @@ def board_write(request):
         write_form = BoardPost(request.POST)
 
         if write_form.is_valid():
-            writer = User.objects.get(id=login_session)
+            writer = request.user.username
             board = Board(
                 title=write_form.title,
                 contents=write_form.contents,
-                id=writer,
+                writer=writer,
                 category=write_form.category
             )
             board.save()
-            return redirect('MakeBoard/writing/board/' + str(board.b_no))
+            return redirect('' + str(board.b_no))
         else:
             context['forms'] = write_form
             if write_form.errors:
