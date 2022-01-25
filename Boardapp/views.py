@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 def board(request):
     boards = Board.objects
     #모든 글들을 대상으로
-    board_list=Board.objects.all()
+    board_list=Board.objects.all().order_by('-b_date')
     #블로그 객체 세 개를 한 페이지로 자르기
     paginator = Paginator(board_list,9)
     #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
