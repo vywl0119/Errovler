@@ -1405,3 +1405,16 @@ ul{
   width: 50px;
   height: 50px;
 }
+
+.context_ul{
+  list-style-type: none;
+}
+
+.context_li{
+  float: left;
+  margin-top: 5px;
+}
+
+.cursor_pointer{
+  cursor: pointer;
+}
