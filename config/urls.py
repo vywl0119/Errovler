@@ -21,6 +21,6 @@ urlpatterns = [
     path('Main/', include('Mainapp.urls')),
     path('Board/', include('Boardapp.urls')),
     path('MakeBoard/', include('MakeBoardapp.urls')),
-    
+     path('summernote/', include('django_summernote.urls')),
 
 ]

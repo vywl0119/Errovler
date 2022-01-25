@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'Mainapp',
     'Boardapp',
     'MakeBoardapp',
+    'django_summernote',
+    'ckeditor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,8 +133,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+
 LOGIN_REDIRECT_URL = '/Main/home/'
 LOGOUT_REDIRECT_URL = '/Main/home/'
-
-
-

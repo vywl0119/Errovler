@@ -62,6 +62,7 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                  
                   <li class="active"><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
                   <li><a href="{% url 'Boardapp:board' %}" class="nav-link">질문 게시판</a></li>
                   <li><a href="{% url 'Boardapp:solboard' %}" class="nav-link">해결 게시판</a></li>
@@ -88,8 +89,11 @@
                   <li class="active"><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
                   <li><a href="{% url 'Boardapp:board' %}" class="nav-link">질문 게시판</a></li>
                   <li><a href="{% url 'Boardapp:solboard' %}" class="nav-link">해결 게시판</a></li>
+
                   <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
+                 
                 </ul>
+                  
               </nav>
             </div>
             {% endif %}
