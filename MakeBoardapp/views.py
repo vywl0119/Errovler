@@ -1,10 +1,11 @@
 from unicodedata import category
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, JsonResponse
 
 # Create your views here.
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+from matplotlib.style import context
 
 from .forms import BoardPost
 from Mainapp.models import Board
@@ -38,7 +39,7 @@ def board_write(request):
                 category=write_form.category
             )
             board.save()
-            return redirect('' + str(board.b_no))
+            return redirect('/Board/board')
         else:
             context['forms'] = write_form
             if write_form.errors:
