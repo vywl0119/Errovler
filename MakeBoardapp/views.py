@@ -10,3 +10,6 @@ def reading(request):
 
 def writing(request):
     return render(request, 'MakeBoard/writing.html')
+
+
+
