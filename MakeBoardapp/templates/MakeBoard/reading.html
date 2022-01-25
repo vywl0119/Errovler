@@ -169,7 +169,7 @@
                   <input type="submit" value="👍 좋아요" class="btn btn-secondary" style="width:100px;">
                   <input type="submit" value="📝 스크랩" class="btn btn-secondary" style="width:100px;">
                 </div> {% endcomment %}
-                <div class="mt-5"></div>
+                {% comment %} <div class="mt-5"></div> {% endcomment %}
                 <div class="pt-5">
                   <p>
                     <input type="button" id='heart-button'><text style="margin:5px;">13</text>
@@ -189,7 +189,7 @@
               <div class="pt-5" style="width=100%;">
                 {% comment %} <p>Categories: <a href="#">Design</a>, <a href="#">Events</a> Tags: <a href="#">#html</a>, <a
                     href="#">#trends</a></p> {% endcomment %}
-                    <Button type="button" class="btn btn-primary px-4"> <span> 글 목록 </span></Button>
+                    <Button type="button" class="btn btn-primary px-4" onclick="location.href='{% url 'Boardapp:board' %}'"> <span> 글 목록 </span></Button>
                     <Button type="button" class="btn btn-primary px-4"> <span> 해결 </span></Button>
               </div>
               
@@ -240,7 +240,7 @@
                         class="form-control"></textarea>
                     </div>
                     <div class="form-group">
-                      <input type="submit" value="등록" class="btn btn-primary btn-md text-white">
+                      <input type="submit" value="등록" class="btn btn-primary">
                     </div>
 
                     </form>
