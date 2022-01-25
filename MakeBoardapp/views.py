@@ -15,6 +15,9 @@ from django.utils import timezone
 def reading(request):
     return render(request, 'MakeBoard/reading.html')
 
+def board_detail(request):
+    return render(request, 'MakeBoard/reading.html')
+
 def writing(request):
     return render(request, 'MakeBoard/writing.html')
 
