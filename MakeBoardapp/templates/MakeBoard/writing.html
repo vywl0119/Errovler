@@ -80,8 +80,9 @@
               <div class="container">
                   <h1>글쓰기</h1>
                   <hr>
-                  {% comment %} <form action="" method="POST">
+                  <form action="/MakeBoard/writing/board/" method="POST">
                       {% csrf_token %}
+
                       {% for form in forms %}
                         <label for="{{ form.id_for_label }}">{{ form.label }}</label>
                         {{ form }}
@@ -90,10 +91,10 @@
                       {% if error %}
                       {{ error }}
                       {% endif %}
-                      <button type="submit">저장</button>
-                  </form> {% endcomment %}
-
-                    {% comment %} <div class = "form-group">
+                      <input type="submit" class="btn btn-dark" value="저장"/>
+                  </form> 
+{% comment %} 
+                    <div class = "form-group">
                       <label for="title">글 제목</label>
                       <input type="text" class="form-control" name="contents" id="contents"
                       value="{{ form.title.value | default_if_none:'' }}">
@@ -103,9 +104,9 @@
                         <table>
                           {{form.as_table}}
                         </table>
-                        <input type="submit" class="btn btn-dark" value="저장"/>
-                    </div> {% endcomment %}
-                  </form>
+                       
+                    </div> 
+                  </form> {% endcomment %}
             </div>
           </div>
         </div>

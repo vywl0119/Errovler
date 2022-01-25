@@ -4,7 +4,7 @@ from unicodedata import category
 from attr import field
 from bleach import clean
 from django import forms
-from matplotlib.pyplot import title
+
 from Mainapp.models import Board
 from django_summernote.fields import SummernoteTextField
 from django_summernote.widgets import SummernoteWidget
