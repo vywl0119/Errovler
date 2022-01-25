@@ -54,45 +54,49 @@
           {% if user.is_authenticated %}
 
           <div class="col-9  text-right">
-
-            <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span
-                  class="icon-menu h3 text-black"></span></a></span>
+            
+            <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span class="icon-menu h3 text-black"></span></a></span>
 
             <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
               <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                
                 <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
                 <li class="active"><a href="{% url 'Boardapp:board' %}" class="nav-link">질문 게시판</a></li>
                 <li><a href="{% url 'Boardapp:solboard' %}" class="nav-link">해결 게시판</a></li>
                 <li><a href="{% url 'Boardapp:scrap' %}" class="nav-link">마이 페이지</a></li>
                 <li>
                   <a class='nav-link' href="{% url 'Mainapp:logout' %}">
-                    {{ user.first_name }} 님 반갑습니다. (로그아웃)
+                  {{ user.first_name }} 님 반갑습니다. (로그아웃)
                   </a>
                 </li>
               </ul>
+
+              
             </nav>
           </div>
 
           {% else %}
 
           <div class="col-9  text-right">
-
-            <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span
-                  class="icon-menu h3 text-black"></span></a></span>
+            
+            <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span class="icon-menu h3 text-black"></span></a></span>
 
             <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
               <ul class="site-menu main-menu js-clone-nav ml-auto ">
                 <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
                 <li class="active"><a href="{% url 'Boardapp:board' %}" class="nav-link">질문 게시판</a></li>
                 <li><a href="{% url 'Boardapp:solboard' %}" class="nav-link">해결 게시판</a></li>
+
                 <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
+               
               </ul>
+                
             </nav>
           </div>
           {% endif %}
 
         </div>
-      </div>
+      </div>     
     </header>
 
 
@@ -161,11 +165,19 @@
 
                 <img src="{%static 'images/img_2.jpg' %}">
                
-                <div class="pt-5">
-                  {% comment %} <p>Categories: <a href="#">Design</a>, <a href="#">Events</a> Tags: <a href="#">#html</a>, <a
-                      href="#">#trends</a></p> {% endcomment %}
+                {% comment %} <div class="pt-5">
                   <input type="submit" value="👍 좋아요" class="btn btn-secondary" style="width:100px;">
                   <input type="submit" value="📝 스크랩" class="btn btn-secondary" style="width:100px;">
+                </div> {% endcomment %}
+                <div class="mt-5"></div>
+                <div class="pt-5">
+                  <p><input type="button" id='heart-button'>  13<input type="button" id='rp-button'>  15  <input type="button" id='scrap-button'>  6</p>
+
+                  <script>
+                    document.getElementById("heart-button").addEventListener("click", () => {alert("좋아요 클릭")});
+                    document.getElementById("rp-button").addEventListener("click", () => {alert("댓글 클릭")});
+                    document.getElementById("scrap-button").addEventListener("click", () => {alert("스크랩 클릭")});
+                  </script>
                 </div>
                 <div class="mt-5"></div>
               </div>
@@ -231,6 +243,7 @@
                   </div>
                 </div>
               {% comment %} </div> {% endcomment %}
+              </div>
           </div>
         </div>
       </div>
