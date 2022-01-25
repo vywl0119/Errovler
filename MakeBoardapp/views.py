@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from matplotlib.style import context
 
 from .forms import BoardPost
-from Mainapp.models import Board
+from Mainapp.models import Board, Comment
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -49,4 +49,22 @@ def board_write(request):
                 for value in write_form.errors.values():
                     context['error'] = value
             return render(request, 'MakeBoard/writing_error.html', context)
+
+
+def comment(request):
+    if request.method == 'POST':
+        contents = request.POST.get('contents')
+        b_no = request.POST.get('b_no')
+        print(contents, b_no)
+
+    try:
+        username = request.user.username
+        comment = Comment.objects.create(b_no_id=b_no, contents=contents, writer = username)
+        comment.save()
+        return render(request, 'Main/home.html')
+
+    except:
+        return render(request, 'MakeBoard/reading.html')
+
+    return render(request, 'MakeBoard/writing.html')
 
