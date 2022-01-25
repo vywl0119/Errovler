@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'errovler',
         'USER': 'errovler',
         'PASSWORD': 'aivle202101',
-        'HOST': '15.164.153.191',
+        'HOST': '13.125.52.234',
         'PORT': 3306,
         'OPTIONS': {
             'sql_mode': 'traditional' ,
@@ -128,3 +128,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+LOGIN_REDIRECT_URL = '/Main/home/'
+LOGOUT_REDIRECT_URL = '/Main/home/'
+
+
+

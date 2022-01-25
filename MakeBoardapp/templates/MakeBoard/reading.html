@@ -45,7 +45,8 @@
 
             <div class="col-3">
               <div class="site-logo">
-                <a href="{% url 'Mainapp:home' %}"><strong>Tutor</strong></a>
+                <img id=logo_image src="{%static 'images/notes.png' %}">
+                <a href="{% url 'Mainapp:home' %}"><strong>에러블러</strong></a>
               </div>
             </div>
 
@@ -55,12 +56,11 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li><a href="{% url 'Mainapp:home' %}" class="nav-link">Home</a></li>
-                  <li><a href="tutorials.html" class="nav-link">Tutorials</a></li>
-                  <li><a href="testimonials.html" class="nav-link">Testimonials</a></li>
-                  <li class="active"><a href="{% url 'Boardapp:board' %}" class="nav-link">Board</a></li>
-                  <li><a href="about.html" class="nav-link">About</a></li>
-                  <li><a href="contact.html" class="nav-link">Contact</a></li>
+                  <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
+                  <li class="active"><a href="{% url 'Boardapp:board' %}" class="nav-link">질문 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:solboard' %}" class="nav-link">해결 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:scrap' %}" class="nav-link">마이 페이지</a></li>
+                  <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
                 </ul>
               </nav>
             </div>
@@ -71,7 +71,7 @@
 
       </header>
 
-      
+{% comment %}       
       <div class="site-section-cover overlay" style="background-image: url({% static 'images/hero_bg.jpg' %});">
         
         <div class="container">
@@ -83,7 +83,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
 
       
       
@@ -91,144 +91,178 @@
       <div class="site-section">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 blog-content">
-            <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+          {% comment %} 본문 {% endcomment %}
+          {% comment %} <div class="col-md-8 blog-content" > {% endcomment %}
+            <div class="mt-5">　</div>
+            <div class="container", style="border: 3px solid ; border-radius: 30px 30px 0px 0px;">
+              <div class="mt-3"></div>
 
-            <blockquote><p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p></blockquote>
+              <div class="meta" style="color:#78ECD9;">
+                #01
+                <h3>TemplateDoesNotExist</h3>
+              </div>
 
-            <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
+              <hr>
 
-            <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+              <p class="lead">닉네임
+                <text class="meta" style="font-size:75%;"> 2022.01.24 16:00</text>
+              </p>
 
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+              <div class="category_container" style="margin:0;">
+                <div>#장고</div>
+              </div>
 
-            <blockquote><p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p></blockquote>
+              <div class="mt-3"></div>
 
-            <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
-            
-            <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+              {% comment %} <hr> {% endcomment %}
+
+              <p style="font-size:120%;">분명 form_errors.html 파일 제대로 만들었는데 template이 존재하지 않는다고 뜨는데 무슨 문제일까요? TemplateDoesNotExist at /member/login/form_errors.html 이렇게 나와요ㅠㅠ</p>
+
+              <img src="{%static 'images/img_2.jpg' %}">
+              {% comment %} <blockquote><p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p></blockquote>
+
+              <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p> {% endcomment %}
+
+              {% comment %} 
+              <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+
+              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+
+              <blockquote><p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p></blockquote>
+
+              <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
+              
+              <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p> 
+              {% endcomment %}
 
 
-            <div class="pt-5">
-              <p>Categories:  <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
+              <div class="pt-5">
+                <p>Categories:  <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
+              </div>
+              <div class="mt-5"></div>
             </div>
 
-
+          {% comment %} </div> {% endcomment %}
+            {% comment %} 댓글 {% endcomment %}
             <div class="pt-5">
-              <h3 class="mb-5">6 Comments</h3>
-              <ul class="comment-list">
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="{% static 'images/person_2.jpg' %}" alt="Free Website Template by Free-Template.co">
-                  </div>
-                  <div class="comment-body">
-                    <h3>Jacob Smith</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-                </li>
+              <div class="mt-5">
+                <h3 class="mb-5">댓글 <text style="font-size:90%; color:#78ECD9;"> 3</text> </h3>
+                <ul class="comment-list">
+                  <li class="comment">
+                    <hr>
+                    {% comment %} <div class="vcard bio">
+                      <img src="{% static 'images/person_2.jpg' %}" alt="Free Website Template by Free-Template.co">
+                    </div> {% endcomment %}
+                    <div class="comment-body">
+                      <h3>닉네임1</h3>
+                      <div class="meta">2021.01.24 15:47</div>
+                      <p style="font-size:110%;">member > views.py > signup 함수의 return 문제입니다. 스펠링, 들여쓰기 확인하세요.</p>
+                      {% comment %} <p><a href="#" class="reply">Reply</a></p> {% endcomment %}
+                    </div>
+                  </li>
+                  
+                  <li class="comment">
+                    <hr>
+                    {% comment %} <div class="vcard bio">
+                      <img src="{% static 'images/person_3.jpg' %}" alt="Free Website Template by Free-Template.co">
+                    </div> {% endcomment %}
+                    <div class="comment-body">
+                      <h3>닉네임2</h3>
+                      <div class="meta">2021.01.24 16:47</div>
+                      <p style="font-size:110%;">DB Browser for SQLite에서 데이터베이스가 변경되었는데 저장하지 않아 발생하는 오류입니다. DB Browser for SQLite 상단의 '변경사항 저장하기'를 눌러주세요!</p>
+                      {% comment %} <p><a href="#" class="reply">Reply</a></p> {% endcomment %}
+                    </div>
 
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="{% static 'images/person_3.jpg' %}" alt="Free Website Template by Free-Template.co">
-                  </div>
-                  <div class="comment-body">
-                    <h3>Chris Meyer</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-
-                  <ul class="children">
-                    <li class="comment">
-                      <div class="vcard bio">
-                        <img src="{% static 'images/person_5.jpg' %}" alt="Free Website Template by Free-Template.co">
-                      </div>
-                      <div class="comment-body">
-                        <h3>Chintan Patel</h3>
-                        <div class="meta">January 9, 2018 at 2:21pm</div>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                        <p><a href="#" class="reply">Reply</a></p>
-                      </div>
+                    {% comment %} <ul class="children">
+                      <li class="comment">
+                        <div class="vcard bio">
+                          <img src="{% static 'images/person_5.jpg' %}" alt="Free Website Template by Free-Template.co">
+                        </div>
+                        <div class="comment-body">
+                          <h3>Chintan Patel</h3>
+                          <div class="meta">January 9, 2018 at 2:21pm</div>
+                          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                          <p><a href="#" class="reply">Reply</a></p>
+                        </div>
 
 
-                      <ul class="children">
-                        <li class="comment">
-                          <div class="vcard bio">
-                            <img src="{% static 'images/person_1.jpg' %}" alt="Free Website Template by Free-Template.co">
-                          </div>
-                          <div class="comment-body">
-                            <h3>Jean Doe</h3>
-                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                            <p><a href="#" class="reply">Reply</a></p>
-                          </div>
+                        <ul class="children">
+                          <li class="comment">
+                            <div class="vcard bio">
+                              <img src="{% static 'images/person_1.jpg' %}" alt="Free Website Template by Free-Template.co">
+                            </div>
+                            <div class="comment-body">
+                              <h3>Jean Doe</h3>
+                              <div class="meta">January 9, 2018 at 2:21pm</div>
+                              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                              <p><a href="#" class="reply">Reply</a></p>
+                            </div>
 
-                            <ul class="children">
-                              <li class="comment">
-                                <div class="vcard bio">
-                                  <img src="{% static 'images/person_4.jpg' %}" alt="Free Website Template by Free-Template.co">
-                                </div>
-                                <div class="comment-body">
-                                  <h3>Ben Afflick</h3>
-                                  <div class="meta">January 9, 2018 at 2:21pm</div>
-                                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                  <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                              </li>
-                            </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
+                              <ul class="children">
+                                <li class="comment">
+                                  <div class="vcard bio">
+                                    <img src="{% static 'images/person_4.jpg' %}" alt="Free Website Template by Free-Template.co">
+                                  </div>
+                                  <div class="comment-body">
+                                    <h3>Ben Afflick</h3>
+                                    <div class="meta">January 9, 2018 at 2:21pm</div>
+                                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+                                    <p><a href="#" class="reply">Reply</a></p>
+                                  </div>
+                                </li>
+                              </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul> {% endcomment %}
+                  </li>
 
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="{% static 'images/person_1.jpg' %}" alt="Free Website Template by Free-Template.co">
-                  </div>
-                  <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-                </li>
-              </ul>
-              <!-- END comment-list -->
-              
-              <div class="comment-form-wrap pt-5">
-                <h3 class="mb-5">Leave a comment</h3>
-                <form action="#" class="">
-                  <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" class="form-control" id="name">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" class="form-control" id="email">
-                  </div>
-                  <div class="form-group">
-                    <label for="website">Website</label>
-                    <input type="url" class="form-control" id="website">
-                  </div>
+                  <li class="comment">
+                    <hr>
+                    {% comment %} <div class="vcard bio">
+                      <img src="{% static 'images/person_1.jpg' %}" alt="Free Website Template by Free-Template.co">
+                    </div> {% endcomment %}
+                    <div class="comment-body">
+                      <h3>닉네임3</h3>
+                      <div class="meta">2021.01.24 17:47</div>
+                      <p style="font-size:110%;">파일 경로 제대로 되어있는지 확인하세요! templates 폴더 안에 생성했는지 template 하위 앱 폴더 안에 생성했는지 확인!</p>
+                      {% comment %} <p><a href="#" class="reply">Reply</a></p> {% endcomment %}
+                    </div>
+                  </li>
+                </ul>
+                <!-- END comment-list -->
+                <div class="comment-form-wrap pt-5">
+                  {% comment %} <h3 class="mb-5">Leave a comment</h3> {% endcomment %}
+                  <form action="#" class="">
+                    {% comment %} <div class="form-group">
+                      <label for="name">Name *</label>
+                      <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email *</label>
+                      <input type="email" class="form-control" id="email">
+                    </div>
+                    <div class="form-group">
+                      <label for="website">Website</label>
+                      <input type="url" class="form-control" id="website">
+                    </div> {% endcomment %}
+                    
+                    <div class="form-group">
+                      <hr>
+                      <label for="message" style="font-size: 125%" class="mb-3">댓글</label>
+                      <textarea name="" id="message" placeholder="내용을 입력하세요." cols="30" rows="5" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" value="등록" class="btn btn-primary btn-md text-white">
+                    </div>
 
-                  <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <input type="submit" value="Post Comment" class="btn btn-primary btn-md text-white">
-                  </div>
-
-                </form>
+                  </form>
+                </div>
               </div>
             </div>
 
-          </div>
-          <div class="col-md-4 sidebar">
+          {% comment %} </div> {% endcomment %}
+          {% comment %} <div class="col-md-4 sidebar">
             <div class="sidebar-box">
               <form action="#" class="search-form">
                 <div class="form-group">
@@ -258,11 +292,11 @@
               <h3 class="text-black">Paragraph</h3>
               <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
             </div>
-          </div>
+          </div> {% endcomment %}
         </div>
       </div>
     </div>
-      <footer class="site-footer">
+      {% comment %} <footer class="site-footer">
         <div class="container">
           <div class="row">
             <div class="col-lg-3">
@@ -333,7 +367,7 @@
 
           </div>
         </div>
-      </footer>
+      </footer> {% endcomment %}
 
     </div>
 
