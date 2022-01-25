@@ -2074,7 +2074,7 @@ fieldset:disabled a.btn {
   pointer-events: none; }
 
 .btn-primary {
-  width: 100px;
+  width: 60px;
   color: black;
   background-color: #78ECD9;
   border-color: #78ECD9;
@@ -6747,15 +6747,15 @@ button.bg-dark:focus {
 
 .pr-4,
 .px-4 {
-  padding-right: 1.5rem !important; }
+  padding-right: 1.rem !important; }
 
 .pb-4,
 .py-4 {
-  padding-bottom: 1.5rem !important; }
+  padding-bottom: 1.rem !important; }
 
 .pl-4,
 .px-4 {
-  padding-left: 1.5rem !important; }
+  padding-left: 1.rem !important; }
 
 .p-5 {
   padding: 3rem !important; }
