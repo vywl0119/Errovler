@@ -1,6 +1,6 @@
 <!doctype html>
 {% load static %}
-{{board.update_counter}}
+{{board_detail.update_counter}}
 <html lang="en">
 
 <head>
@@ -207,7 +207,7 @@
                   <p>
                     <input type="button" id='heart-button'><text style="margin:5px;">{{ board_detail.like }}</text>
                     <input type="button" id='rp-button'><text style="margin:5px;">15</text>
-                    <input type="button" id='scrap-button'><text style="margin:5px;">6</text>
+                    <text style="margin:5px; float:right;">6</text><input type="button" id='scrap-button' style="float:right;">
                   </p>
 
                   <script>
