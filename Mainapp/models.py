@@ -14,6 +14,11 @@ class Board(models.Model):
     
     def summary(self):
         return self.contents[:100]
+    
+    @property
+    def update_counter(self):
+        self.view += 1
+        self.save()
 
     class Meta:
         db_table = 'Board'

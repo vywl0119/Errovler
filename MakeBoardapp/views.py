@@ -12,11 +12,11 @@ from Mainapp.models import Board, Comment
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-def reading(request):
-    return render(request, 'MakeBoard/reading.html')
+from Mainapp.models import Board
 
-def board_detail(request):
-    return render(request, 'MakeBoard/reading.html')
+def board_detail(request, pk):
+    board = Board.objects.get(b_no=pk)
+    return render(request, 'MakeBoard/reading.html', {'board' : board})
 
 def writing(request):
     return render(request, 'MakeBoard/writing.html')
