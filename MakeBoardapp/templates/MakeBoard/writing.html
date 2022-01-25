@@ -20,14 +20,9 @@
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
-
-    <!-- Summernote -->
-
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-
   </head>
 
   <body>
@@ -77,8 +72,8 @@
 
       
       
-      <div class="site-section" style="margin-top: 200px">
-        {% comment %} <div class="container">
+      <div class="site-section">
+        <div class="container">
           <div class="row m-5 align-items-center" style = "float: none; margin:100 auto">
             <div class="col-lg-10 mb-4 mb-lg-0" style="float: none; margin:0 auto;">
               <br>
@@ -113,19 +108,7 @@
                     </div> 
                   </form> {% endcomment %}
             </div>
-          </div> {% endcomment %}
-
-          <textarea name="content" id="summernote">
-            {{form.content.value|default_if_none:''}}</textarea>
-
-            <script>
-              $('#summernote').summernote({
-                placeholder: '내용을 입력하세요',
-                tabsize: 2,
-                height: 300
-              });
-            </script>
-
+          </div>
         </div>
     </div>
 
@@ -146,4 +129,3 @@
   </body>
 
 </html>
-
