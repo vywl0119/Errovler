@@ -1103,14 +1103,18 @@ h1, h2, h3, h4, h5,
   height: 40px;
   line-height: 40px;
   text-align: center;
-  border-radius: 50%; }
+  border-radius: 50%;
+  margin-left: 3px;
+}
 
 .custom-pagination span {
-  background: #efefef; }
+  background: #efefef;
+ }
 
 .custom-pagination a {
   background: #78ECD9;
-  color: #fff; }
+  color: #fff;
+}
 
 .post-entry-1 .meta {
   color: #ccc; }
@@ -1453,4 +1457,9 @@ ul{
 
 #writing_button {
   width: 80px;
+}
+
+.board_container{
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%);
 }

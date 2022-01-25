@@ -80,14 +80,18 @@
               <div class="container">
                   <h1>글쓰기</h1>
                   <hr>
-                  <form action="" method="POST">
+                  <form action="" method="POST" enctype="miltipart/form-data">
                       {% csrf_token %}
 
                       {% for form in forms %}
+                      <div>
                         <label for="{{ form.id_for_label }}">{{ form.label }}</label>
-                        {{ form }}
+                        {% autoescape off %}
+                        {{ form|safe }}
+                        {% endautoescape %}
+                      </div>
                       {% endfor %}
-
+                  
                       {% if error %}
                       {{ error }}
                       {% endif %}
