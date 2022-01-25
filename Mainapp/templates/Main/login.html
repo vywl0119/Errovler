@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
     <link rel="stylesheet" href="{% static 'fonts/brand/style.css' %}">
@@ -81,15 +82,18 @@
                     <div class="comment-form-wrap pt-5" style="margin: 0 auto; width:50%;">
                         <h2 class="mb-5" style="margin: 0 auto; width:60%;">👻Log In👻</h2>
 
-                        <form action="#" class="" methond = "post">
+                        <form action="{% url 'Mainapp:login' %}" class=""  method = "POST">
                           {% csrf_token %}
+                          {% include "form_errors.html" %}
                           <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" id="username" placeholder="@aivle.kt.co.kr" name = "id">
+                            <label for="id">Email</label>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="@aivle.kt.co.kr"
+                                value="{{ form.username.value | default_if_none:'' }}">
                           </div>
                           <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter password..." name = "pw">
+                            <label for="pw">Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Enter password..."
+                                id="password" value="{{ form.password.value | default_if_none:'' }}">
                           </div>
                           <div class="form-group">
                             <input type="submit" value="Log In" class="btn btn-secondary">
