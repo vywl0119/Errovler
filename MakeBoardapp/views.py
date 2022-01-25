@@ -15,6 +15,16 @@ from django.utils import timezone
 from Mainapp.models import Board
 from Mainapp.models import QnA_Board
 
+def qna_board_detail(request, qna_no):
+    qna_board_detail = QnA_Board.objects.get(qna_no = qna_no)
+    comment_list = Comment.objects.filter(qna_no = qna_no)
+    comment_cnt = len(comment_list)
+    print(qna_board_detail.title)
+    context = {'qna_board_detail': qna_board_detail,
+                'comment_list': comment_list,
+                'comment_cnt': comment_cnt}
+    return render(request, 'MakeBoard/qna_reading.html',context)
+
 def board_detail(request, b_no):
     board_detail = Board.objects.get(b_no = b_no)
     comment_list = Comment.objects.filter(b_no = b_no)
@@ -84,6 +94,20 @@ def solboard_write(request):
                     context['error'] = value
             return render(request, 'MakeBoard/writing_error.html', context)
 
+def qna_comment(request):
+    if request.method == 'POST':
+        contents = request.POST.get('contents')
+        qna_no = request.POST.get('qna_no')
+        print(contents, qna_no)
+
+    try:
+        username = request.user.first_name
+        comment = Comment.objects.create(qna_no_id=qna_no, contents=contents, writer = username)
+        comment.save()
+        return redirect('MakeBoardapp:qna_detail_board' , qna_no)
+
+    except:
+        return render(request, 'MakeBoard/qna_reading.html')
 
 def comment(request):
     if request.method == 'POST':
@@ -100,7 +124,8 @@ def comment(request):
     except:
         return render(request, 'MakeBoard/reading.html')
 
-    return render(request, 'MakeBoard/writing.html')
+
+
 
 def photoboard(request):
     portfolios = Portfolio.objects

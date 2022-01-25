@@ -1463,3 +1463,15 @@ ul{
   border-radius: 0.5rem;
   box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%);
 }
+
+textarea{
+  resize: none;
+  width: 100%;
+  height: 6.25em;
+  border: none;
+}
+.comment_container{
+  width: 100%;
+  display: flex;
+  flex-direction: column; /*수직 정렬*/
+}
