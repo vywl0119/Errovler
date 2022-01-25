@@ -1405,3 +1405,48 @@ ul{
   width: 50px;
   height: 50px;
 }
+
+.context_ul{
+  list-style-type: none;
+}
+
+.context_li{
+  float: left;
+  margin-top: 5px;
+}
+
+.cursor_pointer{
+  cursor: pointer;
+}
+
+#heart-button {
+  /* display:block; */
+  background: url( "https://i.postimg.cc/Qdvnkhm0/ht.png" ) no-repeat;
+  background-size: 30px;
+  background-position: bottom;
+  height:30px;
+  width:30px;
+  border: 0px;
+  cursor: pointer;
+}
+
+#scrap-button {
+  /* display:block; */
+  background: url( "https://ifh.cc/g/ITHr0t.png" ) no-repeat;
+  background-size: 30px;
+  background-position: bottom;
+  height:30px;
+  width:30px;
+  border: 0px;
+  cursor: pointer;
+}
+
+#rp-button {
+  /* display:block; */
+  background: url( "https://i.postimg.cc/GhHWk7r3/rp.png" ) no-repeat;
+  background-size: 25px;
+  background-position: bottom;
+  height:30px;
+  width:30px;
+  border: 0px;
+}
