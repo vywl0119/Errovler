@@ -21,7 +21,8 @@
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
   </head>
 
   <body>
@@ -75,12 +76,39 @@
         <div class="container">
           <div class="row m-5 align-items-center" style = "float: none; margin:100 auto">
             <div class="col-lg-10 mb-4 mb-lg-0" style="float: none; margin:0 auto;">
-              
+              <br>
+              <div class="container">
+                  <h1>글쓰기</h1>
+                  <hr>
+                  {% comment %} <form action="" method="POST">
+                      {% csrf_token %}
+                      {% for form in forms %}
+                        <label for="{{ form.id_for_label }}">{{ form.label }}</label>
+                        {{ form }}
+                      {% endfor %}
+
+                      {% if error %}
+                      {{ error }}
+                      {% endif %}
+                      <button type="submit">저장</button>
+                  </form> {% endcomment %}
+
+                    {% comment %} <div class = "form-group">
+                      <label for="title">글 제목</label>
+                      <input type="text" class="form-control" name="contents" id="contents"
+                      value="{{ form.title.value | default_if_none:'' }}">
+                      <label for="title">글 내용</label>
+                      
+                        {% csrf_token %}
+                        <table>
+                          {{form.as_table}}
+                        </table>
+                        <input type="submit" class="btn btn-dark" value="저장"/>
+                    </div> {% endcomment %}
+                  </form>
             </div>
           </div>
         </div>
-    
-      
     </div>
 
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
