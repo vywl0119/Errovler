@@ -22,6 +22,28 @@
   <!-- MAIN CSS -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+  <script>
+    function modify_button() {
+      if (confirm("수정하시겠습니까?") == true) {
+        var link = "{% url 'MakeBoardapp:writing_board' %}"
+        location.href=link;
+      }
+      else {
+        return;
+      }
+    }
+
+    function delete_button() {
+      if (confirm("정말 삭제하시겠습니까?") == true) {
+        var link = "{% url 'Boardapp:board' %}"
+        location.href=link;
+      }
+      else {
+        return;
+      }
+    }
+  </script>
+
 </head>
 
 <body>
@@ -120,8 +142,9 @@
         <div class="container">
           <div class="row">
             <!-- 본문 -->
-              <div class="container" , style="border: 3px solid ; border-radius: 30px 30px 0px 0px;">
+              <div class="container" , style="border-radius: 30px; box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.7);">
                 <div class="mt-3"></div>
+                <div class="container">
 
                 <div class="meta" style="color:#78ECD9;">
                   #01
@@ -136,15 +159,19 @@
                       <p class="lead">닉네임</p>
                     </li>
                     <li class="context_li" style="margin-left: 10px;">
-                      <text class="meta" style="font-size:85%;"> 2022.01.24 16:00</text>
+                      <text class="meta" style="font-size:85%;">2022.01.24 16:00</text>
+                    </li>
+                    <li class="context_li" style="margin-left: 10px;">
+                      <text class="meta" style="font-size:95%;">조회수</text>
+                      <text class="meta" style="font-size:95%;">12</text>
                     </li>
                     <li class="context_li" style="margin-left: 20px;">
-                      <a onclick="alert('수정하시겠습니까?');" class="cursor_pointer">
+                      <a onclick="modify_button()" class="cursor_pointer">
                         수정
                       </a>
                     </li>
                     <li class="context_li" style="margin-left: 20px;">
-                      <a onclick="alert('삭제하시겠습니까?');" class="cursor_pointer">
+                      <a onclick="delete_button()" class="cursor_pointer">
                         삭제
                       </a>
                     </li>
@@ -169,7 +196,7 @@
                   <input type="submit" value="👍 좋아요" class="btn btn-secondary" style="width:100px;">
                   <input type="submit" value="📝 스크랩" class="btn btn-secondary" style="width:100px;">
                 </div> {% endcomment %}
-                <div class="mt-5"></div>
+                {% comment %} <div class="mt-5"></div> {% endcomment %}
                 <div class="pt-5">
                   <p>
                     <input type="button" id='heart-button'><text style="margin:5px;">13</text>
@@ -185,11 +212,12 @@
                 </div>
                 <div class="mt-5"></div>
               </div>
+              </div>
 
               <div class="pt-5" style="width=100%;">
                 {% comment %} <p>Categories: <a href="#">Design</a>, <a href="#">Events</a> Tags: <a href="#">#html</a>, <a
                     href="#">#trends</a></p> {% endcomment %}
-                    <Button type="button" class="btn btn-primary px-4"> <span> 글 목록 </span></Button>
+                    <Button type="button" class="btn btn-primary px-4" onclick="location.href='{% url 'Boardapp:board' %}'"> <span> 글 목록 </span></Button>
                     <Button type="button" class="btn btn-primary px-4"> <span> 해결 </span></Button>
               </div>
               
@@ -197,7 +225,7 @@
             <!-- 댓글 -->
             <div class="pt-5">
               {% comment %} <div class="mt-5"> {% endcomment %}
-                <h3 class="mb-5">댓글 <text style="font-size:90%; color:#78ECD9;"> 3</text> </h3>
+                <h3 class="mb-5">댓글 <text style="font-size:90%; color:#78ECD9;">3</text> </h3>
                 <ul class="comment-list">
                   <li class="comment">
                     <hr>
@@ -240,7 +268,7 @@
                         class="form-control"></textarea>
                     </div>
                     <div class="form-group">
-                      <input type="submit" value="등록" class="btn btn-primary btn-md text-white">
+                      <input type="submit" value="등록" class="btn btn-primary">
                     </div>
 
                     </form>
