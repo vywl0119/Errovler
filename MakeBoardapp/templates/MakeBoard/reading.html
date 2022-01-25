@@ -22,6 +22,28 @@
   <!-- MAIN CSS -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+  <script>
+    function modify_button() {
+      if (confirm("수정하시겠습니까?") == true) {
+        var link = "{% url 'MakeBoardapp:writing_board' %}"
+        location.href=link;
+      }
+      else {
+        return;
+      }
+    }
+
+    function delete_button() {
+      if (confirm("정말 삭제하시겠습니까?") == true) {
+        var link = "{% url 'Boardapp:board' %}"
+        location.href=link;
+      }
+      else {
+        return;
+      }
+    }
+  </script>
+
 </head>
 
 <body>
@@ -136,15 +158,19 @@
                       <p class="lead">닉네임</p>
                     </li>
                     <li class="context_li" style="margin-left: 10px;">
-                      <text class="meta" style="font-size:85%;"> 2022.01.24 16:00</text>
+                      <text class="meta" style="font-size:85%;">2022.01.24 16:00</text>
+                    </li>
+                    <li class="context_li" style="margin-left: 10px;">
+                      <text class="meta" style="font-size:95%;">조회수</text>
+                      <text class="meta" style="font-size:95%;">12</text>
                     </li>
                     <li class="context_li" style="margin-left: 20px;">
-                      <a onclick="alert('수정하시겠습니까?');" class="cursor_pointer">
+                      <a onclick="modify_button()" class="cursor_pointer">
                         수정
                       </a>
                     </li>
                     <li class="context_li" style="margin-left: 20px;">
-                      <a onclick="alert('삭제하시겠습니까?');" class="cursor_pointer">
+                      <a onclick="delete_button()" class="cursor_pointer">
                         삭제
                       </a>
                     </li>
@@ -197,7 +223,7 @@
             <!-- 댓글 -->
             <div class="pt-5">
               {% comment %} <div class="mt-5"> {% endcomment %}
-                <h3 class="mb-5">댓글 <text style="font-size:90%; color:#78ECD9;"> 3</text> </h3>
+                <h3 class="mb-5">댓글 <text style="font-size:90%; color:#78ECD9;">3</text> </h3>
                 <ul class="comment-list">
                   <li class="comment">
                     <hr>
