@@ -148,8 +148,8 @@
                 <div class="container">
 
                 <div class="meta" style="color:#78ECD9;">
-                  #01
-                  <h3>TemplateDoesNotExist</h3>
+                  #{{ board_detail.b_no }}
+                  <h3>{{ board_detail.title }}</h3>
                 </div>
 
                 <hr>
@@ -157,17 +157,17 @@
                 <div style="margin:5px; height:45px;">
                   <ul class="context_ul">
                     <li class="context_li" style="margin-top: 0px;">
-                      <p class="lead">닉네임</p>
+                      <p class="lead">{{board_detail.writer}}</p>
                     </li>
                     <li class="context_li" style="margin-left: 10px;">
-                      <text class="meta" style="font-size:85%;">2022.01.24 16:00</text>
+                      <text class="meta" style="font-size:85%;">{{board_detail.b_date}}</text>
                     </li>
                     <li class="context_li" style="margin-top: 3px; margin-left: 10px;">
                       <img src="{%static 'images/view_icon.png' %}" height="20" width="20">
                     </li>
                     <li class="context_li" style="margin-left: 5px;">
                       <text class="meta" style="font-size:95%;">
-                        {{board.view}}
+                        {{ board_detail.view }}
                       </text>
                     </li>
                     <li class="context_li" style="margin-left: 20px;">
@@ -189,8 +189,7 @@
                 <div class="mt-3"></div>
 
                 <!-- 글 -->
-                <p style="font-size:120%;">분명 form_errors.html 파일 제대로 만들었는데 template이 존재하지 않는다고 뜨는데 무슨 문제일까요?
-                  TemplateDoesNotExist at /member/login/form_errors.html 이렇게 나와요ㅠㅠ</p>
+                <p style="font-size:120%;">{{ board_detail.contents }}</p>
 
                 <img src="{%static 'images/img_2.jpg' %}">
                
@@ -206,7 +205,7 @@
 
                 <div class="pt-4">
                   <p>
-                    <input type="button" id='heart-button'><text style="margin:5px;">13</text>
+                    <input type="button" id='heart-button'><text style="margin:5px;">{{ board_detail.like }}</text>
                     <input type="button" id='rp-button'><text style="margin:5px;">15</text>
                     <input type="button" id='scrap-button'><text style="margin:5px;">6</text>
                   </p>
@@ -271,7 +270,7 @@
                     {% csrf_token %}
                     <div class="form-group">
                       <hr>
-                      <input type="hidden" id="gameToken" name="b_no" value="{{one_board.b_no}}">
+                      <input type="hidden" id="gameToken" name="b_no" value="{{ board_detail.b_no }}">
     
                       <label for="message" style="font-size: 125%" class="mb-3">댓글</label>
                       <textarea name="contents" id="message" placeholder="내용을 입력하세요." cols="30" rows="5" 

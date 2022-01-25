@@ -14,9 +14,11 @@ from django.utils import timezone
 
 from Mainapp.models import Board
 
-def board_detail(request, pk):
-    board = Board.objects.get(b_no=pk)
-    return render(request, 'MakeBoard/reading.html', {'board' : board})
+def board_detail(request, b_no):
+    board_detail = Board.objects.get(b_no = b_no)
+    print(board_detail.title)
+    context = {'board_detail': board_detail}
+    return render(request, 'MakeBoard/reading.html',context)
 
 def writing(request):
     return render(request, 'MakeBoard/writing.html')
