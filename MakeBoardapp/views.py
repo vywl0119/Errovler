@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from matplotlib.style import context
 
 from .forms import BoardPost
-from Mainapp.models import Board, Comment
+from Mainapp.models import Board, Comment, Scrap
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -68,3 +68,16 @@ def comment(request):
 
     return render(request, 'MakeBoard/writing.html')
 
+
+# # def scrap(request):
+# #     if request.method == 'POST':
+# #         b_no=request.POST.get('b_no')
+# #         qna_no=request.POST.get('qna_no')
+    
+# #     try:
+# #         username=request.user.username
+# #         scrap=Scrap.objects.create()
+
+
+
+#     return render(request,'MakeBoard/reading.html')
