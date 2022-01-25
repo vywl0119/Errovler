@@ -71,6 +71,19 @@
 
       </header>
 
+      <div class="site-section">
+        <div class="container">
+          <div class="row m-5 align-items-center" style = "float: none; margin:100 auto">
+            <div class="col-lg-10 mb-4 mb-lg-0" style="float: none; margin:0 auto;">
+              <form action="{% url 'Boardapp:board' %}" class="d-flex search-form">
+                <span class="icon-"></span>
+                <input type="search" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!">
+                <Button type="button" class="btn btn-primary px-4"> <span> 검색 </span></Button>
+              </form>
+            </div>
+          </div>
+        </div>
+
 {% comment %}       
       <div class="site-section-cover overlay" style="background-image: url({% static 'images/hero_bg.jpg' %});">
         
@@ -93,7 +106,7 @@
         <div class="row">
           {% comment %} 본문 {% endcomment %}
           {% comment %} <div class="col-md-8 blog-content" > {% endcomment %}
-            <div class="mt-5">　</div>
+            {% comment %} <div class="mt-5">　</div> {% endcomment %}
             <div class="container", style="border: 3px solid ; border-radius: 30px 30px 0px 0px;">
               <div class="mt-3"></div>
 
