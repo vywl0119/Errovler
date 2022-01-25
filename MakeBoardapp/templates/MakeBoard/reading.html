@@ -1,5 +1,6 @@
 <!doctype html>
 {% load static %}
+{{board.update_counter}}
 <html lang="en">
 
 <head>
@@ -165,7 +166,9 @@
                       <img src="{%static 'images/view_icon.png' %}" height="20" width="20">
                     </li>
                     <li class="context_li" style="margin-left: 5px;">
-                      <text class="meta" style="font-size:95%;">12</text>
+                      <text class="meta" style="font-size:95%;">
+                        {{board.view}}
+                      </text>
                     </li>
                     <li class="context_li" style="margin-left: 20px;">
                       <a onclick="modify_button()" class="cursor_pointer">
