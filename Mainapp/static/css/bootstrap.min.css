@@ -133,7 +133,7 @@ sup {
   top: -.5em; }
 
 a {
-  color: #0779e4;
+  color: #78DCEC;
   text-decoration: none;
   background-color: transparent; }
   a:hover {
@@ -546,7 +546,7 @@ pre {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 41.66667%;
   flex: 0 0 41.66667%;
-  max-width: 41.66667%; }
+  max-width: 100%; }
 
 .col-6 {
   -webkit-box-flex: 0;
@@ -8134,3 +8134,8 @@ a.text-dark:hover, a.text-dark:focus {
   .table .thead-dark th {
     color: inherit;
     border-color: #dee2e6; } }
+
+/* paginatin */
+.custom-pagination{
+  margin-left: 40%;
+}
