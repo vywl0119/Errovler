@@ -62,7 +62,7 @@
                   {% if user.is_authenticated %} 
                   <li><a href="{% url 'Boardapp:scrap' %}" class="nav-link">마이 페이지</a></li>
                   {% else %}  
-                  <li><a href="{% url 'Mainapp:login' %}" class="nav-link">SignUp/In</a></li>
+                  <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
                   {% endif %}
                 </ul>
                   
@@ -79,12 +79,14 @@
         <div class="container">
           <div class="row m-5 align-items-center" style = "float: none; margin:100 auto">
             <div class="col-lg-10 mb-4 mb-lg-0" style="float: none; margin:0 auto;">
-              <form action="{% url 'MakeBoardapp:writing_board' %}" class="d-flex search-form">
+
+              <form action="#" class="d-flex search-form">
                 <span class="icon-"></span>
                 <input type="search" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!">
-                <Button type="button" class="btn btn-primary px-4 mr-2"> 검색 </Button>
-                <input type="submit" class="btn btn-primary px-4 " value="글쓰기">  
+                <input type="summit" class="btn btn-primary px-4 mr-2" value ="검색">
+                <Button type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_board" %}'">글</Button>
               </form>
+              
             </div>
           </div>
         </div>

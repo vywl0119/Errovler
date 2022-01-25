@@ -17,6 +17,7 @@ def reading(request):
 def writing(request):
     return render(request, 'MakeBoard/writing.html')
 
+
 def board_write(request):
     login_session = request.session.get('login_session','')
     context = {'login_session': login_session}
@@ -28,13 +29,12 @@ def board_write(request):
 
     elif request.method == 'POST':
         write_form = BoardPost(request.POST)
-
         if write_form.is_valid():
             writer = request.user.username
             board = Board(
                 title=write_form.title,
                 contents=write_form.contents,
-                writer=writer,
+                writer =writer,
                 category=write_form.category
             )
             board.save()
@@ -45,3 +45,4 @@ def board_write(request):
                 for value in write_form.errors.values():
                     context['error'] = value
             return render(request, 'MakeBoard/writing_error.html', context)
+
