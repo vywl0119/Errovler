@@ -16,8 +16,12 @@ from Mainapp.models import Board
 
 def board_detail(request, b_no):
     board_detail = Board.objects.get(b_no = b_no)
+    comment_list = Comment.objects.filter(b_no = b_no)
+    comment_cnt = len(comment_list)
     print(board_detail.title)
-    context = {'board_detail': board_detail}
+    context = {'board_detail': board_detail,
+                'comment_list':comment_list,
+                'comment_cnt':comment_cnt}
     return render(request, 'MakeBoard/reading.html',context)
 
 def writing(request):
@@ -36,7 +40,7 @@ def board_write(request):
     elif request.method == 'POST':
         write_form = BoardPost(request.POST)
         if write_form.is_valid():
-            writer = request.user.username
+            writer = request.user.first_name
             board = Board(
                 title=write_form.title,
                 contents=write_form.contents,
@@ -60,13 +64,14 @@ def comment(request):
         print(contents, b_no)
 
     try:
-        username = request.user.username
+        username = request.user.first_name
         comment = Comment.objects.create(b_no_id=b_no, contents=contents, writer = username)
         comment.save()
-        return render(request, 'Main/home.html')
+        return redirect('MakeBoardapp:detail_board' , b_no)
 
     except:
         return render(request, 'MakeBoard/reading.html')
 
     return render(request, 'MakeBoard/writing.html')
+
 
