@@ -69,4 +69,3 @@ def comment(request):
         return render(request, 'MakeBoard/reading.html')
 
     return render(request, 'MakeBoard/writing.html')
-
