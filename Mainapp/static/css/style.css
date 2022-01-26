@@ -1548,6 +1548,14 @@ p>img {
   transform: translateY(30px);
   transition: all .5s;
 }
+.section .slidelist .textbox .lecture {
+  font-size: 36px;
+  margin-top: 15px;
+  color:#fff;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all .5s;
+}
 .section .slidelist .textbox p {
   font-size: 26px;
   color:#fff;
