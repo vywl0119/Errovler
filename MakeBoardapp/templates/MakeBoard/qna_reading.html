@@ -244,7 +244,7 @@
               <div class="pt-5" style="width=100%;">
           
                 <Button type="button" class="btn btn-primary px-4" onclick="location.href='{% url 'Boardapp:qna_board' %}'" style="width:80px;"> <span> 글 목록 </span></Button>
-                <Button type="button" class="btn btn-primary px-4" style="float:right;width:80px;"> <span> 해결 </span></Button>
+                
               </div>
               
 
@@ -304,6 +304,8 @@
                 </ul>
                 <!-- END comment-list -->
                 <div class="comment-form-wrap pt-5">
+                  
+                  {% if user.is_authenticated %}
                   <form action="{% url 'MakeBoardapp:qna_comment' %}" class="" method='post'>
                     {% csrf_token %}
                     <div class="form-group">
@@ -319,6 +321,19 @@
                     </div>
 
                     </form>
+                  {% else %}
+                  
+                    <div class="form-group">
+                      <hr>
+    
+                      <label for="message" style="font-size: 125%" class="mb-3">댓글</label>
+                      <div  cols="50" rows="50" class="form-control">
+                        
+                            <a href="{% url 'Mainapp:login' %}">로그인을 해주세요.</a>
+                      </div>
+                      
+                    </div>
+                    {% endif %}
                   </div>
                 </div>
               </div>
