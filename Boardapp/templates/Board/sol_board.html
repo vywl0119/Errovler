@@ -3,6 +3,11 @@
 <html lang="en">
 
   <head>
+    <style>
+      .atagg {
+        text-align: right;
+      }
+    </style>
     <title>에러블러 &mdash; Board</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -120,13 +125,13 @@
 
         <div class="category_container">
           <div id=error_categoty>
-          <a onclick="location.href='{% url 'Boardapp:sol_python'%}'" class="cursor_pointer">  #파이썬 </a>
+          <a onclick="location.href='{% url 'Boardapp:sol_category' 'python' %}'" class="cursor_pointer">  #파이썬 </a>
         </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:sol_django'%}'" class="cursor_pointer">  #장고 </a>
+            <a onclick="location.href='{% url 'Boardapp:sol_category' 'Django' %}'" class="cursor_pointer">  #장고 </a>
           </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:sol_etc'%}'" class="cursor_pointer">  #기타 </a>
+            <a onclick="location.href='{% url 'Boardapp:sol_category' 'etc' %}'" class="cursor_pointer">  #기타 </a>
           </div>
         </div>
       
@@ -141,6 +146,9 @@
               <div class="post-entry-1 h-100">
               
                 <div class="post-entry-1-contents">
+                  <div class = 'atagg'>
+                    <a href="{% url 'Boardapp:sol_category' board.category %}" >#{{board.category}}</a>
+                  </div>
                   <h2><a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no  %}">{{ board.title }}</a></h2>
                   <span class="meta d-inline-block mb-3">{{ board.b_date }}<br>
                   <span class="mx-2">by</span> <a href="#">{{board.writer}}</a></span>

@@ -3,6 +3,11 @@
 <html lang="en">
 
   <head>
+    <style>
+      .atagg {
+        text-align: right;
+      }
+    </style>
     <title>에러블러 &mdash; Board</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -121,13 +126,13 @@
         
         <div class="category_container">
           <div id=error_categoty>
-          <a onclick="location.href='{% url 'Boardapp:qna_python'%}'" class="cursor_pointer">  #파이썬 </a>
+          <a onclick="location.href='{% url 'Boardapp:qna_category' 'python' %}'" class="cursor_pointer">  #파이썬 </a>
         </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:qna_django'%}'" class="cursor_pointer">  #장고 </a>
+            <a onclick="location.href='{% url 'Boardapp:qna_category' 'Django' %}'" class="cursor_pointer">  #장고 </a>
           </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:qna_etc'%}'" class="cursor_pointer">  #기타 </a>
+            <a onclick="location.href='{% url 'Boardapp:qna_category' 'etc' %}'" class="cursor_pointer">  #기타 </a>
           </div>
         </div>
       
@@ -141,6 +146,9 @@
               <div class="board_container">
                 <div class="post-entry-1 h-100">
                   <div class="post-entry-1-contents">
+                    <div class = 'atagg'>
+                      <a href="{% url 'Boardapp:qna_category' qna_board.category %}" >#{{qna_board.category}}</a>
+                    </div>
                     <h2><a href="{% url 'MakeBoardapp:qna_detail_board' qna_board.qna_no  %}">{{ qna_board.title }}</a></h2>
                     <span class="meta d-inline-block mb-3">{{ qna_board.qna_date }}<br>
                     <span class="mx-2">by</span> <a href="#">{{qna_board.writer}}</a></span>
