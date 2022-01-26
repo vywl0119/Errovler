@@ -82,8 +82,8 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li class="active"><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
-                  <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
+                  <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
+                  <li class="active"><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
                   <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
 
                   <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
@@ -109,7 +109,9 @@
                 <span class="icon-"></span>
                 <input type="search" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!">
                 <input type="summit" class="btn btn-primary px-4 mr-2" value ="검색">
-                <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_qna_board" %}'">글쓰기</Button>
+                {% if user.is_authenticated %}
+                  <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_qna_board" %}'">글쓰기</Button>
+                {%endif%}
               </form>
               
             </div>
