@@ -4,7 +4,7 @@ from unicodedata import category
 from attr import field
 from bleach import clean
 from django import forms
-
+from matplotlib.pyplot import title
 from Mainapp.models import Board
 from django_summernote.fields import SummernoteTextField
 from django_summernote.widgets import SummernoteWidget
@@ -18,7 +18,7 @@ class BoardPost(forms.ModelForm):
             }),
     )
 
-    contents = SummernoteTextField()
+    contents = forms.CharField(widget=SummernoteWidget())
     
     options = (
         ('Python', '파이썬'),
@@ -40,6 +40,7 @@ class BoardPost(forms.ModelForm):
             widgets = {
                 'contents' : SummernoteWidget()
             }
+
     def clean(self):
         cleaned_data = super().clean()
 

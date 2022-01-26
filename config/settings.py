@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'MakeBoardapp',
     'django_summernote',
     'ckeditor',
+    'ckeditor_uploader',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     
     
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,10 +130,19 @@ USE_L10N = True
 USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+SUMMERNOTE_THEME = 'bs4'  # Show summernote with Bootstrap4
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_REDIRECT_URL = '/Main/home/'
 LOGOUT_REDIRECT_URL = '/Main/home/'
+
+
+# config/settings.py 
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+

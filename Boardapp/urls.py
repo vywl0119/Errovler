@@ -5,8 +5,8 @@ from . import views
 app_name = 'Boardapp'
 
 urlpatterns = [
-    path('board/', views.board, name='board'),
-    path('solboard/', views.solboard, name='solboard'),
+    path('qna_board/', views.qna_board, name='qna_board'),
+    path('sol_board/', views.sol_board, name='sol_board'),
     path('scrap/', views.scrap, name='scrap'),
    
 ]
