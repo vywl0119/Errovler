@@ -1,0 +1,33 @@
+{% load static %}
+
+<div class="profile_container">
+    <div class="profile">
+        <img src="{%static 'images/user.png' %}">
+        <div class="nickname">
+            <p>가나다라</p>
+            <img onclick="alert('하이!')" src="{%static 'images/pencil.png' %}">
+        </div>
+    </div>
+
+    <div class="profile_detail">
+        <p><u>닉네임</u> 에이블러 님 안녕하세요!</p>
+        <div class="scrap_counter">
+            <p>스크랩한 에러</p>
+            <hr>
+            <div class="scrap_errors">
+                <div class="error">
+                    <p class="tag">파이썬</p>
+                    <p>3</p>
+                </div>
+                <div class="error">
+                    <p class="tag">장고</p>
+                    <p>3</p>
+                </div>
+                <div class="error">
+                    <p class="tag">기타</p>
+                    <p>3</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
