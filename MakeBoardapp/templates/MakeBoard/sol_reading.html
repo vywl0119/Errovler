@@ -53,7 +53,7 @@
 
     function scrap_button() {
       if (confirm("정말 스크랩하시겠습니까?") == true) {
-        var link = "{% url 'MakeBoardapp:sol_scrap' board_detail.b_no%}"
+        var link = "{% url 'MakeBoardapp:sol_scrap' board_detail.b_no board_detail.category%}"
         
         location.href=link;
     

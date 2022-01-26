@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 
 # Create your models here.
@@ -66,6 +67,7 @@ class Scrap(models.Model):
     b_no = models.ForeignKey('Board', on_delete=models.CASCADE, db_column='b_no')
     qna_no = models.ForeignKey('QnA_Board', on_delete=models.CASCADE, db_column='qna_no')
     writer = models.CharField(max_length=45, null=False)
+    category = models.CharField(max_length=45, null=False)
     class Meta:
         db_table = 'Scrap'
         managed = False
