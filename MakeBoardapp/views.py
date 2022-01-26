@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from matplotlib.style import context
 
 from .forms import BoardPost
-from Mainapp.models import Board, Comment
+from Mainapp.models import Board, Comment, Scrap
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -204,6 +204,9 @@ def sol_delete(request, b_no):
         return redirect('MakeBoardapp:sol_detail_board' , b_no)
 
 
+
+
+
 def qna_delete(request, qna_no):
     try:
         qna_board = QnA_Board.objects.get(qna_no=qna_no)
@@ -306,6 +309,21 @@ def qna_comment_update(request, c_no):
                 return redirect('MakeBoardapp:qna_detail_board' , qna_no)
         else:
             return redirect('MakeBoardapp:qna_detail_board' , qna_no)
+
+def qna_scrap(request, qna_no):
+
+    print('qna_scrap')
+    writer=request.user.first_name
+    scrap=Scrap.objects.create(qna_no_id=qna_no, writer=writer)
+    scrap.save()
+    return redirect('MakeBoardapp:qna_detail_board',qna_no)
+
+def sol_scrap(request, b_no):
+    print('sol_scrap')
+    writer=request.user.first_name
+    scrap=Scrap.objects.create(b_no_id=b_no, writer=writer)
+    scrap.save()
+    return redirect('MakeBoardapp:sol_detail_board',b_no)
 
 
 

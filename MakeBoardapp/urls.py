@@ -28,4 +28,8 @@ urlpatterns = [
     path('board/qna_comment/delete/<int:qna_no>/<int:c_no>', views.qna_comment_delete,  name='qna_comment_delete'),
     path('board/qna_comment/update/<int:qna_no>/<int:c_no>', views.qna_comment_updateurl,  name='qna_comment_updateurl'),
     path('board/qna_comment/update/<int:c_no>', views.qna_comment_update,  name='qna_comment_update'),
+
+    path('reading/sol_scrap/<int:b_no>/', views.sol_scrap, name='sol_scrap'),
+    path('reading/qna_scrap/<int:qna_no>/', views.qna_scrap, name='qna_scrap'),
+
 ]

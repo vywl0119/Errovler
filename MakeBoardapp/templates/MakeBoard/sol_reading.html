@@ -49,6 +49,19 @@
         return;
       }
     }
+
+
+    function scrap_button() {
+      if (confirm("정말 스크랩하시겠습니까?") == true) {
+        var link = "{% url 'MakeBoardapp:sol_scrap' board_detail.b_no%}"
+        
+        location.href=link;
+    
+      }
+      else {
+        return;
+      }
+    }
   </script>
 
 </head>
@@ -209,14 +222,8 @@
                   <p>
                     <input type="button" id='heart-button'><text style="margin:5px;">{{ board_detail.like }}</text>
                     <input type="button" id='rp-button'><text style="margin:5px;">{{comment_cnt}}</text>
-                    <text style="margin:5px; float:right;">6</text><input type="button" id='scrap-button' style="float:right;">
+                    <text style="margin:5px; float:right;">6</text><input type="button" id='scrap-button' style="float:right;" onclick="scrap_button()">
                   </p>
-
-                  <script>
-                    document.getElementById("heart-button").addEventListener("click", () => {alert("좋아요 클릭")});
-                    document.getElementById("rp-button").addEventListener("click", () => {alert("댓글 클릭")});
-                    document.getElementById("scrap-button").addEventListener("click", () => {alert("스크랩 클릭")});
-                  </script>
                 </div>
                 <div class="mt-5"></div>
               </div>

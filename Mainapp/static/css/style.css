@@ -1121,6 +1121,7 @@ h1, h2, h3, h4, h5,
 
 .post-entry-1 .post-entry-1-contents {
   background: #fff;
+  border-radius: 0.5rem;
   padding: 20px; }
   .post-entry-1 .post-entry-1-contents h2 {
     font-size: 22px;

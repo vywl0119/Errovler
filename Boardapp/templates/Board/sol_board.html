@@ -164,8 +164,8 @@
           <div class="col-5">
             <div class="custom-pagination">
               {%if posts.has_previous%}
-              <a href="?page=1">First</a>
-              <a href="?page={{posts.previous_page_number}}">Previous</a>
+              <a href="?page=1"> << </a>
+              <a href="?page={{posts.previous_page_number}}"> < </a>
               {%endif%}
 
               <span>{{posts.number}}</span>
@@ -173,8 +173,8 @@
               <span>{{posts.paginator.num_pages}}</span>
 
               {%if posts.has_next%}
-              <a href="?page={{posts.next_page_number}}">Next</a>
-              <a href="?page={{posts.paginator.num_pages}}">Last</a>
+              <a href="?page={{posts.next_page_number}}"> > </a>
+              <a href="?page={{posts.paginator.num_pages}}"> >> </a>
               {%endif%}
             </div>
           </div>
