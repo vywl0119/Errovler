@@ -222,7 +222,9 @@
                   <p>
                     <input type="button" id='heart-button'><text style="margin:5px;">{{ board_detail.like }}</text>
                     <input type="button" id='rp-button'><text style="margin:5px;">{{comment_cnt}}</text>
+                    {% if user.is_authenticated %}
                     <text style="margin:5px; float:right;">6</text><input type="button" id='scrap-button' style="float:right;" onclick="scrap_button()">
+                    {%endif%}
                   </p>
                 </div>
                 <div class="mt-5"></div>
