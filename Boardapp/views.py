@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from Mainapp.models import Board, QnA_Board
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 # Create your views here.
 def qna_board(request):
@@ -106,3 +107,14 @@ def qna_etc(request):
     #request된 페이지를 얻어온 뒤 return 해 준다
     qna_posts = paginator.get_page(page)
     return render(request, 'Board/qna_board.html', {'qna_boards' : qna_boards, 'qna_posts':qna_posts})
+
+def search(request):
+    qna_search_boards = QnA_Board.objects.all().order_by('-qna_date')
+    q = request.POST.get('q', "") 
+
+    if q:
+        qna_search_boards = qna_search_boards.filter(title__icontains=q)
+        return render(request, 'Board/search_board.html', {'qna_search_boards' : qna_search_boards, 'q' : q})
+    
+    else:
+        return render(request, 'Board/search_board.html')

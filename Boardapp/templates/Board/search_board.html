@@ -1,0 +1,20 @@
+{% if not qna_search_boards %}
+
+    <h1>검색 결과가 없습니다</h1>
+
+{% else %}
+
+{% for qna_search_board in qna_search_boards.all %}
+<div class="container"> 
+    <div class="card">
+        <div class="card-body">
+            <h1>{{ qna_search_board.title }}</h1>
+            <p>{{ qna_search_board.qna_date | date:"Y-m-d" }}</p>
+         
+        </div>
+    </div>
+</div>
+<br>
+{% endfor %}
+
+{% endif %}
