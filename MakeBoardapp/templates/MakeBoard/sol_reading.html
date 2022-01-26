@@ -22,11 +22,16 @@
 
   <!-- MAIN CSS -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+  <style>
+    .atagg {
+      text-align: right;
+    }
+    </style>
   <script>
     function modify_button() {
       if (confirm("수정하시겠습니까?") == true) {
         var link = "{% url 'MakeBoardapp:writing_board' %}"
+        
         location.href=link;
       }
       else {
@@ -36,8 +41,10 @@
 
     function delete_button() {
       if (confirm("정말 삭제하시겠습니까?") == true) {
-        var link = "{% url 'Boardapp:board' %}"
+        var link = "{% url 'MakeBoardapp:sol_delete' board_detail.b_no %}"
+        
         location.href=link;
+    
       }
       else {
         return;
@@ -48,7 +55,7 @@
 </head>
 
 <body>
-
+  
 
   <div class="site-wrap" id="home-section">
 
@@ -84,10 +91,11 @@
               <ul class="site-menu main-menu js-clone-nav ml-auto ">
                 
                 <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
-                <li class="active"><a href="{% url 'Boardapp:board' %}" class="nav-link">질문 게시판</a></li>
-                <li><a href="{% url 'Boardapp:solboard' %}" class="nav-link">해결 게시판</a></li>
+                <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
+                <li  class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
                 <li><a href="{% url 'Boardapp:scrap' %}" class="nav-link">마이 페이지</a></li>
                 <li>
+               
                   <a class='nav-link' href="{% url 'Mainapp:logout' %}">
                   {{ user.first_name }} 님 반갑습니다. (로그아웃)
                   </a>
@@ -107,8 +115,8 @@
             <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
               <ul class="site-menu main-menu js-clone-nav ml-auto ">
                 <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
-                <li class="active"><a href="{% url 'Boardapp:board' %}" class="nav-link">질문 게시판</a></li>
-                <li><a href="{% url 'Boardapp:solboard' %}" class="nav-link">해결 게시판</a></li>
+                <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
+                <li  class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
 
                 <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
                
@@ -128,7 +136,7 @@
       <div class="container">
         <div class="row m-5 align-items-center" style="float: none; margin:100 auto">
           <div class="col-lg-10 mb-4 mb-lg-0" style="float: none; margin:0 auto;">
-            <form action="{% url 'Boardapp:board' %}" class="d-flex search-form">
+            <form action="{% url 'Boardapp:sol_board' %}" class="d-flex search-form">
               <span class="icon-"></span>
               <input type="search" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!">
               <Button type="button" class="btn btn-primary px-4"> <span> 검색 </span></Button>
@@ -170,16 +178,21 @@
                         {{ board_detail.view }}
                       </text>
                     </li>
-                    <li class="context_li" style="margin-left: 20px;">
-                      <a onclick="modify_button()" class="cursor_pointer">
-                        수정
-                      </a>
-                    </li>
-                    <li class="context_li" style="margin-left: 20px;">
-                      <a onclick="delete_button()" class="cursor_pointer">
-                        삭제
-                      </a>
-                    </li>
+
+                    {% if user.first_name ==  board_detail.writer %}
+                      <li class="context_li" style="margin-left: 20px;">
+                        <a onclick="modify_button()" class="cursor_pointer">
+                          수정
+                        </a>
+                      </li>
+                      <li class="context_li" style="margin-left: 20px;">
+                        <a onclick="delete_button()" class="cursor_pointer">
+                          삭제
+                        </a>
+                      </li>
+                    {%endif%}
+
+
                   </ul>
                 </div>
 
@@ -192,21 +205,15 @@
                 <p style="font-size:120%;">{{ board_detail.contents }}</p>
 
                 <img src="{%static 'images/img_2.jpg' %}">
-               
-                {% comment %} <div class="pt-5">
-                  <input type="submit" value="👍 좋아요" class="btn btn-secondary" style="width:100px;">
-                  <input type="submit" value="📝 스크랩" class="btn btn-secondary" style="width:100px;">
-                </div> {% endcomment %}
-                {% comment %} <div class="mt-5"></div> {% endcomment %}
 
                 <div class="category_container" style="margin-left:0%; margin-top:10px;">
-                  <div>#장고</div>
+                  <div>#{{board_detail.category}}</div>
                 </div>
 
                 <div class="pt-4">
                   <p>
                     <input type="button" id='heart-button'><text style="margin:5px;">{{ board_detail.like }}</text>
-                    <input type="button" id='rp-button'><text style="margin:5px;">15</text>
+                    <input type="button" id='rp-button'><text style="margin:5px;">{{comment_cnt}}</text>
                     <text style="margin:5px; float:right;">6</text><input type="button" id='scrap-button' style="float:right;">
                   </p>
 
@@ -219,54 +226,72 @@
                 <div class="mt-5"></div>
               </div>
               </div>
-
+            <div class="comment_container">
               <div class="pt-5" style="width=100%;">
                 {% comment %} <p>Categories: <a href="#">Design</a>, <a href="#">Events</a> Tags: <a href="#">#html</a>, <a
                     href="#">#trends</a></p> {% endcomment %}
-                    <Button type="button" class="btn btn-primary px-4" onclick="location.href='{% url 'Boardapp:board' %}'"> <span> 글 목록 </span></Button>
-                    <Button type="button" class="btn btn-primary px-4"> <span> 해결 </span></Button>
+                    <Button type="button" class="btn btn-primary px-4" onclick="location.href='{% url 'Boardapp:sol_board' %}'" style="width:80px;"> <span> 글 목록 </span></Button>
+               
               </div>
               
 
             <!-- 댓글 -->
             <div class="pt-5">
-              {% comment %} <div class="mt-5"> {% endcomment %}
-                <h3 class="mb-5">댓글 <text style="font-size:90%; color:#78ECD9;">3</text> </h3>
+      
+                <h3 class="mb-5">댓글 <text style="font-size:90%; color:#78ECD9;">{{comment_cnt}}</text> </h3>
                 <ul class="comment-list">
-                  <li class="comment">
-                    <hr>
-                    <div class="comment-body">
-                      <h3>닉네임1</h3>
-                      <div class="meta">2021.01.24 15:47</div>
-                      <p style="font-size:110%;">member > views.py > signup 함수의 return 문제입니다. 스펠링, 들여쓰기 확인하세요.</p>
-                    </div>
-                  </li>
+                 
+            
+                  {% for item in comment_list %}
 
-                  <li class="comment">
-                    <hr>
-                    <div class="comment-body">
-                      <h3>닉네임2</h3>
-                      <div class="meta">2021.01.24 16:47</div>
-                      <p style="font-size:110%;">DB Browser for SQLite에서 데이터베이스가 변경되었는데 저장하지 않아 발생하는 오류입니다. DB Browser
-                        for SQLite 상단의 '변경사항 저장하기'를 눌러주세요!</p>
-                      {% comment %} <p><a href="#" class="reply">Reply</a></p> {% endcomment %}
+                    {% if request.session.update_c_no ==  item.c_no %}
+                    <li class="comment">
+                   
+                      <div class="comment-body">
+                      <h3>{{item.writer}}</h3>
+                      <form action="{% url 'MakeBoardapp:sol_comment_update' item.c_no%}" class="" method='post'>
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <input type="hidden" id="gameToken" name="b_no" value="{{ board_detail.b_no }}">
+                          <textarea name="contents" id="message"  cols="30" rows="5" 
+                            class="form-control">{{item.contents}}</textarea>
+                        </div>
+                        <div class="atagg">
+                          <input type="submit" value="수정" class="btn btn-primary btn-md text-white">
+                        </div>
+                      </form>
                     </div>
                   </li>
+                  
+                    {% else%}
 
-                  <li class="comment">
-                    <hr>
-                    <div class="comment-body">
-                      <h3>닉네임3</h3>
-                      <div class="meta">2021.01.24 17:47</div>
-                      <p style="font-size:110%;">파일 경로 제대로 되어있는지 확인하세요! templates 폴더 안에 생성했는지 template 하위 앱 폴더 안에 생성했는지
-                        확인!</p>
-                      {% comment %} <p><a href="#" class="reply">Reply</a></p> {% endcomment %}
-                    </div>
-                  </li>
+                      <li class="comment">
+                        <hr>
+                        <div class="comment-body">
+                          <h3>{{item.writer}}</h3>
+                          <div class="meta">
+                              {{item.c_date}}
+                            </div>
+                          <p style="font-size:110%;">{{item.contents}}</p>
+
+                          {% if user.first_name ==  item.writer %}
+                          <div class="atagg">
+                              <a onclick="location.href='{% url 'MakeBoardapp:sol_comment_updateurl' board_detail.b_no item.c_no %}'">  수정 </a>
+                              <a onclick="location.href='{% url 'MakeBoardapp:sol_comment_delete' board_detail.b_no item.c_no %}'"> 삭제 </a><br>
+                          </div>    
+                          {% endif%}
+
+                        </div>
+                      </li>
+
+                    {% endif%}
+
+                  {% endfor %}
+
                 </ul>
                 <!-- END comment-list -->
                 <div class="comment-form-wrap pt-5">
-                  <form action="{% url 'MakeBoardapp:comment' %}" class="" method='post'>
+                  <form action="{% url 'MakeBoardapp:sol_comment' %}" class="" method='post'>
                     {% csrf_token %}
                     <div class="form-group">
                       <hr>
@@ -283,6 +308,7 @@
                     </form>
                   </div>
                 </div>
+              </div>
               {% comment %} </div> {% endcomment %}
               </div>
           </div>

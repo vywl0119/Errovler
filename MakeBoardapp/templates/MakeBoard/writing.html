@@ -58,8 +58,8 @@
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
                   <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
-                  <li><a href="{% url 'Boardapp:board' %}" class="nav-link">질문 게시판</a></li>
-                  <li><a href="{% url 'Boardapp:solboard' %}" class="nav-link">해결 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
                   <li><a href="{% url 'Boardapp:scrap' %}" class="nav-link">마이 페이지</a></li>
                   <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
                 </ul>
@@ -80,14 +80,18 @@
               <div class="container">
                   <h1>글쓰기</h1>
                   <hr>
-                  <form action="" method="POST">
+                  <form action="" method="POST" enctype="miltipart/form-data">
                       {% csrf_token %}
 
                       {% for form in forms %}
+                      <div>
                         <label for="{{ form.id_for_label }}">{{ form.label }}</label>
-                        {{ form }}
+                        {% autoescape off %}
+                        {{ form|safe }}
+                        {% endautoescape %}
+                      </div>
                       {% endfor %}
-
+                  
                       {% if error %}
                       {{ error }}
                       {% endif %}
