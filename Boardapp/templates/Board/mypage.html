@@ -61,8 +61,8 @@
                   
                   <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
                   <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
-                  <li class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
-                  <li><a href="{% url 'Boardapp:mypage' %}" class="nav-link">마이 페이지</a></li>
+                  <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
+                  <li class="active"><a href="{% url 'Boardapp:mypage' %}" class="nav-link">마이 페이지</a></li>
                   <li>
                     <a class='nav-link' href="{% url 'Mainapp:logout' %}">
                     {{ user.first_name }} 님 반갑습니다. (로그아웃)
@@ -105,14 +105,9 @@
           <div class="row m-5 align-items-center" style = "float: none; margin:100 auto">
             <div class="col-lg-10 mb-4 mb-lg-0" style="float: none; margin:0 auto;">
 
-              <form action="#" class="d-flex search-form">
-                <span class="icon-"></span>
-                <input type="search" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!">
-                <input type="summit" class="btn btn-primary px-4 mr-2" value ="검색">
-                {% if user.is_authenticated %}
-                <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_board" %}'">글쓰기</Button>
-                {%endif%}
-              </form>
+              <div class="profile_container">
+                <p>프로필들어갈거따뿅</p>
+              </div>
               
             </div>
           </div>
