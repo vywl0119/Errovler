@@ -4,11 +4,6 @@ from .forms import UserForm
 from Mainapp.models import Board, Class_Board, Comment
 import datetime 
 
-
-
-
-
-
 def home(request):
     board_list = Board.objects.order_by('-view')[:5]
     dt_now = datetime.datetime.now()
