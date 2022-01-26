@@ -169,16 +169,14 @@
               </div>
             </div>
             <div class="col-lg-8">
-              
-
-
-            
-             
+  
             {% for i in board_list %}
            
               <div class="d-flex tutorial-item mb-4">
                 <div class="img-wrap">
-                  <a href="{% url 'MakeBoardapp:sol_detail_board' i.b_no %}"><img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid"></a>
+                  <a href="{% url 'MakeBoardapp:sol_detail_board' i.b_no %}">
+                    <img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid">
+                  </a>
                 </div>
                 <div class="comment_container"> 
                   <h3><a href="{% url 'MakeBoardapp:sol_detail_board' i.b_no %}">{{i.title}}</a></h3>
