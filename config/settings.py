@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'ckeditor',
     'ckeditor_uploader',
+    'imagekit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -146,3 +147,6 @@ LOGOUT_REDIRECT_URL = '/Main/home/'
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
+SUMMERNOTE_CONFIG = {
+    'attachment_filesize_limit': 5 * 1024 * 1024
+}

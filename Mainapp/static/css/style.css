@@ -1475,3 +1475,8 @@ textarea{
   display: flex;
   flex-direction: column; /*수직 정렬*/
 }
+
+p>img {
+  width: 290px;
+  height: 290px;
+}

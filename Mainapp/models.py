@@ -45,6 +45,9 @@ class QnA_Board(models.Model):
         db_table = 'QnA_Board'
         managed = False
 
+    def summary(self):
+        return self.contents[:100]
+
 class Comment(models.Model):
     c_no = models.AutoField(primary_key=True)
     b_no = models.ForeignKey('Board', on_delete=models.CASCADE, db_column='b_no')

@@ -109,6 +109,7 @@
                 <span class="icon-"></span>
                 <input type="search" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!">
                 <input type="summit" class="btn btn-primary px-4 mr-2" value ="검색">
+                
                 <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_board" %}'">글쓰기</Button>
               </form>
               
@@ -128,19 +129,29 @@
       <div class="container">
         <div class="row">
         {% for board in posts %}
-        
+  
           <div class="col-lg-4 col-md-6 mb-4" style="margin: 0 auto; width:50%;">
             <div class="board_container">
               <div class="post-entry-1 h-100">
-                <a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no %}" class="thumbnail-link">
-     
-                  <img src="{% static 'images/img_1.jpg' %}" alt="Image"
-                  class="img-fluid">
-                </a>
+              
                 <div class="post-entry-1-contents">
                   <h2><a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no  %}">{{ board.title }}</a></h2>
                   <span class="meta d-inline-block mb-3">{{ board.b_date }} <span class="mx-2">by</span> <a href="#">Admin</a></span>
-                  <p>{{ board.summary|safe }}<a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no %}">....더보기</a></p>
+                  {% if board.summary != None %}
+                  
+                    <p>
+                      {% autoescape off %}
+                      {{ board.summary }}
+                      {% endautoescape %}
+                      <a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no %}">....더보기</a>
+                    </p>
+                 
+                  {% else %}
+                    <a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no %}" class="thumbnail-link">
+                      <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid">
+                    </a>  
+                  {% endif %}
+                    
                 </div>
               </div>
           </div>
