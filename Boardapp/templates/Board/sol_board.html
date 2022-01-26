@@ -119,10 +119,15 @@
         </div>
 
         <div class="category_container">
-          <div id=error_categoty>#파이썬</div>
-          <div id=error_categoty>#장고</div>
-          <div id=error_categoty>#자바</div>
-          <div id=error_categoty>#기타</div>
+          <div id=error_categoty>
+          <a onclick="location.href='{% url 'Boardapp:sol_python'%}'">  #파이썬 </a>
+        </div>
+          <div id=error_categoty>
+            <a onclick="location.href='{% url 'Boardapp:sol_django'%}'">  #장고 </a>
+          </div>
+          <div id=error_categoty>
+            <a onclick="location.href='{% url 'Boardapp:sol_etc'%}'">  #기타 </a>
+          </div>
         </div>
       
    
