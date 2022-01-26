@@ -27,6 +27,12 @@
     <link href='https://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+      .atagg {
+        text-align: right;
+      }
+      </style>
   
   </head>
 
@@ -159,89 +165,40 @@
               
 
 
+            
+             
+            {% for i in board_list %}
+           
               <div class="d-flex tutorial-item mb-4">
                 <div class="img-wrap">
-                  <a href="#"><img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid"></a>
+                  <a href="{% url 'MakeBoardapp:sol_detail_board' i.b_no %}"><img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid"></a>
                 </div>
-                <div>
-                  <h3><a href="#">Learning React Native</a></h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam tempore, saepe numquam. Doloremque culpa tenetur facere quisquam, animi illum possimus!</p>
+                <div class="comment_container"> 
+                  <h3><a href="{% url 'MakeBoardapp:sol_detail_board' i.b_no %}">{{i.title}}</a></h3>
+                  <div class = 'atagg'>
+                    <a href="{% url 'MakeBoardapp:sol_detail_board' i.b_no %}" >#{{i.category}}</a>
+                  </div>
+                  <p>{{ i.summary|safe }}</p>
                   
-                  <p class="mb-0">
-                    <span class="brand-react h5"></span>
-                    <span class="brand-javascript h5"></span>
-                  </p>
                   <p class="meta">
-                    <span class="mr-2 mb-2">1hr 24m</span>
-                    <span class="mr-2 mb-2">Advanced</span>
-                    <span class="mr-2 mb-2">Jun 18, 2020</span>
-                  </p>
-                  
-                  <p><a href="tutorial-single.html" class="btn btn-primary custom-btn">View</a></p>
-                </div>
-              </div>
-
-              <div class="d-flex tutorial-item mb-4">
-                <div class="img-wrap">
-                  <a href="#"><img src="{% static 'images/img_2.jpg' %}" alt="Image" class="img-fluid"></a>
-                </div>
-                <div>
-                  <h3><a href="#">Learning Angular 101</a></h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam tempore, saepe numquam. Doloremque culpa tenetur facere quisquam, animi illum possimus!</p>
-
-                  <p class="mb-0">
-                    <span class="brand-angular h5"></span>
-                    <span class="brand-javascript h5"></span>
-                  </p>
-                  <p class="meta">
-                    <span class="mr-2 mb-2">1hr 24m</span>
-                    <span class="mr-2 mb-2">Advanced</span>
-                    <span class="mr-2 mb-2">Jun 18, 2020</span>
+              
+                    <span class="mr-2 mb-2">{{i.writer}}</span>
+                    <span class="mr-2 mb-2">{{i.b_date}}</span>
                   </p>
                   
-                  <p><a href="tutorial-single.html" class="btn btn-primary custom-btn">View</a></p>
+                  <div class="pt-4">
+                    <p>
+                      <input type="button" id='heart-button'><text style="margin:5px;">{{ i.like }}</text>
+                      <input type="button" id='rp-button'><text style="margin:5px;"></text>
+                      <text style="margin:5px; float:right;">{{i.view}}</text><input type="button" id='scrap-button' style="float:right;">
+                    </p>
+                  </div>
                 </div>
               </div>
-
-              <div class="d-flex tutorial-item mb-4">
-                <div class="img-wrap">
-                  <a href="#"><img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid"></a>
-                </div>
-                <div>
-                  <h3><a href="#">Learning Photoshop</a></h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam tempore, saepe numquam. Doloremque culpa tenetur facere quisquam, animi illum possimus!</p>
-                  <p class="mb-0">
-                    <span class="brand-adobephotoshop h5"></span>
-                  </p>
-                  <p class="meta">
-                    <span class="mr-2 mb-2">1hr 24m</span>
-                    <span class="mr-2 mb-2">Advanced</span>
-                    <span class="mr-2 mb-2">Jun 18, 2020</span>
-                  </p>
-                  <p><a href="tutorial-single.html" class="btn btn-primary custom-btn">View</a></p>
-                </div>
-              </div>
-
-              <div class="d-flex tutorial-item mb-4">
-                <div class="img-wrap">
-                  <a href="#"><img src="{% static 'images/img_4.jpg' %}" alt="Image" class="img-fluid"></a>
-                </div>
-                <div>
-                  <h3><a href="#">Advance Illustrator</a></h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam tempore, saepe numquam. Doloremque culpa tenetur facere quisquam, animi illum possimus!</p>
-                  <p class="mb-0">
-                    <span class="brand-adobeillustrator h5"></span>
-                  </p>
-                  <p class="meta">
-                    <span class="mr-2 mb-2">1hr 24m</span>
-                    <span class="mr-2 mb-2">Advanced</span>
-                    <span class="mr-2 mb-2">Jun 18, 2020</span>
-                  </p>
-                  <p><a href="tutorial-single.html" class="btn btn-primary custom-btn">View</a></p>
-                </div>
-              </div>
-            </div>
-
+           
+            {% endfor%}
+            
+              
 
           </div>
         </div>
