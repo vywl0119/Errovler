@@ -1659,7 +1659,7 @@ p>img {
   -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
   padding: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 /* 프로필 사진, 닉네임 */
 .profile_container .profile {
