@@ -139,15 +139,26 @@
             <div class="col-lg-4 col-md-6 mb-4" style="margin: 0 auto; width:50%;">
               <div class="board_container">
                 <div class="post-entry-1 h-100">
-                  <a href="{% url 'MakeBoardapp:qna_detail_board' qna_board.qna_no %}" class="thumbnail-link">
-      
-                    <img src="{% static 'images/img_1.jpg' %}" alt="Image"
-                    class="img-fluid">
-                  </a>
                   <div class="post-entry-1-contents">
                     <h2><a href="{% url 'MakeBoardapp:qna_detail_board' qna_board.qna_no  %}">{{ qna_board.title }}</a></h2>
+<<<<<<< HEAD
+                    <span class="meta d-inline-block mb-3">{{ qna_board.qna_date }} <span class="mx-2">by</span> <a href="#">Admin</a></span>
+                    {% if qna_board.summary != None %}
+                    <p>
+                      {% autoescape off %}
+                      {{ qna_board.summary | safe}}
+                      {% endautoescape %}
+                      <a href="{% url 'MakeBoardapp:qna_detail_board' qna_board.qna_no %}">....더보기</a>
+                    </p>
+                    {% else %}
+                      <a href="{% url 'MakeBoardapp:qna_detail_board' qna_board.qna_no %}" class="thumbnail-link">
+                        <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid">
+                      </a>  
+                    {% endif %}
+=======
                     <span class="meta d-inline-block mb-3">{{ qna_board.qna_date }} <span class="mx-2">by</span> <a href="#">{{qna_board.writer}}</a></span>
                     <p>{{ qna_board.summary|safe }}<a href="{% url 'MakeBoardapp:qna_detail_board' qna_board.qna_no %}">....더보기</a></p>
+>>>>>>> main
                   </div>
                 </div>
               </div>
