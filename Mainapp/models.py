@@ -35,6 +35,11 @@ class QnA_Board(models.Model):
     contents = models.TextField(null=False)
     view = models.IntegerField(null=False, default=0)
     like = models.IntegerField( null=False, default=0)
+    
+    @property
+    def update_counter(self):
+        self.view += 1
+        self.save()
 
     class Meta:
         db_table = 'QnA_Board'
