@@ -11,7 +11,7 @@ urlpatterns = [
 
     path('reading/sol_board/<int:b_no>', views.sol_detail_board, name='sol_detail_board'),
     path('reading/qna_board/<int:qna_no>', views.qna_detail_board, name='qna_detail_board'),
-     path('reading/scrap/<int:s_no>', views.scrap_qna, name='scrap_qna'),
+    path('reading/qna_scrap/<int:qna_no>/', views.qna_scrap, name='qna_scrap'),
 
 
     path('board/sol_comment/', views.sol_comment, name='sol_comment'),

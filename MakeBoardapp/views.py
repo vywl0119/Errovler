@@ -308,17 +308,10 @@ def qna_comment_update(request, c_no):
             return redirect('MakeBoardapp:qna_detail_board' , qna_no)
 
 
-def scrap_qna(request):
-    if request.method == 'POST':
-        qna_no=request.POST.get('qna_no')
-        if qna_no:
-            try:
-                writer=request.user.first_name
-                scrap=Scrap.objects.create(qna_no=qna_no, writer=writer)
-                scrap.save()
-                return redirect('MakeBoardapp:qna_detail_board',qna_no)
-            except:
-                return redirect('Mainapp:home',qna_no)
-        else:
-            return redirect('Boardapp:sol_board',qna_no)
+def qna_scrap(request,qna_no):
+     print('scrap')
+     writer=request.user.first_name
+     scrap=Scrap.objects.create(qna_no_id=qna_no, writer=writer)
+     scrap.save()
+     return redirect('Boardapp:sol_board',qna_no)
         
