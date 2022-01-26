@@ -67,7 +67,7 @@ def qna_board_write(request):
                 category=write_form.category
             )
             board.save()
-            return redirect('/Board/board')
+            return redirect('/Board/qna_board')
         else:
             context['forms'] = write_form
             if write_form.errors:
