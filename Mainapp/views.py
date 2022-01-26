@@ -5,13 +5,18 @@ from Mainapp.models import Board, Comment
 
 def home(request):
     board_list = Board.objects.order_by('-view')[:5]
-    # b_no = board_list.objects.filter(b_no = b_no)
-    # comment_list = Comment.objects.filter(b_no = b_no)
-    # comment_cnt = len(comment_list)
+    
+    b_no_list = [board_list[i].b_no for i in range(5)]
+    comment_cnt_list = []
+    
+    for b_no in b_no_list:
+        comment_list = Comment.objects.filter(b_no = b_no)
+        comment_cnt = len(comment_list)
+        comment_cnt_list.append(comment_cnt)
+        
+    board_list = list(zip(board_list, comment_cnt_list))
 
-    context = {'board_list': board_list,
-                # 'comment_cnt': comment_cnt,
-                }
+    context = { 'board_list': board_list }
 
     return render(request, 'Main/home.html',context)
 
