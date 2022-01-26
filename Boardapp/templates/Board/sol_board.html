@@ -82,9 +82,9 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
+                  <li class="active"><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
                   <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
-                  <li class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
 
                   <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
                  
@@ -109,31 +109,19 @@
                 <span class="icon-"></span>
                 <input type="search" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!">
                 <input type="summit" class="btn btn-primary px-4 mr-2" value ="검색">
-<<<<<<< HEAD
                 
                 <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_board" %}'">글쓰기</Button>
               </form>
-=======
-                {% if user.is_authenticated %}
-                  <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_board" %}'">글쓰기</Button>
-                {%endif%}
-                </form>
->>>>>>> main
               
             </div>
           </div>
         </div>
 
         <div class="category_container">
-          <div id=error_categoty>
-          <a onclick="location.href='{% url 'Boardapp:sol_python'%}'" class="cursor_pointer">  #파이썬 </a>
-        </div>
-          <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:sol_django'%}'" class="cursor_pointer">  #장고 </a>
-          </div>
-          <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:sol_etc'%}'" class="cursor_pointer">  #기타 </a>
-          </div>
+          <div id=error_categoty>#파이썬</div>
+          <div id=error_categoty>#장고</div>
+          <div id=error_categoty>#자바</div>
+          <div id=error_categoty>#기타</div>
         </div>
       
    
@@ -148,27 +136,20 @@
               
                 <div class="post-entry-1-contents">
                   <h2><a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no  %}">{{ board.title }}</a></h2>
-<<<<<<< HEAD
                   <span class="meta d-inline-block mb-3">{{ board.b_date }} <span class="mx-2">by</span> <a href="#">Admin</a></span>
                   {% if board.summary != None %}
-                  
                     <p>
                       {% autoescape off %}
                       {{ board.summary }}
                       {% endautoescape %}
                       <a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no %}">....더보기</a>
                     </p>
-                 
                   {% else %}
                     <a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no %}" class="thumbnail-link">
                       <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid">
                     </a>  
                   {% endif %}
                     
-=======
-                  <span class="meta d-inline-block mb-3">{{ board.b_date }} <span class="mx-2">by</span> <a href="#">{{board.writer}}</a></span>
-                  <p>{{ board.summary|safe }}<a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no %}">....더보기</a></p>
->>>>>>> main
                 </div>
               </div>
           </div>
