@@ -17,8 +17,16 @@ def home(request):
    
     today_class = Class_Board.objects.get(cb_date = todays)
     next_class = Class_Board.objects.get(cb_date = tomorrow)
-    
 
+    b_no_list = [board_list[i].b_no for i in range(5)]
+    comment_cnt_list = []
+    
+    for b_no in b_no_list:
+        comment_list = Comment.objects.filter(b_no = b_no)
+        comment_cnt = len(comment_list)
+        comment_cnt_list.append(comment_cnt)
+        
+    board_list = list(zip(board_list, comment_cnt_list))
 
     context = {'board_list': board_list,
                 'today_class':today_class,

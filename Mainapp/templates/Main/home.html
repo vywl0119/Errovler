@@ -169,33 +169,35 @@
               </div>
             </div>
             <div class="col-lg-8">
-  
-            {% for i in board_list %}
+
+
+            {% for board, comment_cnt in board_list %}
            
               <div class="d-flex tutorial-item mb-4">
                 <div class="img-wrap">
-                  <a href="{% url 'MakeBoardapp:sol_detail_board' i.b_no %}">
+                  <a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no %}">
                     <img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid">
                   </a>
                 </div>
                 <div class="comment_container"> 
-                  <h3><a href="{% url 'MakeBoardapp:sol_detail_board' i.b_no %}">{{i.title}}</a></h3>
+                  <h3><a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no %}">{{board.title}}</a></h3>
                   <div class = 'atagg'>
-                    <a href="{% url 'MakeBoardapp:sol_detail_board' i.b_no %}" >#{{i.category}}</a>
+                    <a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no %}" >#{{board.category}}</a>
                   </div>
-                  <p>{{ i.summary|safe }}</p>
+                  <p>{{ board.summary|safe }}</p>
                   
                   <p class="meta">
               
-                    <span class="mr-2 mb-2">{{i.writer}}</span>
-                    <span class="mr-2 mb-2">{{i.b_date}}</span>
+                    <span class="mr-2 mb-2">{{board.writer}}</span>
+                    <span class="mr-2 mb-2">{{board.b_date}}</span>
                   </p>
                   
                   <div class="pt-4">
                     <p>
-                      <input type="button" id='heart-button'><text style="margin:5px;">{{ i.like }}</text>
-                      <input type="button" id='rp-button'><text style="margin:5px;"></text>
-                      <text style="margin:5px; float:right;">{{i.view}}</text><input type="button" id='scrap-button' style="float:right;">
+                      <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
+                      <input type="button" id='rp-button'><text style="margin:5px;">{{ comment_cnt }}</text>
+                      <text style="margin:5px; float:right;">{{board.view}}</text>
+                      <input type="button" id='scrap-button' style="float:right;">
                     </p>
                   </div>
                 </div>
