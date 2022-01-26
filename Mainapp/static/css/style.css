@@ -1477,10 +1477,13 @@ textarea{
 }
 
 p>img {
-  width: 290px;
-  height: 290px;
+  width: 300px;
+  height: 300px;
 }
-
+#basic_image{
+  width: 300px;
+  height: 300px;
+}
 /* main slide */
 * {
   margin:0;
