@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from matplotlib.style import context
 
 from .forms import BoardPost
-from Mainapp.models import Board, Comment, Scrap
+from Mainapp.models import Board, Comment, Scrap, Like_Board
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -326,5 +326,42 @@ def sol_scrap(request, b_no, category):
     return redirect('MakeBoardapp:sol_detail_board',b_no)
 
 
+    
+def qna_like(request, qna_no):
+    print('qna_like')
+    qna_board = QnA_Board.objects.get(qna_no=qna_no)
+    writer=request.user.first_name
+    check_like_board = Like_Board.objects.filter(qna_no=qna_no)
+
+    if check_like_board.exists():
+        check_like_board.delete()
+        qna_board.like -= 1
+        qna_board.save()
+
+    else:
+        like=Like_Board.objects.create(qna_no_id=qna_no, writer=writer)
+        like.save()
+        qna_board.like += 1
+        qna_board.save()
+
+    return redirect('MakeBoardapp:qna_detail_board',qna_no)
 
 
+def sole_like(request, b_no):
+    print('sol_like')
+    board = Board.objects.get(b_no=b_no)
+    writer=request.user.first_name
+    check_like_board = Like_Board.objects.filter(b_no=b_no)
+
+    if check_like_board.exists():
+        check_like_board.delete()
+        board.like -= 1
+        board.save()
+
+    else:
+        like=Like_Board.objects.create(b_no_id=b_no, writer=writer)
+        like.save()
+        board.like += 1
+        board.save()
+
+    return redirect('MakeBoardapp:sol_detail_board',b_no)

@@ -32,4 +32,6 @@ urlpatterns = [
     path('reading/sol_scrap/<int:b_no>/<str:category>', views.sol_scrap, name='sol_scrap'),
     path('reading/qna_scrap/<int:qna_no>/<str:category>', views.qna_scrap, name='qna_scrap'),
 
+    path('reading/sol_like/<int:b_no>', views.sole_like, name='sol_like'),
+    path('reading/qna_like/<int:qna_no>', views.qna_like, name='qna_like'),
 ]

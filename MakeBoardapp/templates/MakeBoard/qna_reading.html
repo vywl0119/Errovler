@@ -64,6 +64,18 @@
         return;
       }
     }
+
+    function heart_button() {
+      if (confirm("좋아요") == true) {
+        var link = "{% url 'MakeBoardapp:qna_like' board_detail.qna_no %}"
+          
+        location.href=link;
+      
+      }
+      else {
+        return;
+      }
+    }
   </script>
 
 </head>
@@ -224,8 +236,8 @@
               
                   <div class="pt-4">
                     <p>
-                      <input type="button" id='heart-button' ><text style="margin:5px;">{{ board_detail.like }}</text>
-                      <input type="button" id='rp-button'><text style="margin:5px;">{{comment_cnt}}</text>
+                      </text><input type="button" id='heart-button' onclick="heart_button()"><text style="margin:5px;">{{ board_detail.like }}</text>
+                      </text><input type="button" id='rp-button'><text style="margin:5px;">{{comment_cnt}}</text>
                       {% if user.is_authenticated %}
                       <text style="margin:5px; float:right;" >
                         6
