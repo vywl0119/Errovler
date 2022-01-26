@@ -28,13 +28,6 @@
     </style>
   <script>
 
-      document.getElementById("heart-button").addEventListener("click", () => {alert("좋아요 클릭")});
-      document.getElementById("rp-button").addEventListener("click", () => {alert("댓글 클릭")});
-      document.getElementById("scrap-button").addEventListener("click", () => {
-        href='{% url 'MakeBoardapp:qna_scrap' board_detail.qna_no%}'
-
-      });
-  
 
 
     function modify_button() {
@@ -62,7 +55,7 @@
 
     function scrap_button() {
       if (confirm("정말 스크랩하시겠습니까?") == true) {
-        var link = "{% url 'MakeBoardapp:qna_scrap' board_detail.qna_no%}"
+        var link = "{% url 'MakeBoardapp:qna_scrap' board_detail.qna_no board_detail.category %}"
         
         location.href=link;
     
