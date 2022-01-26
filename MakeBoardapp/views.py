@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from matplotlib.style import context
 
 from .forms import BoardPost
-from Mainapp.models import Board, Comment
+from Mainapp.models import Board, Comment, Scrap
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -308,5 +308,10 @@ def qna_comment_update(request, c_no):
             return redirect('MakeBoardapp:qna_detail_board' , qna_no)
 
 
-
-
+def qna_scrap(request,qna_no):
+     print('scrap')
+     writer=request.user.first_name
+     scrap=Scrap.objects.create(qna_no_id=qna_no, writer=writer)
+     scrap.save()
+     return redirect('Boardapp:sol_board',qna_no)
+        
