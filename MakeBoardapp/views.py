@@ -309,36 +309,16 @@ def qna_comment_update(request, c_no):
 
 
 def scrap_qna(request,s_no):
-    if request.method == "POST":
-        scrap=Scrap.objects.get(s_no=s_no)
-        qna_no=request.POST.get('qna_no')
-        writer=request.user.first_name
-
-        try:
-            scrap.qna_no=qna_no
-            scrap.writer=writer
-            scrap.save()
-        except:
-            return redirect("Mainapp:home")
-    else:
-        return redirect("MakeBoardapp:writing_board")
-        
-
-def qna_comment(request):
-    print('qna')
     if request.method == 'POST':
-        contents = request.POST.get('contents')
-        qna_no = request.POST.get('qna_no')
-        print(qna_no, contents)
-        if contents:
+        qna_no=request.POST.get('qna_no')
+        if qna_no:
             try:
-                print(contents)
-                username = request.user.first_name
-                comment = Comment.objects.create(qna_no_id=qna_no, contents=contents, writer = username)
-                comment.save()
-                return redirect('MakeBoardapp:qna_detail_board' , qna_no)
-
+                writer=request.user.first_name
+                scrap=Scrap.objects.create(qna_no=qna_no, writer=writer)
+                scrap.save()
+                return redirect('MakeBoardapp:qna_detail_board',qna_no)
             except:
-                return redirect('MakeBoardapp:qna_detail_board' , qna_no)
+                return redirect('MakeBoardapp:qna_detail_board',qna_no)
         else:
-            return redirect('MakeBoardapp:qna_detail_board' , qna_no)
+            return redirect('MakeBoardapp:qna_detail_board',qna_no)
+        
