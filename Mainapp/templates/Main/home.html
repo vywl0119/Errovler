@@ -32,7 +32,15 @@
       .atagg {
         text-align: right;
       }
-      </style>
+      .section .slidelist .left {
+        left: 30px;
+        background: url("{% static 'images/left.png' %}") center center / 100% no-repeat;
+      }
+      .section .slidelist .right {
+        right: 30px;
+        background: url("{% static 'images/right.png' %}") center center / 100% no-repeat;
+      }
+    </style>
   
   </head>
 
@@ -121,7 +129,7 @@
           </div>
         </div>
 
-        <div id="slider-wrap">
+        {% comment %} <div id="slider-wrap">
           <ul id="slider">
               <li>
                 <div>
@@ -147,10 +155,9 @@
               <ul>
               </ul>
           </div>
-      </div>
-          
+      </div> {% endcomment %}
 
-     
+      {% include 'Main/slider.html' %}     
 
       <div class="site-section bg-light">
         <div class="container">
