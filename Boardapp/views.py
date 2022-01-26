@@ -109,12 +109,12 @@ def qna_etc(request):
     return render(request, 'Board/qna_board.html', {'qna_boards' : qna_boards, 'qna_posts':qna_posts})
 
 def search(request):
-    qna_search_boards = QnA_Board.objects.all().order_by('-id')
+    qna_search_boards = QnA_Board.objects.all().order_by('-qna_date')
     q = request.POST.get('q', "") 
 
     if q:
         qna_search_boards = qna_search_boards.filter(title__icontains=q)
-        return render(request, 'search.html', {'qna_search_boards' : qna_search_boards, 'q' : q})
+        return render(request, 'Board/search_board.html', {'qna_search_boards' : qna_search_boards, 'q' : q})
     
     else:
-        return render(request, 'search.html')
+        return render(request, 'Board/search_board.html')

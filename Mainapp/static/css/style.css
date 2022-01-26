@@ -1121,8 +1121,9 @@ h1, h2, h3, h4, h5,
 
 .post-entry-1 .post-entry-1-contents {
   background: #fff;
-  border-radius: 0.5rem;
-  padding: 20px; }
+  border-radius: 1.5rem;
+  padding: 20px;
+  height: 560px; }
   .post-entry-1 .post-entry-1-contents h2 {
     font-size: 22px;
     margin-bottom: 20px; }
@@ -1410,6 +1411,11 @@ ul{
   width: 50px;
   height: 50px;
 }
+#crown_image{
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+}
 
 .context_ul{
   list-style-type: none;
@@ -1461,7 +1467,7 @@ ul{
 }
 
 .board_container{
-  border-radius: 0.5rem;
+  border-radius: 2rem;
   box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%);
 }
 

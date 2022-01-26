@@ -105,11 +105,11 @@
           <div class="row m-5 align-items-center" style = "float: none; margin:100 auto">
             <div class="col-lg-10 mb-4 mb-lg-0" style="float: none; margin:0 auto;">
 
-              <form action="{% url 'Boardapp:search' %}" method="post" class="d-flex search-form">
+              <form action="{% url 'Boardapp:search' %}" method="POST" class="d-flex search-form">
                 <span class="icon-"></span>
                 {% csrf_token %}
                 <input type="search" name="q" value="{{q}}" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!">
-                <button type="summit" class="btn btn-primary px-4 mr-2" value ="검색"></button>
+                <button type="summit" class="btn btn-primary px-4 mr-2" value ="검색">검색</button>
                 <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_qna_board" %}'">글쓰기</Button>
               </form>
               

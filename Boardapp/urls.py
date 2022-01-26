@@ -18,4 +18,6 @@ urlpatterns = [
     path('qna_etc/', views.qna_etc, name='qna_etc'),
     
     path('mypage/', views.mypage, name='mypage'),
+    
+    path('search/', views.search, name='search'),
 ]
