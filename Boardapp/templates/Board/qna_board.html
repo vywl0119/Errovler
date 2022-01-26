@@ -141,7 +141,6 @@
                 <div class="post-entry-1 h-100">
                   <div class="post-entry-1-contents">
                     <h2><a href="{% url 'MakeBoardapp:qna_detail_board' qna_board.qna_no  %}">{{ qna_board.title }}</a></h2>
-<<<<<<< HEAD
                     <span class="meta d-inline-block mb-3">{{ qna_board.qna_date }} <span class="mx-2">by</span> <a href="#">Admin</a></span>
                     {% if qna_board.summary != None %}
                     <p>
@@ -155,10 +154,6 @@
                         <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid">
                       </a>  
                     {% endif %}
-=======
-                    <span class="meta d-inline-block mb-3">{{ qna_board.qna_date }} <span class="mx-2">by</span> <a href="#">{{qna_board.writer}}</a></span>
-                    <p>{{ qna_board.summary|safe }}<a href="{% url 'MakeBoardapp:qna_detail_board' qna_board.qna_no %}">....더보기</a></p>
->>>>>>> main
                   </div>
                 </div>
               </div>
