@@ -1,19 +1,32 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .forms import UserForm
-from Mainapp.models import Board, Comment
+from Mainapp.models import Board, Class_Board, Comment
+import datetime 
+
+
+
+
+
 
 def home(request):
     board_list = Board.objects.order_by('-view')[:5]
-    # b_no = board_list.objects.filter(b_no = b_no)
-    # comment_list = Comment.objects.filter(b_no = b_no)
-    # comment_cnt = len(comment_list)
+    dt_now = datetime.datetime.now()
+    todays = dt_now.date()
+    tomorrow = datetime.date.today() + datetime.timedelta(days=1)
+   
+    today_class = Class_Board.objects.get(cb_date = todays)
+    next_class = Class_Board.objects.get(cb_date = tomorrow)
+    
+
 
     context = {'board_list': board_list,
-                # 'comment_cnt': comment_cnt,
+                'today_class':today_class,
+                'next_class':next_class,
                 }
 
     return render(request, 'Main/home.html',context)
+
 
 
 def signup(request):
