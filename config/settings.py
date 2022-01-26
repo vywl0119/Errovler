@@ -146,3 +146,6 @@ LOGOUT_REDIRECT_URL = '/Main/home/'
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
+SUMMERNOTE_CONFIG = {
+    'attachment_filesize_limit': 5 * 1024 * 1024
+}
