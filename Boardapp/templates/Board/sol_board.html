@@ -146,7 +146,7 @@
                 </a>
                 <div class="post-entry-1-contents">
                   <h2><a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no  %}">{{ board.title }}</a></h2>
-                  <span class="meta d-inline-block mb-3">{{ board.b_date }} <span class="mx-2">by</span> <a href="#">Admin</a></span>
+                  <span class="meta d-inline-block mb-3">{{ board.b_date }} <span class="mx-2">by</span> <a href="#">{{board.writer}}</a></span>
                   <p>{{ board.summary|safe }}<a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no %}">....더보기</a></p>
                 </div>
               </div>
