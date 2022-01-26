@@ -1,7 +1,7 @@
 from unicodedata import category
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, JsonResponse
-import datetime
+from datetime import date, datetime, timedelta
 
 # Create your views here.
 from django.contrib.auth import authenticate, login
@@ -20,12 +20,30 @@ def qna_detail_board(request, qna_no):
     board_detail = QnA_Board.objects.get(qna_no = qna_no)
     comment_list = Comment.objects.filter(qna_no = qna_no)
     comment_cnt = len(comment_list)
-
+    
     context = {'board_detail': board_detail,
                 'comment_list': comment_list,
                 'comment_cnt': comment_cnt,
                 }
-    return render(request, 'MakeBoard/qna_reading.html',context)
+    
+    response = render(request, 'MakeBoard/qna_reading.html',context)
+    
+    # 조회수
+    expire_date, now = datetime.now(), datetime.now()
+    expire_date += timedelta(days=1)
+    expire_date = expire_date.replace(hour=0, minute=0, second=0, microsecond=0)
+    expire_date -= now
+    max_age = expire_date.total_seconds()
+    
+    cookie_value = request.COOKIES.get('hitboard', '_')
+    
+    if f'_{qna_no}_' not in cookie_value:
+        cookie_value += f'{qna_no}_'
+        response.set_cookie('hitboard', value=cookie_value, max_age=max_age, httponly=True)
+        board_detail.view += 1
+        board_detail.save()
+
+    return response
 
 
 
@@ -38,7 +56,25 @@ def sol_detail_board(request, b_no):
                 'comment_list':comment_list,
                 'comment_cnt':comment_cnt,
                 }
-    return render(request, 'MakeBoard/sol_reading.html',context)
+    
+    response = render(request, 'MakeBoard/sol_reading.html',context)
+    
+    # 조회수
+    expire_date, now = datetime.now(), datetime.now()
+    expire_date += timedelta(days=1)
+    expire_date = expire_date.replace(hour=0, minute=0, second=0, microsecond=0)
+    expire_date -= now
+    max_age = expire_date.total_seconds()
+    
+    cookie_value = request.COOKIES.get('hitboard', '_')
+    
+    if f'_{b_no}_' not in cookie_value:
+        cookie_value += f'{b_no}_'
+        response.set_cookie('hitboard', value=cookie_value, max_age=max_age, httponly=True)
+        board_detail.view += 1
+        board_detail.save()
+
+    return response
 
 
 
