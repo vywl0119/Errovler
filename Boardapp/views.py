@@ -27,8 +27,8 @@ def sol_board(request):
     posts = paginator.get_page(page)
     return render(request, 'Board/sol_board.html', {'boards' : boards, 'posts':posts})
 
-def scrap(request):
-    return render(request, 'Board/scrap.html')
+def mypage(request):
+    return render(request, 'Board/mypage.html')
 
 
 

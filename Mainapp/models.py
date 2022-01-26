@@ -91,3 +91,15 @@ class Like_Board(models.Model):
     class Meta:
         db_table = 'Like_Board'
         managed = False
+
+
+class Class_Board(models.Model):
+    cb_id = models.AutoField(primary_key=True)
+    cb_date = models.DateTimeField(null=False)
+    subject = models.CharField(max_length=150, null=True)
+    today_class = models.CharField(max_length=150, null=True)
+    message = models.CharField(max_length=200, null=True)
+
+    class Meta:
+        db_table = 'Class_Board'
+        managed = False
