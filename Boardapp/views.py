@@ -1,6 +1,6 @@
 from unicodedata import category
 from django.shortcuts import render
-from Mainapp.models import Board, QnA_Board
+from Mainapp.models import Board, QnA_Board, Scrap
 from django.core.paginator import Paginator
 from django.db.models import Q
 
@@ -40,7 +40,20 @@ def sol_board(request):
     return render(request, 'Board/sol_board.html', {'boards' : boards, 'posts':posts})
 
 def mypage(request):
-    return render(request, 'Board/mypage.html')
+    user = request.user.first_name
+    user_scrap = Scrap.objects.filter(writer=user)
+    
+    tag_list = ['Python', 'Django', 'etc']
+    scrap_cnt = []
+    
+    for tag in tag_list:
+        cnt = user_scrap.filter(category=tag).count()
+        scrap_cnt.append(cnt)
+        
+    context = { 'scrap_cnt' : scrap_cnt, 
+               }
+    
+    return render(request, 'Board/mypage.html', context)
 
 
 def search(request):
