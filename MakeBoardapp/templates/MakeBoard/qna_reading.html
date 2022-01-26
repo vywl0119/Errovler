@@ -206,21 +206,24 @@
                   <div>#{{board_detail.category}}</div>
                 </div>
 
-                <div class="pt-4">
-                  <p>
-                    <input type="button" id='heart-button'><text style="margin:5px;">{{ board_detail.like }}</text>
-                    <input type="button" id='rp-button'><text style="margin:5px;">{{comment_cnt}}</text>
-                    <text style="margin:5px; float:right;">6</text><input type="button" id='scrap-button' style="float:right;">
-                  </p>
+                <form action = "#" method="POST">
+                  {% csrf_token %} 
+                  <div class="pt-4">
+                    <p>
+                      <input type="button" id='heart-button'><text style="margin:5px;">{{ board_detail.like }}</text>
+                      <input type="button" id='rp-button'><text style="margin:5px;">{{comment_cnt}}</text>
+                      <text style="margin:5px; float:right;">6</text><input type="button" id='scrap-button' style="float:right;">
+                    </p>
 
-                  <script>
-                    document.getElementById("heart-button").addEventListener("click", () => {alert("좋아요 클릭")});
-                    document.getElementById("rp-button").addEventListener("click", () => {alert("댓글 클릭")});
-                    document.getElementById("scrap-button").addEventListener("click", () => {
-                     alert("스크랩 클릭")
-                    });
-                  </script>
-                </div>
+                    <script>
+                      document.getElementById("heart-button").addEventListener("click", () => {alert("좋아요 클릭")});
+                      document.getElementById("rp-button").addEventListener("click", () => {alert("댓글 클릭")});
+                      document.getElementById("scrap-button").addEventListener("click", () => {
+                        href='{% url 'MakeBoardapp:scrap_qna' board_detail.qna_no %}'
+                      });
+                    </script>
+                  </div>
+                </form>
                 <div class="mt-5"></div>
               </div>
               </div>

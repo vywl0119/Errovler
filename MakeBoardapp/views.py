@@ -308,7 +308,7 @@ def qna_comment_update(request, c_no):
             return redirect('MakeBoardapp:qna_detail_board' , qna_no)
 
 
-def scrap_qna(request,s_no):
+def scrap_qna(request):
     if request.method == 'POST':
         qna_no=request.POST.get('qna_no')
         if qna_no:
@@ -318,7 +318,7 @@ def scrap_qna(request,s_no):
                 scrap.save()
                 return redirect('MakeBoardapp:qna_detail_board',qna_no)
             except:
-                return redirect('MakeBoardapp:qna_detail_board',qna_no)
+                return redirect('Mainapp:home',qna_no)
         else:
-            return redirect('MakeBoardapp:qna_detail_board',qna_no)
+            return redirect('Boardapp:sol_board',qna_no)
         
