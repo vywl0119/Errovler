@@ -1,9 +1,19 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .forms import UserForm
+from Mainapp.models import Board, Comment
 
 def home(request):
-    return render(request, 'Main/home.html')
+    board_list = Board.objects.order_by('-view')[:5]
+    # b_no = board_list.objects.filter(b_no = b_no)
+    # comment_list = Comment.objects.filter(b_no = b_no)
+    # comment_cnt = len(comment_list)
+
+    context = {'board_list': board_list,
+                # 'comment_cnt': comment_cnt,
+                }
+
+    return render(request, 'Main/home.html',context)
 
 
 def signup(request):

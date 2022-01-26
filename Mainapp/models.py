@@ -9,16 +9,16 @@ class Board(models.Model):
     writer = models.CharField(max_length=45, null=False)
     b_date = models.DateTimeField(null=False, auto_now_add=True)
     contents = models.TextField(null=False)
-    view = models.IntegerField(null=False, default=0)
+    view = models.PositiveIntegerField(null=False, default=0)
     like = models.IntegerField( null=False, default=0)
     
     def summary(self):
         return self.contents[:100]
     
-    @property
-    def update_counter(self):
-        self.view += 1
-        self.save()
+    # @property
+    # def update_counter(self):
+    #     self.view += 1
+    #     self.save()
 
     class Meta:
         db_table = 'Board'
@@ -33,13 +33,13 @@ class QnA_Board(models.Model):
     writer = models.CharField(max_length=45, null=False)
     qna_date = models.DateTimeField(null=False, auto_now_add=True)
     contents = models.TextField(null=False)
-    view = models.IntegerField(null=False, default=0)
+    view = models.PositiveIntegerField(null=False, default=0)
     like = models.IntegerField( null=False, default=0)
     
-    @property
-    def update_counter(self):
-        self.view += 1
-        self.save()
+    # @property
+    # def update_counter(self):
+    #     self.view += 1
+    #     self.save()
 
     class Meta:
         db_table = 'QnA_Board'
