@@ -220,8 +220,8 @@
               <div class="pt-5" style="width=100%;">
                 {% comment %} <p>Categories: <a href="#">Design</a>, <a href="#">Events</a> Tags: <a href="#">#html</a>, <a
                     href="#">#trends</a></p> {% endcomment %}
-                    <Button type="button" class="btn btn-primary px-4" onclick="location.href='{% url 'Boardapp:board' %}'"> <span> 글 목록 </span></Button>
-                    <Button type="button" class="btn btn-primary px-4"> <span> 해결 </span></Button>
+                    <Button type="button" class="btn btn-primary px-4" onclick="location.href='{% url 'Boardapp:board' %}'" style="width:80px;"> <span> 글 목록 </span></Button>
+                    <Button type="button" class="btn btn-primary px-4" style="float:right;width:80px;"> <span> 해결 </span></Button>
               </div>
               
 
@@ -258,7 +258,7 @@
                           class="form-control"></textarea>
                       </div>
                       <div class="form-group">
-                        <input type="submit" value="등록" class="btn btn-primary btn-md text-white">
+                        <input type="submit" value="등록" class="btn btn-primary">
                       </div>
 
                       </form>
