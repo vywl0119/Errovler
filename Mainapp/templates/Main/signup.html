@@ -83,9 +83,16 @@
                         <h2 class="mb-5" style="text-align:center;">👻Sign Up👻</h2>
 
                         <div class="signup_form">
+                          
                           <div class="profile_form">
                             <img src="{%static 'images/user.png' %}">
+                            <form action="{% url 'Mainapp:upload' %}" method="post" enctype="multipart/form-data">
+                              {% csrf_token %}
+                              <input type="file" name="file">
+                              <input type="submit" value="확인">
+                            </form>
                           </div>
+
                           <div class="info_form">
                             <form class="post-form" method = "post">
                               {% csrf_token %}

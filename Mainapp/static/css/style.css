@@ -1765,8 +1765,11 @@ p>img {
   border-radius: 70%;
   overflow: hidden;
   object-fit: cover;
-  margin-top: 15px;
-  /* margin-left: 30%; */
+  margin-top: 8px;
+  margin-left: 25%;
+}
+.signup_form .profile_form > form {
+  margin-top: 12%;
 }
 .signup_form .info_form {
   float: right;

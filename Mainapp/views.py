@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .forms import UserForm
 from Mainapp.models import Class_Board, Total_Comment, Total_Board
 import datetime 
@@ -49,3 +49,17 @@ def signup(request):
     else:
         form = UserForm()
     return render(request, 'Main/signup.html', {'form': form})
+
+def upload(request):
+    if request.method == 'POST':
+        upload_file = request.FILES.get('file') # 파일 객체
+        name = upload_file.name # 파일 이름
+        size = upload_file.size # 파일 크기
+        
+        with open(name, 'wb') as file: # 파일 저장
+            for chunk in upload_file.chunks():
+                file.write(chunk)
+                
+        return HttpResponse('%s<br>%s' % (name, size))
+    
+    return render(request, 'Main/signup.html')
