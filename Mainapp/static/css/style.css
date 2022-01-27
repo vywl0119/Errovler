@@ -1755,6 +1755,8 @@ p>img {
   float: left;
   width: 50%;
   height: 100%;
+  /* margin: 0px auto;
+  text-align: center; */
   margin-top: 10%;
 }
 .signup_form .profile_form > img {
@@ -1766,11 +1768,32 @@ p>img {
   margin-top: 8px;
   margin-left: 25%;
 }
-.signup_form .upload_form {
-  margin-top: 38%;
+.signup_form .profile_form > form {
+  margin-top: 12%;
 }
 .signup_form .info_form {
   float: right;
   width: 45%;
   margin-left: 20px;
+}
+
+.profile_update_form {
+  width: 380px;
+  height: 500px;
+  margin-left: 23%;
+  margin-right: 0;
+  border-radius: 1rem;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#profile_update_image{
+  width: 180px;
+  height: 180px;
+}
+
+#profile_update_input_form {
+  width: 50px;
 }

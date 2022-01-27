@@ -82,10 +82,9 @@
                     <div class="comment-form-wrap pt-5" style="margin: 0 auto;">
                         <h2 class="mb-5" style="text-align:center;">👻프로필 수정👻</h2>
 
-                        <div class="signup_form">
+                        <div class="profile_update_form">
                           
-                          <div class="profile_form">
-                            <img src="{%static 'images/user.png' %}">
+                            <img id="profile_update_image" src="{%static 'images/user.png' %}">
                             <form action="{% url 'Mainapp:profile_update' %}" method="post" enctype="multipart/form-data">
                               {% csrf_token %}
                               <input id=file_input type="file" name="file">
