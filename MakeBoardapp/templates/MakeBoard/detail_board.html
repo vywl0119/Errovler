@@ -26,6 +26,46 @@
       text-align: right;
     }
     </style>
+
+  <style>
+    .btn-like {
+      display:inline-block;
+      width:20px;
+      height:22px;
+      background:url({%static 'images/heart_f.png'%});
+      background-position:-160px -399px;
+      text-indent:-9999px;
+      overflow:hidden;
+      border:none;
+    }
+    .btn-like.active {
+      display:inline-block;
+      width:22px;
+      height:22px;
+      background:url({%static 'images/heart.png'%});
+      background-position:-274px -423px;
+      text-indent:-9999px;
+      overflow:hidden;
+      border:none;
+    }
+    .btn-rep {
+      display:inline-block;
+      width:22px;
+      height:22px;
+      background:url({%static 'images/rep.png'%});
+      background-position:-264px -418px;
+      text-indent:-9999px;
+      overflow:hidden;
+      border:none;
+    }
+    </style>
+    <style>
+      .my_comment_ul {
+          list-style: none;
+          padding-left: 0px;
+      }
+      </style>
+ 
   <script>
 
 
@@ -246,8 +286,16 @@
               
                   <div class="pt-4">
                     <p>
-                      </text><input type="button" id='heart-button' onclick="heart_button()"><text style="margin:5px;">{{ board_detail.like }}</text>
-                      </text><input type="button" id='rp-button'><text style="margin:5px;">{{comment_cnt}}</text>
+                      <ul class="my_comment_ul">
+                        <li class="context_li" style="margin-top: 0px;">
+                          <a href="{% url 'MakeBoardapp:like' board_detail.tb_no %}" class="float-left btn-like {%if like_yn == 'y' %} active {%endif%}">좋아요!</a>
+                        {% comment %} </text><input type="button" id='heart-button' onclick="heart_button()"> {% endcomment %}
+                          <text style="margin:5px;">{{ board_detail.like }}</text>
+                        </li>
+                      </ul>
+                      <a class="float-left btn-rep">댓글!</a>
+                      {% comment %} </text><input type="button" id='rp-button'> {% endcomment %}
+                      <text style="margin:5px;">{{comment_cnt}}</text>
                       {% if user.is_authenticated %}
                       <input type="button" id='scrap-button' style="float:right;" onclick="scrap_button()">
                       {%endif%}
