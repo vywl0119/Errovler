@@ -41,6 +41,9 @@ def sol_board(request):
     return render(request, 'Board/sol_board.html', {'sol_boards' : sol_boards, 'sol_posts':sol_posts})
 
 def scrap_page(request):
+        path = "../../../media/"
+        profile = request.user.last_name
+        profile_path = path + profile
         user = request.user.first_name
         user_scrap = Total_Scrap.objects.filter(writer=user)
         
@@ -66,14 +69,17 @@ def scrap_page(request):
         context = { 'scrap_cnt' : scrap_cnt,
                     'scrap' : scrap,
                     'scrap_posts' : scrap_posts,
-                    'scrap_list':scrap_list
-                    
+                    'scrap_list':scrap_list,
+                    'currentprofile' : profile_path
                 }
         
         return render(request, 'Board/scrap.html', context)
 
 
-def mypage(request):
+def mypage(request):        
+        path = "../../../media/"
+        profile = request.user.last_name
+        profile_path = path + profile 
         user = request.user.first_name
         user_write = Total_Board.objects.filter(writer=user)
         
@@ -99,8 +105,8 @@ def mypage(request):
         context = { 'write_cnt' : write_cnt,
                     'write' : write,
                     'write_posts' : write_posts,
-                    'write_list':write_list
-                    
+                    'write_list':write_list,
+                    'currentprofile' : profile_path
                 }
         
         return render(request, 'Board/mypage.html', context)

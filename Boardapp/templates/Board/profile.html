@@ -2,7 +2,7 @@
 
 <div class="profile_container">
     <div class="profile">
-        <img src="{%static 'images/user.png' %}">
+        <img src="{{ currentprofile }}" onerror='this.src="{% static 'images/user.png' %}"'>
         <div class="nickname">
             <p>{{ user.first_name }}</p>
             <img onclick="edit_nickname()" src="{%static 'images/pencil.png' %}">
