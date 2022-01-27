@@ -84,6 +84,8 @@ def update_board(request, tb_no):
     context = {'login_session': login_session}
     board = Total_Board.objects.get(tb_no=tb_no)
     tb_date = datetime.now()
+    writer = request.user.first_name
+    print(writer)
 
     if request.method == 'GET':
         write_form = BoardPost(instance=board)
@@ -95,8 +97,13 @@ def update_board(request, tb_no):
         write_form = BoardPost(request.POST )
         if write_form.is_valid():
             board.tb_date = tb_date
-            board.writer = User.user.nickname
-            board = write_form.save(commit = False)
+            board.writer = writer
+            board.title = write_form.title
+            board.contents=write_form.contents
+            category=write_form.category,
+            type=write_form.type
+
+
             board.save()
            
             return redirect('MakeBoardapp:detail_board' , tb_no)
