@@ -26,6 +26,19 @@
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- SummerNote-->
+    <!-- include libraries(jQuery, bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
+    <!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
+
+    <!-- include summernote css/js-->
+   
+    <script src="summernote.js"></script>
 
   </head>
 
@@ -151,16 +164,22 @@
                     <div class = 'atagg'>
                       <a href="{% url 'Boardapp:qna_category' qna_board.category %}" >#{{qna_board.category}}</a>
                     </div>
-                    <h2><a href="{% url 'MakeBoardapp:detail_board' qna_board.tb_no  %}">{{ qna_board.title }}</a></h2>
-                    <span class="meta d-inline-block mb-3">{{ qna_board.tb_date }}<br>
-                    <span class="mx-2">by</span> <a href="#">{{qna_board.writer}}</a></span>
-                    <p>
-                      {% autoescape off %}
-                      {{ qna_board.summary | safe}}
-                      <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'>
-                      {% endautoescape %}
-                      <a href="{% url 'MakeBoardapp:detail_board' qna_board.tb_no %}">....더보기</a>
-                    </p>
+                    <div class='board_title'>
+                      <h2><a href="{% url 'MakeBoardapp:detail_board' qna_board.tb_no  %}">{{ qna_board.title }}</a></h2>
+                    </div>
+                    <div class='board_date'> 
+                      <span class="meta d-inline-block mb-3">{{ qna_board.tb_date }}<br>
+                    </div>
+                    <div class='board_writer'>
+                      <span class="mx-2">by</span> <a href="#">{{qna_board.writer}}</a></span>
+                    </div>
+                    <div class='board_content'>
+                      <p>
+                        {{ qna_board.summary | safe}}
+                        <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'>
+                        <a href="{% url 'MakeBoardapp:detail_board' qna_board.tb_no %}">....더보기</a>
+                      </p>  
+                    </div>
                   </div>
                 </div>
               </div>

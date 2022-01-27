@@ -1124,7 +1124,9 @@ h1, h2, h3, h4, h5,
   background: #fff;
   border-radius: 1.5rem;
   padding: 20px;
-  height: 560px; }
+  height: 560px;
+  overflow-x:hidden;
+  overflow-y:hidden; }
   .post-entry-1 .post-entry-1-contents h2 {
     font-size: 22px;
     margin-bottom: 20px; }
