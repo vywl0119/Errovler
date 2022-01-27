@@ -32,8 +32,7 @@
 
     function modify_button() {
       if (confirm("수정하시겠습니까?") == true) {
-       
-        
+        var link = "{% url 'MakeBoardapp:update_board' board_detail.tb_no %}"
         location.href=link;
       }
       else {

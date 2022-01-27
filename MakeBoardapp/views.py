@@ -46,12 +46,7 @@ def detail_board(request, tb_no):
 
 
 
-def writing(request):
-    return render(request, 'MakeBoard/writing.html')
-
-
-
-def qna_board_write(request):
+def writing_board(request, type):
     login_session = request.session.get('login_session','')
     context = {'login_session': login_session}
 
@@ -61,6 +56,7 @@ def qna_board_write(request):
         return render(request, 'MakeBoard/writing.html', context)
 
     elif request.method == 'POST':
+        
         write_form = BoardPost(request.POST)
         if write_form.is_valid():
             writer = request.user.first_name
@@ -72,7 +68,10 @@ def qna_board_write(request):
                 type=write_form.type
             )
             total_board.save()
-            return redirect('/Board/qna_board')
+            if type == '해결':
+                return redirect('/Board/sol_board')
+            else:
+                return redirect('/Board/qna_board')
         else:
             context['forms'] = write_form
             if write_form.errors:
@@ -80,34 +79,44 @@ def qna_board_write(request):
                     context['error'] = value
             return render(request, 'MakeBoard/writing_error.html', context)
 
-def sol_board_write(request):
+def update_board(request, tb_no):
     login_session = request.session.get('login_session','')
     context = {'login_session': login_session}
+    board = Total_Board.objects.get(tb_no=tb_no)
+    tb_date = datetime.now()
+    writer = request.user.first_name
+    print(writer)
 
     if request.method == 'GET':
-        write_form = BoardPost()
+        write_form = BoardPost(instance=board)
         context['forms'] = write_form
         return render(request, 'MakeBoard/writing.html', context)
 
     elif request.method == 'POST':
-        write_form = BoardPost(request.POST)
+       
+        write_form = BoardPost(request.POST )
         if write_form.is_valid():
-            writer = request.user.first_name
-            total_board = Total_Board(
-                title=write_form.title,
-                contents=write_form.contents,
-                writer =writer,
-                category=write_form.category,
-                type=write_form.type
-            )
-            total_board.save()
-            return redirect('/Board/sol_board')
+            board.tb_date = tb_date
+            board.writer = writer
+            board.title = write_form.title
+            board.contents=write_form.contents
+            category=write_form.category,
+            type=write_form.type
+
+
+            board.save()
+           
+            return redirect('MakeBoardapp:detail_board' , tb_no)
+
         else:
             context['forms'] = write_form
             if write_form.errors:
                 for value in write_form.errors.values():
                     context['error'] = value
             return render(request, 'MakeBoard/writing_error.html', context)
+
+
+
 
 
 def total_comment(request):
@@ -194,14 +203,6 @@ def comment_update(request, c_no):
 
 
 
-def scrap(request, tb_no, category):
-
-    print('scrap', tb_no, category)
-    writer=request.user.first_name
-    scrap=Total_Scrap.objects.create(tb_no_id=tb_no, writer=writer, category=category)
-    print('이유이상')
-    scrap.save()
-    return redirect('MakeBoardapp:detail_board',tb_no)
 
 
 def scrap(request, tb_no, category):
@@ -243,44 +244,7 @@ def like(request, tb_no):
 
 
     
-def qna_like(request, qna_no):
-    print('qna_like')
-    qna_board = QnA_Board.objects.get(qna_no=qna_no)
-    writer=request.user.first_name
-    check_like_board = Like_Board.objects.filter(qna_no=qna_no)
 
-    if check_like_board.exists():
-        check_like_board.delete()
-        qna_board.like -= 1
-        qna_board.save()
-
-    else:
-        like=Like_Board.objects.create(qna_no_id=qna_no, writer=writer)
-        like.save()
-        qna_board.like += 1
-        qna_board.save()
-
-    return redirect('MakeBoardapp:qna_detail_board',qna_no)
-
-
-def sole_like(request, b_no):
-    print('sol_like')
-    board = Board.objects.get(b_no=b_no)
-    writer=request.user.first_name
-    check_like_board = Like_Board.objects.filter(b_no=b_no)
-
-    if check_like_board.exists():
-        check_like_board.delete()
-        board.like -= 1
-        board.save()
-
-    else:
-        like=Like_Board.objects.create(b_no_id=b_no, writer=writer)
-        like.save()
-        board.like += 1
-        board.save()
-
-    return redirect('MakeBoardapp:sol_detail_board',b_no)
 
 
 

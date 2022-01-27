@@ -5,8 +5,8 @@ from . import views
 app_name = 'MakeBoardapp'
 
 urlpatterns = [
-    path('writing/qna_board/', views.qna_board_write, name='writing_qna_board'),
-    path('writing/sol_board/', views.sol_board_write, name='writing_sol_board'),
+    path('writing/board/<str:type>', views.writing_board, name='writing_board'),
+    path('writing/board/update/<int:tb_no>', views.update_board, name='update_board'),
 
     path('reading/board/<int:tb_no>', views.detail_board, name='detail_board'),
 
@@ -22,7 +22,4 @@ urlpatterns = [
     path('reading/scrap/<int:tb_no>/<str:category>', views.scrap, name='scrap'),
 
     path('reading/like/<int:tb_no>', views.like, name='like'),
-
-    path('reading/sol_like/<int:b_no>', views.sole_like, name='sol_like'),
-    path('reading/qna_like/<int:qna_no>', views.qna_like, name='qna_like'),
 ]

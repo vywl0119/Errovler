@@ -84,7 +84,7 @@
             <div class="col-9  text-right">
               
               <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span class="icon-menu h3 text-black"></span></a></span>
-
+              
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
                   <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
@@ -115,8 +115,9 @@
                 {% csrf_token %}
                 <input type="search" name="q" value="{{q}}" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!(Ex.글 제목, 글 내용, 작성자..)">
                 <button type="summit" class="btn btn-primary px-4 mr-2" value ="검색">검색</button>
-                {% if user.is_authenticated %}
-                <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_sol_board" %}'">글쓰기</Button>
+                {% if user.is_authenticated %} {% with '해결' as type %}
+                <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_board" type %}'">글쓰기</Button>
+                {% endwith %}
                 {%endif%}
               </form>
               

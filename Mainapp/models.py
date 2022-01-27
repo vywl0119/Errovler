@@ -16,6 +16,9 @@ class Total_Board(models.Model):
     
     def summary(self):
         return self.contents[:100]
+        
+    def __str__(self):
+        return self.title
     
     class Meta:
         db_table = 'Total_Board'
