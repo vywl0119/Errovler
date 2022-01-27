@@ -63,3 +63,9 @@ class Total_Like_Board(models.Model):
     class Meta:
         db_table = 'Total_Like_Board'
         managed = False
+        
+# def profile_path(instance, filename):
+#     return 'profile/u/' + instance.user.username + '/'  + filename.split('.')[-1]
+
+# class Profile(models.Model):
+#     user = models.OneToOneField()
