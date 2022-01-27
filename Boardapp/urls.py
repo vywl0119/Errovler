@@ -11,6 +11,8 @@ urlpatterns = [
     path('qna_category/<str:category>', views.qna_category, name='qna_category'),
     path('sol_category/<str:category>', views.sol_category, name='sol_category'),
     path('total_category/<str:category>', views.total_category, name='total_category'),
+    path('scrap_category/<str:category>', views.scrap_category, name='scrap_category'),
+
     
     path('mypage/', views.mypage, name='mypage'),
     
