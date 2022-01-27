@@ -1497,6 +1497,7 @@ textarea{
   width: 100%;
   display: flex;
   flex-direction: column; /*수직 정렬*/
+  bottom: 10px;
 }
 
 p>img {
