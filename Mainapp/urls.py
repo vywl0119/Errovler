@@ -17,4 +17,5 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
 
     path('profile_update/', views.profile_update, name='profile_update'),
+    path('upload/', views.upload, name='upload'),
 ]  

@@ -1757,12 +1757,16 @@ p>img {
   float: left;
   width: 50%;
   height: 100%;
+<<<<<<< HEAD
   /* margin: 0px auto;
   text-align: center; */
   margin-right: 13%;
   border-radius: 1.5rem;
   box-shadow: 0 10px 20px 0 rgb(0 0 0 / 30%);
  
+=======
+  margin-top: 10%;
+>>>>>>> main
 }
 .signup_form .profile_form > img {
   width: 180px;
@@ -1775,6 +1779,9 @@ p>img {
 }
 .signup_form .profile_form > form {
   margin-top: 10%;
+}
+.signup_form .upload_form {
+  margin-top: 38%;
 }
 .signup_form .info_form {
   float: right;
