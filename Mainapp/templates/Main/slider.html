@@ -14,7 +14,9 @@
                         <!-- 오늘의 수업은? -->
                         <h3>{{today_class.cb_date}}</h3>
                         <p class="lecture">"{{today_class.subject}}"</p>
-                        <p>-{{today_class.today_class}}</p>
+                        {% if today_class.today_class %}
+                            <p>-{{today_class.today_class}}</p>
+                        {% endif %}
                     </div>
                     <img src="{% static 'images/blackboard2.png' %}" height="500">
                 </a>
@@ -25,7 +27,9 @@
                         <!-- 내일의 수업은? -->
                         <h3>{{next_class.cb_date}}</h3>
                         <p class="lecture">"{{next_class.subject}}"</p>
-                        <p>-{{next_class.today_class}}</p>
+                        {% if next_class.today_class %}
+                            <p>-{{next_class.today_class}}</p>
+                        {% endif %}
                     </div>
                     <img src="{% static 'images/blackboard2.png' %}" height="500">
                 </a>
