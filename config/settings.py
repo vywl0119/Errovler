@@ -147,5 +147,14 @@ LOGOUT_REDIRECT_URL = '/Main/home/'
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 SUMMERNOTE_CONFIG = {
-    'attachment_filesize_limit': 5 * 1024 * 1024
+    'attachment_filesize_limit': 5 * 1024 * 1024,
+
+     'codemirror': {
+        'mode': 'htmlmixed',
+        'lineNumbers': 'true',
+
+        # You have to include theme file in 'css' or 'css_for_inplace' before using it.
+        'theme': 'monokai',
+    },
 }
+

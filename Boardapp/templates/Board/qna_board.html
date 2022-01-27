@@ -149,13 +149,19 @@
               <div class = 'atagg'>
                 <a href="{% url 'Boardapp:sol_category' board.category %}" >#{{board.category}}</a>
               </div>
-              <h3><a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">{{board.title}}</a></h3>
-              <p class="meta">
-                <span class="mr-2 mb-2">by {{board.writer}}</span>
-                <span class="mr-2 mb-2">{{board.b_date}}</span>
-              </p>
-              <p>{{ board.summary|safe }} <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
-              <div class="comment_container"> 
+              <div class="board_title">
+                <h3><a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">{{board.title}}</a></h3>
+              </div>
+              <div class="board_create">
+                <p class="meta">
+                  <span class="mr-2 mb-2">by {{board.writer}}</span>
+                  <span class="mr-2 mb-2">{{board.b_date}}</span>
+                </p>  
+              </div>
+              <div class="board_content">
+                <p>{{ board.summary|safe }} <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
+              </div>
+                <div class="comment_container"> 
                 <div class="pt-4">
                   <p>
                     <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
@@ -216,4 +222,3 @@
   </body>
 
 </html>
-
