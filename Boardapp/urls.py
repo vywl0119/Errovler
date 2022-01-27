@@ -9,15 +9,13 @@ urlpatterns = [
     path('sol_board/', views.sol_board, name='sol_board'),
  
 
-    path('sol_python/', views.sol_python, name='sol_python'),
-    path('sol_django/', views.sol_django, name='sol_django'),
-    path('sol_etc/', views.sol_etc, name='sol_etc'),
-   
-    path('qna_python/', views.qna_python, name='qna_python'),
-    path('qna_django/', views.qna_django, name='qna_django'),
-    path('qna_etc/', views.qna_etc, name='qna_etc'),
+    path('qna_category/<str:category>', views.qna_category, name='qna_category'),
+    path('sol_category/<str:category>', views.sol_category, name='sol_category'),
+    path('total_category/<str:category>', views.total_category, name='total_category'),
     
     path('mypage/', views.mypage, name='mypage'),
     
-    path('search/', views.search, name='search'),
+
+    path('total_search/', views.total_search, name='total_search'),
+
 ]

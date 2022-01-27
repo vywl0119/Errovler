@@ -66,7 +66,7 @@
                   
                   <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
                   <li class="active"><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
-                  <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
+                  <li class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
                   <li><a href="{% url 'Boardapp:mypage' %}" class="nav-link">마이 페이지</a></li>
                   <li>
                     <a class='nav-link' href="{% url 'Mainapp:logout' %}">
@@ -89,7 +89,7 @@
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
                   <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
                   <li class="active"><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
-                  <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
+                  <li class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
 
                   <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
                  
@@ -113,7 +113,7 @@
               <form action="{% url 'Boardapp:total_search' %}" method="POST" class="d-flex search-form">
                 <span class="icon-"></span>
                 {% csrf_token %}
-                <input type="search" name="q" value="{{q}}" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!(Ex.글 제목, 글 내용, 작성자..)">
+                <input type="search" name="q" value="{{q}}" class="form-control mr-2 w-100" >
                 <button type="summit" class="btn btn-primary px-4 mr-2" value ="검색">검색</button>
                 {% if user.is_authenticated %}
                 <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_qna_board" %}'">글쓰기</Button>
@@ -126,13 +126,13 @@
         
         <div class="category_container">
           <div id=error_categoty>
-          <a onclick="location.href='{% url 'Boardapp:qna_category' 'python' %}'" class="cursor_pointer">  #파이썬 </a>
+          <a onclick="location.href='{% url 'Boardapp:total_category' 'python' %}'" class="cursor_pointer">  #파이썬 </a>
         </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:qna_category' 'Django' %}'" class="cursor_pointer">  #장고 </a>
+            <a onclick="location.href='{% url 'Boardapp:total_category' 'Django' %}'" class="cursor_pointer">  #장고 </a>
           </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:qna_category' 'etc' %}'" class="cursor_pointer">  #기타 </a>
+            <a onclick="location.href='{% url 'Boardapp:total_category' 'etc' %}'" class="cursor_pointer">  #기타 </a>
           </div>
         </div>
       
@@ -140,24 +140,24 @@
       <div class="site-section bg-light">
       <div class="container">
         <div class="row">
-        {% for qna_board in qna_posts %}
-          {% if qna_board.title != None %}
+        {% for board in posts %}
+          {% if board.title != None %}
             <div class="col-lg-4 col-md-6 mb-4" style="margin: 0 auto; width:50%;">
               <div class="board_container">
                 <div class="post-entry-1 h-100">
                   <div class="post-entry-1-contents">
                     <div class = 'atagg'>
-                      <a href="{% url 'Boardapp:qna_category' qna_board.category %}" >#{{qna_board.category}}</a>
+                      <a href="{% url 'Boardapp:total_category' board.category %}" >#{{board.category}}</a>
                     </div>
-                    <h2><a href="{% url 'MakeBoardapp:detail_board' qna_board.tb_no  %}">{{ qna_board.title }}</a></h2>
-                    <span class="meta d-inline-block mb-3">{{ qna_board.tb_date }}<br>
-                    <span class="mx-2">by</span> <a href="#">{{qna_board.writer}}</a></span>
+                    <h2><a href="{% url 'MakeBoardapp:detail_board' board.tb_no  %}">{{ board.title }}</a></h2>
+                    <span class="meta d-inline-block mb-3">{{ board.tb_date }}<br>
+                    <span class="mx-2">by</span> <a href="#">{{board.writer}}</a></span>
                     <p>
                       {% autoescape off %}
                       {{ qna_board.summary | safe}}
                       <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'>
                       {% endautoescape %}
-                      <a href="{% url 'MakeBoardapp:detail_board' qna_board.tb_no %}">....더보기</a>
+                      <a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">....더보기</a>
                     </p>
                   </div>
                 </div>
@@ -173,7 +173,7 @@
         <div class="row_pagination">
           <div class="col-5">
             <div class="custom-pagination">
-              {%if qna_posts.has_previous%}
+              {%if posts.has_previous%}
               <a href="?page=1"> << </a>
               <a href="?page={{qna_posts.previous_page_number}}"> < </a>
               {%endif%}
@@ -183,8 +183,8 @@
               <span>{{qna_posts.paginator.num_pages}}</span>
 
               {%if qna_posts.has_next%}
-              <a href="?page={{qna_posts.next_page_number}}"> > </a>
-              <a href="?page={{qna_posts.paginator.num_pages}}"> >> </a>
+              <a href="?page={{posts.next_page_number}}"> > </a>
+              <a href="?page={{posts.paginator.num_pages}}"> >> </a>
               {%endif%}
             </div>
           </div>

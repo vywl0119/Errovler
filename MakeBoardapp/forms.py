@@ -5,7 +5,7 @@ from attr import field
 from bleach import clean
 from django import forms
 from matplotlib.pyplot import title
-from Mainapp.models import Board
+from Mainapp.models import Total_Board
 from django_summernote.fields import SummernoteTextField
 from django_summernote.widgets import SummernoteWidget
 
@@ -20,7 +20,18 @@ class BoardPost(forms.ModelForm):
 
     contents = forms.CharField(widget=SummernoteWidget())
     
-    options = (
+    type_options = (
+        ('질문', '질문'),
+        ('해결', '해결')
+    )
+
+    type = forms.ChoiceField(
+        label='질문/해결 선택',
+        widget=forms.Select(),
+        choices=type_options
+    )
+
+    category_options = (
         ('Python', '파이썬'),
         ('Django', '장고'),
         ('etc', '기타'),
@@ -29,14 +40,14 @@ class BoardPost(forms.ModelForm):
     category = forms.ChoiceField(
         label='카테고리 선택',
         widget=forms.Select(),
-        choices=options
+        choices=category_options
     )
 
-    field_order = ['title','category','contents']
+    field_order = ['title','type','category','contents']
 
     class Meta:
-            model = Board
-            fields = ['title','category', 'contents'] 
+            model = Total_Board
+            fields = ['title','type','category', 'contents'] 
             widgets = {
                 'contents' : SummernoteWidget()
             }
@@ -45,6 +56,7 @@ class BoardPost(forms.ModelForm):
         cleaned_data = super().clean()
 
         title = cleaned_data.get('title', '')
+        type = cleaned_data.get('type','질문')
         category = cleaned_data.get('category','Django')
         contents = cleaned_data.get('contents','')
 
@@ -54,5 +66,6 @@ class BoardPost(forms.ModelForm):
             self.add_error('contents','글 내용을 입력하세요.')
         else:
             self.title = title
+            self.type = type
             self.category = category
             self.contents = contents

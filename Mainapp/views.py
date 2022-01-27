@@ -1,11 +1,11 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .forms import UserForm
-from Mainapp.models import Board, Class_Board, Comment
+from Mainapp.models import Class_Board, Total_Comment, Total_Board
 import datetime 
 
 def home(request):
-    board_list = Board.objects.order_by('-view')[:5]
+    board_list = Total_Board.objects.order_by('-view')[:5]
     dt_now = datetime.datetime.now()
     todays = dt_now.date()
     tomorrow = datetime.date.today() + datetime.timedelta(days=1)
@@ -13,11 +13,11 @@ def home(request):
     today_class = Class_Board.objects.get(cb_date = todays)
     next_class = Class_Board.objects.get(cb_date = tomorrow)
 
-    b_no_list = [board_list[i].b_no for i in range(5)]
+    tb_no_list = [board_list[i].tb_no for i in range(5)]
     comment_cnt_list = []
     
-    for b_no in b_no_list:
-        comment_list = Comment.objects.filter(b_no = b_no)
+    for tb_no in tb_no_list:
+        comment_list = Total_Comment.objects.filter(tb_no = tb_no)
         comment_cnt = len(comment_list)
         comment_cnt_list.append(comment_cnt)
         

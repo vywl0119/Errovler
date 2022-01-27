@@ -6,30 +6,21 @@ app_name = 'MakeBoardapp'
 
 urlpatterns = [
     path('writing/qna_board/', views.qna_board_write, name='writing_qna_board'),
-    path('writing/solboard/', views.solboard_write, name='writing_board'),
+    path('writing/sol_board/', views.sol_board_write, name='writing_sol_board'),
+
+    path('reading/board/<int:tb_no>', views.detail_board, name='detail_board'),
+
+    path('board/total_comment/', views.total_comment, name='total_comment'),
+
+    path('board/board_delete/<int:tb_no>/', views.board_delete,  name='board_delete'),
 
 
-    path('reading/sol_board/<int:b_no>', views.sol_detail_board, name='sol_detail_board'),
-    path('reading/qna_board/<int:qna_no>', views.qna_detail_board, name='qna_detail_board'),
+    path('board/comment/delete/<int:tb_no>/<int:c_no>', views.comment_delete,  name='comment_delete'),
+    path('board/comment/update/<int:tb_no>/<int:c_no>', views.comment_updateurl,  name='comment_updateurl'),
+    path('board/comment/update/<int:c_no>', views.comment_update,  name='comment_update'),
 
+    path('reading/scrap/<int:tb_no>/<str:category>', views.scrap, name='scrap'),
 
-    path('board/sol_comment/', views.sol_comment, name='sol_comment'),
-    path('board/qna_comment/', views.qna_comment, name='qna_comment'),
-
-
-    path('board/sol_delete/<int:b_no>/', views.sol_delete,  name='sol_delete'),
-    path('board/qna_delete/<int:qna_no>/', views.qna_delete,  name='qna_delete'),
-
-
-    path('board/sol_comment/delete/<int:b_no>/<int:c_no>', views.sol_comment_delete,  name='sol_comment_delete'),
-    path('board/sol_comment/update/<int:b_no>/<int:c_no>', views.sol_comment_updateurl,  name='sol_comment_updateurl'),
-    path('board/sol_comment/update/<int:c_no>', views.sol_comment_update,  name='sol_comment_update'),
-
-    path('board/qna_comment/delete/<int:qna_no>/<int:c_no>', views.qna_comment_delete,  name='qna_comment_delete'),
-    path('board/qna_comment/update/<int:qna_no>/<int:c_no>', views.qna_comment_updateurl,  name='qna_comment_updateurl'),
-    path('board/qna_comment/update/<int:c_no>', views.qna_comment_update,  name='qna_comment_update'),
-
-    path('reading/sol_scrap/<int:b_no>/<str:category>', views.sol_scrap, name='sol_scrap'),
-    path('reading/qna_scrap/<int:qna_no>/<str:category>', views.qna_scrap, name='qna_scrap'),
+    path('reading/like/<int:tb_no>', views.like, name='like'),
 
 ]

@@ -9,16 +9,14 @@ from django.shortcuts import render, redirect
 from matplotlib.style import context
 
 from .forms import BoardPost
-from Mainapp.models import Board, Comment, Scrap
+from Mainapp.models import Total_Comment, Total_Scrap, Total_Board, Total_Like_Board
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from Mainapp.models import Board
-from Mainapp.models import QnA_Board
 
-def qna_detail_board(request, qna_no):
-    board_detail = QnA_Board.objects.get(qna_no = qna_no)
-    comment_list = Comment.objects.filter(qna_no = qna_no)
+def detail_board(request, tb_no):
+    board_detail = Total_Board.objects.get(tb_no = tb_no)
+    comment_list = Total_Comment.objects.filter(tb_no = tb_no)
     comment_cnt = len(comment_list)
     
     context = {'board_detail': board_detail,
@@ -26,7 +24,7 @@ def qna_detail_board(request, qna_no):
                 'comment_cnt': comment_cnt,
                 }
     
-    response = render(request, 'MakeBoard/qna_reading.html',context)
+    response = render(request, 'MakeBoard/detail_board.html',context)
     
     # 조회수
     expire_date, now = datetime.now(), datetime.now()
@@ -37,39 +35,8 @@ def qna_detail_board(request, qna_no):
     
     cookie_value = request.COOKIES.get('hitboard', '_')
     
-    if f'_{qna_no}_' not in cookie_value:
-        cookie_value += f'{qna_no}_'
-        response.set_cookie('hitboard', value=cookie_value, max_age=max_age, httponly=True)
-        board_detail.view += 1
-        board_detail.save()
-
-    return response
-
-
-
-def sol_detail_board(request, b_no):
-    board_detail = Board.objects.get(b_no = b_no)
-    comment_list = Comment.objects.filter(b_no = b_no)
-    comment_cnt = len(comment_list)
- 
-    context = {'board_detail': board_detail,
-                'comment_list':comment_list,
-                'comment_cnt':comment_cnt,
-                }
-    
-    response = render(request, 'MakeBoard/sol_reading.html',context)
-    
-    # 조회수
-    expire_date, now = datetime.now(), datetime.now()
-    expire_date += timedelta(days=1)
-    expire_date = expire_date.replace(hour=0, minute=0, second=0, microsecond=0)
-    expire_date -= now
-    max_age = expire_date.total_seconds()
-    
-    cookie_value = request.COOKIES.get('hitboard', '_')
-    
-    if f'_{b_no}_' not in cookie_value:
-        cookie_value += f'{b_no}_'
+    if f'_{tb_no}_' not in cookie_value:
+        cookie_value += f'{tb_no}_'
         response.set_cookie('hitboard', value=cookie_value, max_age=max_age, httponly=True)
         board_detail.view += 1
         board_detail.save()
@@ -96,13 +63,14 @@ def qna_board_write(request):
         write_form = BoardPost(request.POST)
         if write_form.is_valid():
             writer = request.user.first_name
-            board = QnA_Board(
+            total_board = Total_Board(
                 title=write_form.title,
                 contents=write_form.contents,
                 writer =writer,
-                category=write_form.category
+                category=write_form.category,
+                type=write_form.type
             )
-            board.save()
+            total_board.save()
             return redirect('/Board/qna_board')
         else:
             context['forms'] = write_form
@@ -111,9 +79,7 @@ def qna_board_write(request):
                     context['error'] = value
             return render(request, 'MakeBoard/writing_error.html', context)
 
-
-
-def solboard_write(request):
+def sol_board_write(request):
     login_session = request.session.get('login_session','')
     context = {'login_session': login_session}
 
@@ -126,13 +92,14 @@ def solboard_write(request):
         write_form = BoardPost(request.POST)
         if write_form.is_valid():
             writer = request.user.first_name
-            board = Board(
+            total_board = Total_Board(
                 title=write_form.title,
                 contents=write_form.contents,
                 writer =writer,
-                category=write_form.category
+                category=write_form.category,
+                type=write_form.type
             )
-            board.save()
+            total_board.save()
             return redirect('/Board/sol_board')
         else:
             context['forms'] = write_form
@@ -142,112 +109,72 @@ def solboard_write(request):
             return render(request, 'MakeBoard/writing_error.html', context)
 
 
-
-
-def qna_comment(request):
-    print('qna')
+def total_comment(request):
     if request.method == 'POST':
         contents = request.POST.get('contents')
-        qna_no = request.POST.get('qna_no')
-        print(qna_no, contents)
+        tb_no = request.POST.get('tb_no')
+        print(tb_no, contents)
         if contents:
             try:
                 print(contents)
                 username = request.user.first_name
-                comment = Comment.objects.create(qna_no_id=qna_no, contents=contents, writer = username)
+                comment = Total_Comment.objects.create(tb_no_id=tb_no, contents=contents, writer = username)
                 comment.save()
-                return redirect('MakeBoardapp:qna_detail_board' , qna_no)
-
+               
+                return redirect('MakeBoardapp:detail_board' , tb_no)
             except:
-                return redirect('MakeBoardapp:qna_detail_board' , qna_no)
+                return redirect('MakeBoardapp:detail_board' , tb_no)
         else:
-            return redirect('MakeBoardapp:qna_detail_board' , qna_no)
+            return redirect('MakeBoardapp:detail_board' , tb_no)
+            
 
 
 
-def sol_comment(request):
-    print('sol')
-    if request.method == 'POST':
-        contents = request.POST.get('contents')
-        b_no = request.POST.get('b_no')
-        
-        if contents:
-            try:
-                print(contents)
-                username = request.user.first_name
-                comment = Comment.objects.create(b_no_id=b_no, contents=contents, writer = username)
-                comment.save()
-                return redirect('MakeBoardapp:sol_detail_board' , b_no)
 
-            except:
-                return redirect('MakeBoardapp:sol_detail_board' , b_no)
+def board_delete(request, tb_no):
+    try:
+        board = Total_Board.objects.get(tb_no=tb_no)
+        print('이상')
+        if board.type == '질문':
+            print('질문')
+            board.delete()
+            return redirect('Boardapp:qna_board')
         else:
-            return redirect('MakeBoardapp:sol_detail_board' , b_no)
-
-
-
-
-# def photoboard(request):
-#     portfolios = Portfolio.objects
-#     return render(request, 'portfolio/portfolio.html', {'portfolios': portfolios})
-
-
-
-
-
-def sol_delete(request, b_no):
-    try:
-        board = Board.objects.get(b_no=b_no)
-        board.delete()
-        return redirect('Boardapp:sol_board')
+            print('해결')
+            board.delete()
+            return redirect('Boardapp:sol_board')
     except:
-        return redirect('MakeBoardapp:sol_detail_board' , b_no)
+        return redirect('MakeBoardapp:detail_board' , tb_no)
 
 
 
-
-
-def qna_delete(request, qna_no):
-    try:
-        qna_board = QnA_Board.objects.get(qna_no=qna_no)
-
-        qna_board.delete()
-        return redirect('Boardapp:qna_board')
-    except:
-        return redirect('MakeBoardapp:qna_detail_board' , qna_no)
-
-
-
-
-
-def sol_comment_delete(request, b_no, c_no):
+def comment_delete(request, tb_no, c_no):
     try:
       
-        comment = Comment.objects.get(c_no=c_no)
+        comment = Total_Comment.objects.get(c_no=c_no)
         comment.delete()
-        return redirect('MakeBoardapp:sol_detail_board' , b_no)
+        return redirect('MakeBoardapp:detail_board' , tb_no)
     except:
-        return redirect('MakeBoardapp:sol_detail_board' , b_no)
+        return redirect('MakeBoardapp:detail_board' , tb_no)
 
 
-def sol_comment_updateurl(request, b_no, c_no):
+def comment_updateurl(request, tb_no, c_no):
 
     request.session['update_c_no'] = c_no
     
     print(request.session['update_c_no'])
 
-    return redirect('MakeBoardapp:sol_detail_board' , b_no)
+    return redirect('MakeBoardapp:detail_board' , tb_no)
 
 
-def sol_comment_update(request, c_no):
+def comment_update(request, c_no):
     
     if request.method == 'POST':
-        comment = Comment.objects.get(c_no=c_no)
+        comment = Total_Comment.objects.get(c_no=c_no)
 
         contents = request.POST.get('contents')
-        b_no = request.POST.get('b_no')
-        print(contents, b_no)
-        c_date = datetime.datetime.now()
+        tb_no = request.POST.get('tb_no')
+        c_date = datetime.now()
 
         if contents:
             try:
@@ -257,73 +184,45 @@ def sol_comment_update(request, c_no):
                 comment.save()
 
                 del request.session['update_c_no']
-                return redirect('MakeBoardapp:sol_detail_board' , b_no)
+                return redirect('MakeBoardapp:detail_board' , tb_no)
 
             except:
-                return redirect('MakeBoardapp:sol_detail_board' , b_no)
+                return redirect('MakeBoardapp:detail_board' , tb_no)
         else:
-            return redirect('MakeBoardapp:sol_detail_board' , b_no)
+            return redirect('MakeBoardapp:detail_board' , tb_no)
 
 
 
+def scrap(request, tb_no, category):
 
-
-def qna_comment_delete(request, qna_no, c_no):
-    try:
-      
-        comment = Comment.objects.get(c_no=c_no)
-        comment.delete()
-        return redirect('MakeBoardapp:qna_detail_board' , qna_no)
-    except:
-        return redirect('MakeBoardapp:qna_detail_board' , qna_no)
-
-
-def qna_comment_updateurl(request, qna_no, c_no):
-
-    request.session['update_c_no'] = c_no
-    
-    print(request.session['update_c_no'])
-
-    return redirect('MakeBoardapp:qna_detail_board' , qna_no)
-
-
-def qna_comment_update(request, c_no):
-    if request.method == 'POST':
-        comment = Comment.objects.get(c_no=c_no)
-
-        contents = request.POST.get('contents')
-        qna_no = request.POST.get('qna_no')
-        c_date = datetime.datetime.now()
-
-        if contents:
-            try:
-
-                comment.contents = contents
-                comment.c_date = c_date
-                comment.save()
-
-                del request.session['update_c_no']
-                return redirect('MakeBoardapp:qna_detail_board' , qna_no)
-
-            except:
-                return redirect('MakeBoardapp:qna_detail_board' , qna_no)
-        else:
-            return redirect('MakeBoardapp:qna_detail_board' , qna_no)
-
-def qna_scrap(request, qna_no, category):
-
-    print('qna_scrap')
+    print('scrap', tb_no, category)
     writer=request.user.first_name
-    scrap=Scrap.objects.create(qna_no_id=qna_no, writer=writer, category=category)
+    scrap=Total_Scrap.objects.create(tb_no_id=tb_no, writer=writer, category=category)
+    print('이유이상')
     scrap.save()
-    return redirect('MakeBoardapp:qna_detail_board',qna_no)
+    return redirect('MakeBoardapp:detail_board',tb_no)
 
-def sol_scrap(request, b_no, category):
-    print('sol_scrap')
+
+def like(request, tb_no):
+    print('sol_like')
+    board = Total_Board.objects.get(tb_no=tb_no)
     writer=request.user.first_name
-    scrap=Scrap.objects.create(b_no_id=b_no, writer=writer, category=category)
-    scrap.save()
-    return redirect('MakeBoardapp:sol_detail_board',b_no)
+    check_like_board = Total_Like_Board.objects.filter(tb_no=tb_no)
+
+    if check_like_board.exists():
+        check_like_board.delete()
+        board.like -= 1
+        board.save()
+
+    else:
+        like=Total_Like_Board.objects.create(tb_no_id=tb_no, writer=writer)
+        like.save()
+        board.like += 1
+        board.save()
+
+    return redirect('MakeBoardapp:detail_board',tb_no)
+
+
 
 
 

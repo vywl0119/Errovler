@@ -105,9 +105,7 @@
           <div class="row m-5 align-items-center" style = "float: none; margin:100 auto">
             <div class="col-lg-10 mb-4 mb-lg-0" style="float: none; margin:0 auto;">
 
-              <div class="profile_container">
-                <p>프로필들어갈거따뿅</p>
-              </div>
+              {% include 'Board/profile.html' %}   
               
             </div>
           </div>
@@ -115,13 +113,13 @@
 
         <div class="category_container">
           <div id=error_categoty>
-          <a onclick="location.href='{% url 'Boardapp:sol_python'%}'" class="cursor_pointer">  #파이썬 </a>
+          <a onclick="location.href='{% url 'Boardapp:qna_category' 'python' %}'" class="cursor_pointer">  #파이썬 </a>
         </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:sol_django'%}'" class="cursor_pointer">  #장고 </a>
+            <a onclick="location.href='{% url 'Boardapp:qna_category' 'Django' %}'" class="cursor_pointer">  #장고 </a>
           </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:sol_etc'%}'" class="cursor_pointer">  #기타 </a>
+            <a onclick="location.href='{% url 'Boardapp:qna_category' 'etc' %}'" class="cursor_pointer">  #기타 </a>
           </div>
         </div>
       

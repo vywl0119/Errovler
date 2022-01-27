@@ -3,6 +3,11 @@
 <html lang="en">
 
   <head>
+    <style>
+      .atagg {
+        text-align: right;
+      }
+    </style>
     <title>에러블러 &mdash; Board</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -105,12 +110,13 @@
           <div class="row m-5 align-items-center" style = "float: none; margin:100 auto">
             <div class="col-lg-10 mb-4 mb-lg-0" style="float: none; margin:0 auto;">
 
-              <form action="#" class="d-flex search-form">
+              <form action="{% url 'Boardapp:total_search' %}" method="POST" class="d-flex search-form">
                 <span class="icon-"></span>
-                <input type="search" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!">
-                <input type="summit" class="btn btn-primary px-4 mr-2" value ="검색">
+                {% csrf_token %}
+                <input type="search" name="q" value="{{q}}" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!(Ex.글 제목, 글 내용, 작성자..)">
+                <button type="summit" class="btn btn-primary px-4 mr-2" value ="검색">검색</button>
                 {% if user.is_authenticated %}
-                <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_board" %}'">글쓰기</Button>
+                <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_sol_board" %}'">글쓰기</Button>
                 {%endif%}
               </form>
               
@@ -120,13 +126,13 @@
 
         <div class="category_container">
           <div id=error_categoty>
-          <a onclick="location.href='{% url 'Boardapp:sol_python'%}'" class="cursor_pointer">  #파이썬 </a>
+          <a onclick="location.href='{% url 'Boardapp:sol_category' 'python' %}'" class="cursor_pointer">  #파이썬 </a>
         </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:sol_django'%}'" class="cursor_pointer">  #장고 </a>
+            <a onclick="location.href='{% url 'Boardapp:sol_category' 'Django' %}'" class="cursor_pointer">  #장고 </a>
           </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:sol_etc'%}'" class="cursor_pointer">  #기타 </a>
+            <a onclick="location.href='{% url 'Boardapp:sol_category' 'etc' %}'" class="cursor_pointer">  #기타 </a>
           </div>
         </div>
       
@@ -134,22 +140,25 @@
       <div class="site-section bg-light">
       <div class="container">
         <div class="row">
-        {% for board in posts %}
+        {% for sol_board in sol_posts %}
   
           <div class="col-lg-4 col-md-6 mb-4" style="margin: 0 auto; width:50%;">
             <div class="board_container">
               <div class="post-entry-1 h-100">
               
                 <div class="post-entry-1-contents">
-                  <h2><a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no  %}">{{ board.title }}</a></h2>
-                  <span class="meta d-inline-block mb-3">{{ board.b_date }}<br>
-                  <span class="mx-2">by</span> <a href="#">{{board.writer}}</a></span>
+                  <div class = 'atagg'>
+                    <a href="{% url 'Boardapp:sol_category' sol_board.category %}" >#{{sol_board.category}}</a>
+                  </div>
+                  <h2><a href="{% url 'MakeBoardapp:detail_board' sol_board.tb_no  %}">{{ sol_board.title }}</a></h2>
+                  <span class="meta d-inline-block mb-3">{{ sol_board.tb_date }}<br>
+                  <span class="mx-2">by</span> <a href="#">{{sol_board.writer}}</a></span>
                     <p>
                       {% autoescape off %}
-                      {{ board.summary }}
+                      {{ sol_board.summary }}
                       <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'>
                       {% endautoescape %}
-                      <a href="{% url 'MakeBoardapp:sol_detail_board' board.b_no %}">....더보기</a>
+                      <a href="{% url 'MakeBoardapp:detail_board' sol_board.tb_no %}">....더보기</a>
                     </p>
                 </div>
               </div>
