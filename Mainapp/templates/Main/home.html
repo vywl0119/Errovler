@@ -156,7 +156,9 @@
                   <div class = 'atagg'>
                     <a href="{% url 'Boardapp:sol_category' board.category %}" >#{{board.category}}</a>
                   </div>
-                  <h3><a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">{{board.title}}</a></h3>
+                  <div class="board_title">
+                    <h3><a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">{{board.title}}</a></h3>
+                  </div>
                   <p class="meta">
                     <span class="mr-2 mb-2">by {{board.writer}}</span>
                     <span class="mr-2 mb-2">{{board.b_date}}</span>
