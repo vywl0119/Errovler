@@ -13,6 +13,7 @@ urlpatterns = [
     path('total_category/<str:category>', views.total_category, name='total_category'),
     
     path('mypage/', views.mypage, name='mypage'),
+    path('profile/', views.mypage, name='profile'),
     
 
     path('total_search/', views.total_search, name='total_search'),
