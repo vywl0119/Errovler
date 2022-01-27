@@ -63,3 +63,6 @@ def upload(request):
         return HttpResponse('%s<br>%s' % (name, size))
     
     return render(request, 'Main/signup.html')
+
+def profile_update(request):
+    return render(request, 'Main/profile_update.html')
