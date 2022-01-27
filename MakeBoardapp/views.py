@@ -22,6 +22,7 @@ def detail_board(request, tb_no):
     context = {'board_detail': board_detail,
                 'comment_list': comment_list,
                 'comment_cnt': comment_cnt,
+                
                 }
     
     response = render(request, 'MakeBoard/detail_board.html',context)
@@ -280,3 +281,6 @@ def sole_like(request, b_no):
         board.save()
 
     return redirect('MakeBoardapp:sol_detail_board',b_no)
+
+
+
