@@ -12,10 +12,12 @@ urlpatterns = [
     path('sol_category/<str:category>', views.sol_category, name='sol_category'),
     path('total_category/<str:category>', views.total_category, name='total_category'),
     path('scrap_category/<str:category>', views.scrap_category, name='scrap_category'),
+    path('write_category/<str:category>', views.write_category, name='write_category'),
+    
 
     
+    path('scrap_page/', views.scrap_page, name='scrap_page'),
     path('mypage/', views.mypage, name='mypage'),
-    path('profile/', views.mypage, name='profile'),
     
 
     path('total_search/', views.total_search, name='total_search'),

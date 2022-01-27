@@ -12,20 +12,20 @@
     <div class="profile_detail">
         <p><u>{{ user.first_name }}</u> 에이블러 님 안녕하세요!</p>
         <div class="scrap_counter">
-            <p>스크랩한 에러</p>
+            <p>내가 쓴 글</p>
             <hr>
             <div class="scrap_errors">
                 <div class="error">
                     <p class="tag">파이썬</p>
-                    <p>{{ scrap_cnt.0 }}</p>
+                    <p>{{ write_cnt.0 }}</p>
                 </div>
                 <div class="error">
                     <p class="tag">장고</p>
-                    <p>{{ scrap_cnt.1 }}</p>
+                    <p>{{ write_cnt.1 }}</p>
                 </div>
                 <div class="error">
                     <p class="tag">기타</p>
-                    <p>{{ scrap_cnt.2 }}</p>
+                    <p>{{ write_cnt.2 }}</p>
                 </div>
             </div>
         </div>
