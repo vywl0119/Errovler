@@ -140,8 +140,8 @@
                     <a href="{% url 'Boardapp:scrap_category' scrap.category %}" >#{{scrap.category}}</a>
                   </div> 
                   <h2><a href="{% url 'MakeBoardapp:detail_board' scrap.tb_no.tb_no %}">{{scrap.tb_no.title}}</a></h2>
-                  <span class="meta d-inline-block mb-3">{{ scrap.s_date }}<br>
-                  <span class="mx-2">by</span> <a href="#">{{scrap.writer}}</a></span>
+                  <span class="meta d-inline-block mb-3">{{ scrap.tb_no.tb_date }}<br>
+                  <span class="mx-2">by</span> <a href="#">{{scrap.tb_no.writer}}</a></span>
                   <p>  
                     {% autoescape off %}
                     {{ scrap.summary | safe}}

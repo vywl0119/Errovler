@@ -205,7 +205,7 @@ def scrap_category(request, category):
     page = request.GET.get('page')
     #request된 페이지를 얻어온 뒤 return 해 준다
     scrap_posts = paginator.get_page(page)
-    return render(request, 'Board/mypage.html', {'scrap_list' : scrap_board_list, 'scrap_posts':scrap_posts,'scrap_cnt':scrap_cnt})
+    return render(request, 'Board/scrap.html', {'scrap_list' : scrap_board_list, 'scrap_posts':scrap_posts,'scrap_cnt':scrap_cnt})
 
 
 def write_category(request, category):
