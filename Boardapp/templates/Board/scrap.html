@@ -62,7 +62,7 @@
                   <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
                   <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
                   <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
-                  <li class="active"><a href="{% url 'Boardapp:mypage' %}" class="nav-link">마이 페이지</a></li>
+                  <li class="active"><a href="{% url 'Boardapp:mypage' %}" class="nav-link">스크랩</a></li>
                   <li>
                     <a class='nav-link' href="{% url 'Mainapp:logout' %}">
                     {{ user.first_name }} 님 반갑습니다. (로그아웃)
@@ -112,7 +112,7 @@
         </div>
 
         <div class="category_container">
-          <div id=error_categoty>
+          <div id=error_categoty style="background-color:#FEE5EB">
             <a onclick="location.href='{% url 'Boardapp:mypage' %}'" class="cursor_pointer"> 내가 쓴 글 </a>
           </div>
           <div id=error_categoty>
@@ -140,8 +140,8 @@
                     <a href="{% url 'Boardapp:scrap_category' scrap.category %}" >#{{scrap.category}}</a>
                   </div> 
                   <h2><a href="{% url 'MakeBoardapp:detail_board' scrap.tb_no.tb_no %}">{{scrap.tb_no.title}}</a></h2>
-                  <span class="meta d-inline-block mb-3">{{ scrap.s_date }}<br>
-                  <span class="mx-2">by</span> <a href="#">{{scrap.writer}}</a></span>
+                  <span class="meta d-inline-block mb-3">{{ scrap.tb_no.tb_date }}<br>
+                  <span class="mx-2">by</span> <a href="#">{{scrap.tb_no.writer}}</a></span>
                   <p>  
                     {% autoescape off %}
                     {{ scrap.summary | safe}}
