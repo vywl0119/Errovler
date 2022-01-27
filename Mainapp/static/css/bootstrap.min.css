@@ -208,7 +208,8 @@ textarea {
 
 button,
 input {
-  overflow: visible; }
+  overflow: visible;
+}
 
 button,
 select {
@@ -1709,7 +1710,9 @@ textarea.form-control {
   height: auto; }
 
 .form-group {
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center; }
 
 .form-text {
   display: block;
