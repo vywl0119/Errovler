@@ -77,11 +77,48 @@
     <div class="site-section">
         <div class="container">
           <div class="row">
-            <div class="col-md-8 blog-content" style="margin: 0 auto; width:50%;">
+            <div class="col-md-8 blog-content" style="margin: 0 auto;">
                 <div class="pt-5">
-                    <div class="comment-form-wrap pt-5" style="margin: 0 auto; width:50%;">
-                        <h2 class="mb-5" style="margin: 0 auto; width:60%;">👻Sign Up👻</h2>
-                        <form class="post-form" method = "post">
+                    <div class="comment-form-wrap pt-5" style="margin: 0 auto;">
+                        <h2 class="mb-5" style="text-align:center;">👻Sign Up👻</h2>
+
+                        <div class="signup_form">
+                          <div class="profile_form">
+                            <img src="{%static 'images/user.png' %}">
+                          </div>
+                          <div class="info_form">
+                            <form class="post-form" method = "post">
+                              {% csrf_token %}
+                              {% include "form_errors.html" %}
+                              <div class="form-group">
+                                <label for="username">이메일</label>
+                                <input type="text" class="form-control" name="username" id="username"
+                                value="{{ form.username.value | default_if_none:'' }}">
+                                </div>
+                                <div class="form-group">
+                                <label for="password1">비밀번호</label>
+                                <input type="password" class="form-control" name="password1"
+                                id="password1" value="{{ form.password1.value | default_if_none:'' }}">
+                                </div>
+                                <div class="form-group">
+                                <label for="password2">비밀번호 확인</label>
+                                <input type="password" class="form-control" name="password2"
+                                id="password2" value="{{ form.password2.value | default_if_none:'' }}">
+                                </div>
+                                <div class="form-group">
+                                <label for="first_name">닉네임</label>
+                                <input type="text" class="form-control" name="first_name"
+                                id="first_name" value="{{ form.first_name.value | default_if_none:'' }}">
+                              </div>
+                              <div class="form-group">
+                                <button type="submit" class="btn btn-secondary">Sign Up</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+
+                        
+                        {% comment %} <form class="post-form" method = "post">
                           {% csrf_token %}
                           {% include "form_errors.html" %}
                           <div class="form-group">
@@ -103,13 +140,11 @@
                             <label for="first_name">닉네임</label>
                             <input type="text" class="form-control" name="first_name"
                             id="first_name" value="{{ form.first_name.value | default_if_none:'' }}">
-                            </div>
+                          </div>
                           <div class="form-group">
                             <button type="submit" class="btn btn-secondary">Sign Up</button>
-         
-                            
                           </div>
-                        </form>
+                        </form> {% endcomment %}
                       </div>
                     </div>
                   </div>

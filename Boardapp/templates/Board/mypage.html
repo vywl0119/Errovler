@@ -191,6 +191,19 @@
     <script src="{% static 'js/aos.js' %}"></script>
 
     <script src="{% static 'js/main.js' %}"></script>
+    
+    <script>
+      function edit_nickname() {
+        if (confirm("수정하시겠습니까?") == true) {
+          var link = "{% url 'MakeBoardapp:writing_qna_board' %}"
+          
+          location.href=link;
+        }
+        else {
+          return;
+        }
+      }
+    </script>
 
   </body>
 
