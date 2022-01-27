@@ -26,6 +26,30 @@
       text-align: right;
     }
     </style>
+
+  <style>
+    .btn-like {
+      display:inline-block;
+      width:50px;
+      height:50px;
+      background:url({%static 'images/ht_f.png'%});
+      background-position:-150px -400px;
+      text-indent:-9999px;
+      overflow:hidden;
+      border:none;
+    }
+    .btn-like.active {
+      display:inline-block;
+      width:50px;
+      height:50px;
+      background:url({%static 'images/ht.png'%});
+      background-position:-250px -400px;
+      text-indent:-9999px;
+      overflow:hidden;
+      border:none;
+    }
+    </style>
+ 
   <script>
 
 
@@ -245,6 +269,7 @@
               
                   <div class="pt-4">
                     <p>
+                      <a href="{% url 'MakeBoardapp:like' board_detail.tb_no %}" class="float-left btn-like {%if user.first_name !=  item.writer  %} active {%endif%}">좋아요!</a>
                       </text><input type="button" id='heart-button' onclick="heart_button()"><text style="margin:5px;">{{ board_detail.like }}</text>
                       </text><input type="button" id='rp-button'><text style="margin:5px;">{{comment_cnt}}</text>
                       {% if user.is_authenticated %}
