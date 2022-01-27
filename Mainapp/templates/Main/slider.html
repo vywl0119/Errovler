@@ -25,7 +25,7 @@
                         <!-- 내일의 수업은? -->
                         <h3>{{next_class.cb_date}}</h3>
                         <p class="lecture">"{{next_class.subject}}"</p>
-                        <p>-{{next_class.today_class}}"</p>
+                        <p>-{{next_class.today_class}}</p>
                     </div>
                     <img src="{% static 'images/blackboard2.png' %}" height="500">
                 </a>
@@ -33,7 +33,7 @@
             <li class="slideitem">
                 <a>
                     <div class="textbox">
-                        <h3>오늘의 명언은?</h3>
+                        <p class="lecture">오늘의 명언은?</p>
                         <p>"{{today_class.message}}"</p>
                     </div>
                     <img src="{% static 'images/blackboard2.png' %}" height="500">

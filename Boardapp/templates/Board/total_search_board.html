@@ -115,28 +115,15 @@
                 {% csrf_token %}
                 <input type="search" name="q" value="{{q}}" class="form-control mr-2 w-100" >
                 <button type="summit" class="btn btn-primary px-4 mr-2" value ="검색">검색</button>
-                {% if user.is_authenticated %}
-                <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_qna_board" %}'">글쓰기</Button>
+                {% if user.is_authenticated %} {% with '질문' as type %}
+                <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_board" type %}'">글쓰기</Button>
+                {% endwith %}
                 {%endif%}
               </form>
-              
             </div>
           </div>
         </div>
         
-        <div class="category_container">
-          <div id=error_categoty>
-          <a onclick="location.href='{% url 'Boardapp:total_category' 'python' %}'" class="cursor_pointer">  #파이썬 </a>
-        </div>
-          <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:total_category' 'Django' %}'" class="cursor_pointer">  #장고 </a>
-          </div>
-          <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:total_category' 'etc' %}'" class="cursor_pointer">  #기타 </a>
-          </div>
-        </div>
-      
-   
       <div class="site-section bg-light">
       <div class="container">
         <div class="row">
@@ -147,6 +134,11 @@
                 <div class="post-entry-1 h-100">
                   <div class="post-entry-1-contents">
                     <div class = 'atagg'>
+                      {% if board.type ==  '질문' %}
+                        <a href="{% url 'Boardapp:qna_board' %}" >{{board.type}}</a>
+                      {% else %}
+                        <a href="{% url 'Boardapp:sol_board' %}" >{{board.type}}</a>
+                      {% endif %}
                       <a href="{% url 'Boardapp:total_category' board.category %}" >#{{board.category}}</a>
                     </div>
                     <h2><a href="{% url 'MakeBoardapp:detail_board' board.tb_no  %}">{{ board.title }}</a></h2>

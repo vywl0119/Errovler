@@ -10,19 +10,25 @@ from django_summernote.fields import SummernoteTextField
 from django_summernote.widgets import SummernoteWidget
 
 class BoardPost(forms.ModelForm):
+    
     title = forms.CharField(
+        
         label='글 제목',
         widget=forms.TextInput(
             attrs={
                 'placeholder': '게시글 제목'
             }),
+            required=True,
+        
+        
     )
 
     contents = forms.CharField(widget=SummernoteWidget())
     
     type_options = (
         ('질문', '질문'),
-        ('해결', '해결')
+        ('해결', '해결'),
+        
     )
 
     type = forms.ChoiceField(
@@ -53,6 +59,7 @@ class BoardPost(forms.ModelForm):
             }
 
     def clean(self):
+        
         cleaned_data = super().clean()
 
         title = cleaned_data.get('title', '')
