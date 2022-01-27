@@ -57,7 +57,7 @@ class BoardPost(forms.ModelForm):
 
         title = cleaned_data.get('title', '')
         type = cleaned_data.get('type','질문')
-        category = cleaned_data.get('category','Django')
+        category = cleaned_data.get('category','장고')
         contents = cleaned_data.get('contents','')
 
         if title == '':
