@@ -1,0 +1,33 @@
+{% load static %}
+
+<div class="profile_container">
+    <div class="profile">
+        <img src="{{ currentprofile }}" onerror='this.src="{% static 'images/user.png' %}"'>
+        <div class="nickname">
+            <p>{{ user.first_name }}</p>
+            <img onclick="edit_nickname()" src="{%static 'images/pencil.png' %}">
+        </div>
+    </div>
+
+    <div class="profile_detail">
+        <p><u>{{ user.first_name }}</u> 에이블러 님 안녕하세요!</p>
+        <div class="scrap_counter">
+            <p>내가 쓴 글</p>
+            <hr>
+            <div class="scrap_errors">
+                <div class="error">
+                    <p class="tag">파이썬</p>
+                    <p>{{ write_cnt.0 }}</p>
+                </div>
+                <div class="error">
+                    <p class="tag">장고</p>
+                    <p>{{ write_cnt.1 }}</p>
+                </div>
+                <div class="error">
+                    <p class="tag">기타</p>
+                    <p>{{ write_cnt.2 }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

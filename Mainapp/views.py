@@ -59,7 +59,6 @@ def signup(request):
             u.save()
             user = authenticate(username=username, password=raw_password, first_name=first_name, last_name=profile_path)
             login(request, user)
-            # return render(request, 'Main/home.html')
             return redirect('Mainapp:home')
     else:
         form = UserForm()
@@ -104,7 +103,7 @@ def profile_update(request):
                 
             u.save()
             
-            return redirect('Boardapp:scrap_page')
+            return redirect('Boardapp:mypage')
         
         else:
             form = CustomUserChangeForm(instance=request.user)
