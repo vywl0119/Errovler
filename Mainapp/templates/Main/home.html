@@ -41,6 +41,36 @@
         background: url("{% static 'images/right.png' %}") center center / 100% no-repeat;
       }
     </style>
+{% comment %} 
+    <script>
+
+  
+      function scrap_button(tb_no,category) {
+        if (confirm("정말 스크랩하시겠습니까?") == true) {
+          var link = "{% url 'MakeBoardapp:scrap' tb_no board_list.category %}"
+          
+          location.href=link;
+      
+        }
+        else {
+          return;
+        }
+      }
+  
+      function heart_button() {
+        if (confirm("좋아요") == true) {
+          var link = "{% url 'MakeBoardapp:like' board_list.tb_no %}"
+            
+          location.href=link;
+        
+        }
+        else {
+          return;
+        }
+      }
+    </script> {% endcomment %}
+
+
   
   </head>
 
@@ -166,7 +196,6 @@
                         <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
                         <input type="button" id='rp-button'><text style="margin:5px;">{{ comment_cnt }}</text>
                         <text style="margin:5px; float:right;">{{board.view}}</text>
-                        <input type="button" id='scrap-button' style="float:right;">
                       </p>
                     </div>
                   </div>
