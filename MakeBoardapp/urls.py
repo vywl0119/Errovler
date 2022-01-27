@@ -23,4 +23,6 @@ urlpatterns = [
 
     path('reading/like/<int:tb_no>', views.like, name='like'),
 
+    path('reading/sol_like/<int:b_no>', views.sole_like, name='sol_like'),
+    path('reading/qna_like/<int:qna_no>', views.qna_like, name='qna_like'),
 ]

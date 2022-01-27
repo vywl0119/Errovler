@@ -27,12 +27,9 @@
     }
     </style>
   <script>
-
-
-
     function modify_button() {
       if (confirm("수정하시겠습니까?") == true) {
-       
+        var link = "{% url 'MakeBoardapp:writing_board' %}"
         
         location.href=link;
       }
@@ -43,7 +40,7 @@
 
     function delete_button() {
       if (confirm("정말 삭제하시겠습니까?") == true) {
-        var link = "{% url 'MakeBoardapp:board_delete' board_detail.tb_no %}"
+        var link = "{% url 'MakeBoardapp:sol_delete' board_detail.b_no %}"
         
         location.href=link;
     
@@ -52,10 +49,11 @@
         return;
       }
     }
+
 
     function scrap_button() {
       if (confirm("정말 스크랩하시겠습니까?") == true) {
-        var link = "{% url 'MakeBoardapp:scrap' board_detail.tb_no board_detail.category %}"
+        var link = "{% url 'MakeBoardapp:sol_scrap' board_detail.b_no board_detail.category%}"
         
         location.href=link;
     
@@ -65,9 +63,10 @@
       }
     }
 
+
     function heart_button() {
       if (confirm("좋아요") == true) {
-        var link = "{% url 'MakeBoardapp:like' board_detail.tb_no %}"
+        var link = "{% url 'MakeBoardapp:sol_like' board_detail.b_no %}"
           
         location.href=link;
       
@@ -117,13 +116,8 @@
               <ul class="site-menu main-menu js-clone-nav ml-auto ">
                 
                 <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
-                {% if board_detail.type ==  '질문' %}
-                  <li  class="active"><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
-                  <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
-                {%else%}
-                  <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
-                  <li class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
-                {%endif%}
+                <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
+                <li  class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
                 <li><a href="{% url 'Boardapp:mypage' %}" class="nav-link">마이 페이지</a></li>
                 <li>
                
@@ -146,13 +140,8 @@
             <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
               <ul class="site-menu main-menu js-clone-nav ml-auto ">
                 <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
-                {% if board_detail.type ==  '질문' %}
-                  <li  class="active"><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
-                  <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
-                {%else%}
-                  <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
-                  <li class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
-                {%endif%}
+                <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
+                <li  class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
 
                 <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
                
@@ -192,7 +181,7 @@
                 <div class="container">
 
                 <div class="meta" style="color:#78ECD9;">
-                  #{{ board_detail.tb_no }}
+                  #{{ board_detail.b_no }}
                   <h3>{{ board_detail.title }}</h3>
                 </div>
 
@@ -204,10 +193,9 @@
                       <p class="lead">{{board_detail.writer}}</p>
                     </li>
                     <li class="context_li" style="margin-left: 10px;">
-                      <text class="meta" style="font-size:85%;">{{board_detail.tb_date}}</text>
+                      <text class="meta" style="font-size:85%;">{{board_detail.b_date}}</text>
                     </li>
                     <li class="context_li" style="margin-top: 3px; margin-left: 10px;">
-                      <img src="{%static 'images/view_icon.png' %}" height="20" width="20">
                     </li>
                     <li class="context_li" style="margin-left: 5px;">
                       <text class="meta" style="font-size:95%;">
@@ -243,36 +231,24 @@
                   <div>#{{board_detail.category}}</div>
                 </div>
 
-              
-                  <div class="pt-4">
-                    <p>
-                      </text><input type="button" id='heart-button' onclick="heart_button()"><text style="margin:5px;">{{ board_detail.like }}</text>
-                      </text><input type="button" id='rp-button'><text style="margin:5px;">{{comment_cnt}}</text>
-                      {% if user.is_authenticated %}
-                      <text style="margin:5px; float:right;" >
-                        6
-                      </text><input type="button" id='scrap-button' style="float:right;" onclick="scrap_button()">
-                      {%endif%}
-                    </p>
-                  </div>
-            
-
-                
-
+                <div class="pt-4">
+                  <p>
+                    <input type="button" id='heart-button' onclick="heart_button()"><text style="margin:5px;">{{ board_detail.like }}</text>
+                    <input type="button" id='rp-button'><text style="margin:5px;">{{comment_cnt}}</text>
+                    {% if user.is_authenticated %}
+                    <text style="margin:5px; float:right;">6</text><input type="button" id='scrap-button' style="float:right;" onclick="scrap_button()">
+                    {%endif%}
+                  </p>
+                </div>
                 <div class="mt-5"></div>
               </div>
               </div>
             <div class="comment_container">
               <div class="pt-5" style="width=100%;">
-                {% if board_detail.type ==  '질문' %}
-                  <Button type="button" class="btn btn-primary px-4" onclick="location.href='{% url 'Boardapp:qna_board' %}'" style="width:80px;"> <span> 글 목록 </span></Button>
-                
-                {%else%}
-                  <Button type="button" class="btn btn-primary px-4" onclick="location.href='{% url 'Boardapp:sol_board' %}'" style="width:80px;"> <span> 글 목록 </span></Button>
-                
-                {%endif%}
-          
-                
+                {% comment %} <p>Categories: <a href="#">Design</a>, <a href="#">Events</a> Tags: <a href="#">#html</a>, <a
+                    href="#">#trends</a></p> {% endcomment %}
+                    <Button type="button" class="btn btn-primary px-4" onclick="location.href='{% url 'Boardapp:sol_board' %}'" style="width:80px;"> <span> 글 목록 </span></Button>
+               
               </div>
               
 
@@ -290,10 +266,10 @@
                    
                       <div class="comment-body">
                       <h3>{{item.writer}}</h3>
-                      <form action="{% url 'MakeBoardapp:comment_update' item.c_no%}" class="" method='post'>
+                      <form action="{% url 'MakeBoardapp:sol_comment_update' item.c_no%}" class="" method='post'>
                         {% csrf_token %}
                         <div class="form-group">
-                          <input type="hidden" id="gameToken" name="tb_no" value="{{ board_detail.tb_no }}">
+                          <input type="hidden" id="gameToken" name="b_no" value="{{ board_detail.b_no }}">
                           <textarea name="contents" id="message"  cols="30" rows="5" 
                             class="form-control">{{item.contents}}</textarea>
                         </div>
@@ -317,8 +293,8 @@
 
                           {% if user.first_name ==  item.writer %}
                           <div class="atagg">
-                              <a onclick="location.href='{% url 'MakeBoardapp:comment_updateurl' board_detail.tb_no item.c_no %}'">  수정 </a>
-                              <a onclick="location.href='{% url 'MakeBoardapp:comment_delete' board_detail.tb_no item.c_no %}'"> 삭제 </a><br>
+                              <a onclick="location.href='{% url 'MakeBoardapp:sol_comment_updateurl' board_detail.b_no item.c_no %}'">  수정 </a>
+                              <a onclick="location.href='{% url 'MakeBoardapp:sol_comment_delete' board_detail.b_no item.c_no %}'"> 삭제 </a><br>
                           </div>    
                           {% endif%}
 
@@ -332,13 +308,12 @@
                 </ul>
                 <!-- END comment-list -->
                 <div class="comment-form-wrap pt-5">
-                  
                   {% if user.is_authenticated %}
-                  <form action="{% url 'MakeBoardapp:total_comment' %}" class="" method='post'>
+                  <form action="{% url 'MakeBoardapp:sol_comment' %}" class="" method='post'>
                     {% csrf_token %}
                     <div class="form-group">
                       <hr>
-                      <input type="hidden" id="gameToken" name="tb_no" value="{{ board_detail.tb_no }}">
+                      <input type="hidden" id="gameToken" name="b_no" value="{{ board_detail.b_no }}">
     
                       <label for="message" style="font-size: 125%" class="mb-3">댓글</label>
                       <textarea name="contents" id="message" placeholder="내용을 입력하세요." cols="30" rows="5" 
@@ -349,7 +324,7 @@
                     </div>
 
                     </form>
-                  {% else %}
+                    {% else %}
                   
                     <div class="form-group">
                       <hr>
