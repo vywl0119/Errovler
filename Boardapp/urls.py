@@ -14,7 +14,7 @@ urlpatterns = [
     path('scrap_category/<str:category>', views.scrap_category, name='scrap_category'),
 
     
-    path('mypage/', views.mypage, name='mypage'),
+    path('scrap_page/', views.scrap_page, name='scrap_page'),
     path('profile/', views.mypage, name='profile'),
     
 
