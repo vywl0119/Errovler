@@ -87,12 +87,11 @@
                             <img id="profile_update_image" src="{%static 'images/user.png' %}">
                             <form action="{% url 'Mainapp:profile_update' %}" method="post" enctype="multipart/form-data">
                               {% csrf_token %}
-                              <input id=file_input type="file" name="file">
-                              <input type="submit" value="확인">
+                              <input type="file" class="file" id=profile_file_update_input onchange="imageView(this)">
                               <br>
                               <div class="nickname-group">
                                 <label style="margin: 9px 8px 9px 15px" for="first_name">닉네임</label>
-                                <input type="text" class="form-control" name="first_name"
+                                <input id=profile_nickname_update_input type="text" class="form-control" name="first_name"
                                 id=profile_nickname_update value="{{ form.first_name.value | default_if_none:'' }}">
                               </div>
                               <div class="form-group">
@@ -124,7 +123,22 @@
     <script src="{% static 'js/aos.js' %}"></script>
 
     <script src="{% static 'js/main.js' %}"></script>
-
+    <script>
+      function imageView(input) {
+             if (input.files && input.files[0]) {
+                 var reader = new FileReader();
+      
+                 reader.onload = function(e) {
+                     $('#profile_update_image').attr('src', e.target.result)
+                      .width(180)
+                      .height(180);
+                 }
+      
+                 reader.readAsDataURL(input.files[0]);
+             }
+         }
+      
+     </script>
   </body>
 
 </html>

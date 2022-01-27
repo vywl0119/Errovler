@@ -1792,8 +1792,28 @@ p>img {
 #profile_update_image{
   width: 180px;
   height: 180px;
+  margin-left: 100px;
+  margin-bottom: 5px;
 }
 
 #profile_update_input_form {
   width: 50px;
+}
+
+#profile_file_update_input{
+  margin-left: 100px;
+  width: 200px;
+}
+
+#profile_nickname_update_input{
+  margin-left: 12px;
+  width: 350px;
+}
+
+#edit_btn{
+  background-color: #78DCEC;
+  color: #fff;
+  border: none;
+  margin-top: 35px;
+  margin-left: 150px;
 }
