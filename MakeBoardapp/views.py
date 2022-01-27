@@ -204,8 +204,24 @@ def scrap(request, tb_no, category):
     return redirect('MakeBoardapp:detail_board',tb_no)
 
 
+def scrap(request, tb_no, category):
+    print('scrap', tb_no, category)
+    writer=request.user.first_name
+    check_scrap_board=Total_Scrap.objects.filter(tb_no=tb_no)
+
+    if check_scrap_board.exists():
+        check_scrap_board.delete()
+
+    else:
+        scrap=Total_Scrap.objects.create(tb_no_id=tb_no, writer=writer, category=category)
+        scrap.save()
+
+    return redirect('MakeBoardapp:detail_board',tb_no)
+
+
+
 def like(request, tb_no):
-    print('sol_like')
+    print('like')
     board = Total_Board.objects.get(tb_no=tb_no)
     writer=request.user.first_name
     check_like_board = Total_Like_Board.objects.filter(tb_no=tb_no)

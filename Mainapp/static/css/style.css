@@ -871,12 +871,13 @@ h1, h2, h3, h4, h5,
   letter-spacing: .1rem; }
 
 .tutorial-item {
-  width: 1100px;
+  width: 350px;
   padding: 20px;
   border-radius: 0.5rem;
-  -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
-  background: #fff; }
+  -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  background: #fff; 
+  margin-left: 10px;}
   .tutorial-item .img-wrap {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 250px;
@@ -1728,4 +1729,50 @@ p>img {
 } 
 .profile_container .scrap_counter .scrap_errors .error .tag{
   font-size: 18px;
-} 
+}
+
+/* 인기 게시글 뷰 하단 조회수 */
+#view-icon {
+  margin-top: 5px;
+  float: right;
+  background: url( "static/images/view_icon.png" ) no-repeat;
+  background-size: 30px;
+  background-position: bottom;
+  height:25px;
+  width:25px;
+  border: 0px;
+  cursor: default;
+}
+
+/* 회원가입 */
+.signup_form {
+  width: 850px;
+  height: 500px;
+  margin-top: 5%;
+  padding: 10px;
+}
+.signup_form .profile_form {
+  float: left;
+  width: 50%;
+  height: 100%;
+  /* margin: 0px auto;
+  text-align: center; */
+  margin-top: 10%;
+}
+.signup_form .profile_form > img {
+  width: 180px;
+  height: 180px;
+  border-radius: 70%;
+  overflow: hidden;
+  object-fit: cover;
+  margin-top: 8px;
+  margin-left: 25%;
+}
+.signup_form .profile_form > form {
+  margin-top: 12%;
+}
+.signup_form .info_form {
+  float: right;
+  width: 45%;
+  margin-left: 20px;
+}
