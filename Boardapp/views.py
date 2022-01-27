@@ -40,7 +40,7 @@ def sol_board(request):
     sol_posts = paginator.get_page(page)
     return render(request, 'Board/sol_board.html', {'sol_boards' : sol_boards, 'sol_posts':sol_posts})
 
-def mypage(request):
+def scrap_page(request):
         user = request.user.first_name
         user_scrap = Total_Scrap.objects.filter(writer=user)
         
@@ -54,6 +54,39 @@ def mypage(request):
         scrap = Total_Scrap.objects.all()
         #모든 글들을 대상으로
         scrap_list=Total_Scrap.objects.filter(writer=user).order_by('-s_date')
+        #블로그 객체 세 개를 한 페이지로 자르기
+        paginator = Paginator(scrap_list,9)
+        #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
+        page = request.GET.get('page')
+        #request된 페이지를 얻어온 뒤 return 해 준다
+        scrap_posts = paginator.get_page(page)
+
+        print(scrap_posts)
+            
+        context = { 'scrap_cnt' : scrap_cnt,
+                    'scrap' : scrap,
+                    'scrap_posts' : scrap_posts,
+                    'scrap_list':scrap_list
+                    
+                }
+        
+        return render(request, 'Board/mypage.html', context)
+
+
+def mypage(request):
+        user = request.user.first_name
+        user_scrap = Total_Board.objects.filter(writer=user)
+        
+        tag_list = ['Python', 'Django', 'etc']
+        scrap_cnt = []
+        
+        for tag in tag_list:
+            cnt = user_scrap.filter(category=tag).count()
+            scrap_cnt.append(cnt)
+            
+        scrap = Total_Board.objects.all()
+        #모든 글들을 대상으로
+        scrap_list=Total_Board.objects.filter(writer=user).order_by('-tb_no')
         #블로그 객체 세 개를 한 페이지로 자르기
         paginator = Paginator(scrap_list,9)
         #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
