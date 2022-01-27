@@ -89,13 +89,15 @@
                             <div class="profile_form">
                               <img src="{%static 'images/user.png' %}">
                               <div class="upload_form">
-                                <label for="fileInput">프로필</label>
-                                <input type="file" name="fileInput" id="fileInput" value="{{ form.fileInput.value | default_if_none:'' }}">
-                                {% comment %} <input type="submit" value="전송"> {% endcomment %}
-                                {% comment %} <input type="text" class="form-control" name="fileInput" id="fileInput" value="{{ form.fileInput.value | default_if_none:'' }}"> {% endcomment %}
+                                {% comment %} <label for="last_name">프로필</label> {% endcomment %}
+                                  <input type="file" class="form-control" name="last_name"
+                                    id="last_name" onchange="alert(this.value)">
                               </div>
+
+                              
                             </div>
                             <div class="info_form">
+                              
                               <div class="form-group">
                                 <label for="username">이메일</label>
                                 <input type="text" class="form-control" name="username" id="username"
@@ -115,7 +117,12 @@
                                   <label for="first_name">닉네임</label>
                                   <input type="text" class="form-control" name="first_name"
                                     id="first_name" value="{{ form.first_name.value | default_if_none:'' }}">
-                              </div>
+                                </div>
+                                {% comment %} <div class="form-group">
+                                  <label for="last_name">프로필</label>
+                                  <input type="file" class="form-control" name="last_name"
+                                    id="last_name" value="{{ form.last_name.value | default_if_none:'' }}">
+                                </div> {% endcomment %}
                               <div class="form-group">
                                 <input type="submit" class="btn btn-secondary" value="Sign Up"></input>
                               </div>
