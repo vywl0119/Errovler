@@ -3,6 +3,10 @@ from django.shortcuts import render, redirect, HttpResponse
 from .forms import UserForm
 from Mainapp.models import Class_Board, Total_Comment, Total_Board
 import datetime 
+from django import forms
+from .forms import CustomUserChangeForm
+from django.contrib.auth.models import User
+
 
 def home(request):
     board_list = Total_Board.objects.order_by('-view')[:3]
@@ -31,14 +35,12 @@ def home(request):
     return render(request, 'Main/home.html',context)
 
 
-
 def signup(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         print('d')
         if form.is_valid():
             u = form.save(commit=False)
-            
             # 이메일
             username = form.cleaned_data.get('username')
             # 비밀번호
@@ -46,76 +48,69 @@ def signup(request):
             # 닉네임
             first_name = form.cleaned_data.get('first_name')
             # 프로필
-            # profile_path = form.cleaned_data.get('last_name')
-            # profile_path = request.FILES.get('last_name')
             profile_path = request.FILES.get('last_name')
-            name = profile_path.name
-            with open('media/%s' % name, 'wb') as file:
-                for chunk in profile_path.chunks():
-                    file.write(chunk)
-            # profile_path = profile_image.value
-            # upload_file = request.FILES.get('fileInput')
-            # filepath = upload_file.name
-            # profile_image = filepath
-            # profile_image = upload(request)
-
-            u.last_name = name
+            if profile_path:  
+                name = profile_path.name
+                with open('media/%s' % name, 'wb') as file:
+                    for chunk in profile_path.chunks():
+                        file.write(chunk)
+                u.last_name = name
+                
             u.save()
             user = authenticate(username=username, password=raw_password, first_name=first_name, last_name=profile_path)
             login(request, user)
-            return render(request, 'Main/login.html')
+            # return render(request, 'Main/home.html')
+            return redirect('Mainapp:home')
     else:
         form = UserForm()
     return render(request, 'Main/signup.html', {'form': form})
 
-def upload(request):
-    # if request.method == 'POST':
-        upload_file = request.FILES.get('fileInput') # 파일 객체
-        name = upload_file.name # 파일 이름
-        size = upload_file.size # 파일 크기
-        
-        return name
-        
-    #     with open(name, 'wb') as file: # 파일 저장
-    #         for chunk in upload_file.chunks():
-    #             file.write(chunk)
-                
-    #     return HttpResponse('%s<br>%s' % (name, size))
-    
-    # return render(request, 'Main/signup.html')
 
 def profile_update(request):
     username = request.user.first_name
+    path = "../../../media/"
     profile = request.user.last_name
     
-    login_session = request.session.get('login_session','')
-    context = {'login_session': login_session}
-
+    profile_path = path + profile
+    
     if request.method == 'GET':
         context = {'currentname' : username, 
-                   'currentprofile' : profile
+                   'currentprofile' : profile_path
                    }
         return render(request, 'Main/profile_update.html', context)
 
-    # elif request.method == 'POST':
-    #     write_form = BoardPost(request.POST )
-    #     if write_form.is_valid():
-    #         board.tb_date = tb_date
-    #         board.writer = writer
-    #         board.title = write_form.title
-    #         board.contents=write_form.contents
-    #         category=write_form.category,
-    #         type=write_form.type
-
-
-    #         board.save()
+    elif request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            u = form.save(commit=False)
+            current = User.objects.get(id=request.user.id)
            
-    #         return redirect('MakeBoardapp:detail_board' , tb_no)
-
-    #     else:
-    #         context['forms'] = write_form
-    #         if write_form.errors:
-    #             for value in write_form.errors.values():
-    #                 context['error'] = value
-    #         return render(request, 'MakeBoard/writing_error.html', context)
-    # return render(request, 'Main/profile_update.html')
+            user = request.POST.get("first_name")
+            if user:
+                u.first_name = user
+            else:
+                u.first_name = current.first_name
+                
+            profile_path = request.FILES.get('last_name')
+            
+            if profile_path:  
+                name = profile_path.name
+                with open('media/%s' % name, 'wb') as file:
+                    for chunk in profile_path.chunks():
+                        file.write(chunk)
+                u.last_name = name
+            else:
+                u.last_name = current.last_name
+                
+            u.save()
+            
+            return redirect('Boardapp:scrap_page')
+        
+        else:
+            form = CustomUserChangeForm(instance=request.user)
+        
+        context = {
+            'form':form,
+        }
+    
+        return render(request, 'Main/profile_update.html')
