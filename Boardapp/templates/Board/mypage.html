@@ -113,13 +113,13 @@
 
         <div class="category_container">
           <div id=error_categoty>
-          <a onclick="location.href='{% url 'Boardapp:qna_category' 'python' %}'" class="cursor_pointer">  #파이썬 </a>
+          <a onclick="location.href='{% url 'Boardapp:scrap_category' 'python' %}'" class="cursor_pointer">  #파이썬 </a>
         </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:qna_category' 'Django' %}'" class="cursor_pointer">  #장고 </a>
+            <a onclick="location.href='{% url 'Boardapp:scrap_category' 'Django' %}'" class="cursor_pointer">  #장고 </a>
           </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:qna_category' 'etc' %}'" class="cursor_pointer">  #기타 </a>
+            <a onclick="location.href='{% url 'Boardapp:scrap_category' 'etc' %}'" class="cursor_pointer">  #기타 </a>
           </div>
         </div>
       
@@ -144,7 +144,7 @@
                     {{ scrap.summary | safe}}
                     <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'>
                     {% endautoescape %}
-                    {% comment %} <a href="{% url 'MakeBoardapp:qna_detail_board' qna_board.qna_no %}">....더보기</a> {% endcomment %}
+                     <a href="{% url 'MakeBoardapp:detail_board' scrap.tb_no.tb_no %}">....더보기</a> 
                   </p>
                 </div>
               </div>

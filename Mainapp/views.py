@@ -41,7 +41,11 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             first_name = form.cleaned_data.get('first_name')
-            email = form.cleaned_data.get('profie_image')
+            profile_image = form.cleaned_data.get('fileInput')
+            # upload_file = request.FILES.get('fileInput')
+            # filepath = upload_file.name
+            # profile_image = filepath
+            # profile_image = upload(request)
 
             user = authenticate(username=username, password=raw_password, first_name=first_name, email=profile_image)
             login(request, user)
@@ -51,18 +55,20 @@ def signup(request):
     return render(request, 'Main/signup.html', {'form': form})
 
 def upload(request):
-    if request.method == 'POST':
-        upload_file = request.FILES.get('file') # 파일 객체
+    # if request.method == 'POST':
+        upload_file = request.FILES.get('fileInput') # 파일 객체
         name = upload_file.name # 파일 이름
         size = upload_file.size # 파일 크기
         
-        with open(name, 'wb') as file: # 파일 저장
-            for chunk in upload_file.chunks():
-                file.write(chunk)
+        return name
+        
+    #     with open(name, 'wb') as file: # 파일 저장
+    #         for chunk in upload_file.chunks():
+    #             file.write(chunk)
                 
-        return HttpResponse('%s<br>%s' % (name, size))
+    #     return HttpResponse('%s<br>%s' % (name, size))
     
-    return render(request, 'Main/signup.html')
+    # return render(request, 'Main/signup.html')
 
 def profile_update(request):
     return render(request, 'Main/profile_update.html')
