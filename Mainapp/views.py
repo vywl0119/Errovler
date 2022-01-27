@@ -48,6 +48,7 @@ def signup(request):
             # profile_image = upload(request)
 
             user = authenticate(username=username, password=raw_password, first_name=first_name, email=profile_image)
+            print('user')
             login(request, user)
             return render(request, 'Main/login.html')
     else:
