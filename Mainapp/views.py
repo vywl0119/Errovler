@@ -37,18 +37,31 @@ def signup(request):
         form = UserForm(request.POST)
         print('d')
         if form.is_valid():
-            form.save()
+            u = form.save(commit=False)
+            
+            # 이메일
             username = form.cleaned_data.get('username')
+            # 비밀번호
             raw_password = form.cleaned_data.get('password1')
+            # 닉네임
             first_name = form.cleaned_data.get('first_name')
-            profile_image = form.cleaned_data.get('fileInput')
+            # 프로필
+            # profile_path = form.cleaned_data.get('last_name')
+            # profile_path = request.FILES.get('last_name')
+            profile_path = request.FILES.get('last_name')
+            name = profile_path.name
+            with open('media/%s' % name, 'wb') as file:
+                for chunk in profile_path.chunks():
+                    file.write(chunk)
+            # profile_path = profile_image.value
             # upload_file = request.FILES.get('fileInput')
             # filepath = upload_file.name
             # profile_image = filepath
             # profile_image = upload(request)
 
-            user = authenticate(username=username, password=raw_password, first_name=first_name, email=profile_image)
-            print('user')
+            u.last_name = name
+            u.save()
+            user = authenticate(username=username, password=raw_password, first_name=first_name, last_name=profile_path)
             login(request, user)
             return render(request, 'Main/login.html')
     else:
