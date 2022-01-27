@@ -18,12 +18,23 @@ def detail_board(request, tb_no):
     board_detail = Total_Board.objects.get(tb_no = tb_no)
     comment_list = Total_Comment.objects.filter(tb_no = tb_no)
     comment_cnt = len(comment_list)
+
+    username = request.user.first_name
+    
+    like = Total_Like_Board.objects.filter(tb_no=tb_no, writer=username)
+    like_yn = ''
+    if like:
+        like_yn = 'y'
+    else:
+        like_yn = 'n'
+    print(like_yn)    
     
     context = {'board_detail': board_detail,
                 'comment_list': comment_list,
                 'comment_cnt': comment_cnt,
-                
+                'like_yn':like_yn,
                 }
+    
     
     response = render(request, 'MakeBoard/detail_board.html',context)
     
