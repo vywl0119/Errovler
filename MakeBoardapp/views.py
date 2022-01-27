@@ -250,12 +250,3 @@ def like(request, tb_no):
         board.save()
 
     return redirect('MakeBoardapp:detail_board',tb_no)
-
-
-
-
-    
-
-
-
-
