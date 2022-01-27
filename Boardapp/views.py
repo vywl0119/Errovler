@@ -1,5 +1,6 @@
 from unicodedata import category
 from django.shortcuts import render
+from nbformat import write
 from Mainapp.models import Total_Board, Total_Comment, Total_Scrap
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -50,7 +51,23 @@ def mypage(request):
             cnt = user_scrap.filter(category=tag).count()
             scrap_cnt.append(cnt)
             
-        context = { 'scrap_cnt' : scrap_cnt, 
+        scrap = Total_Board.objects.all()
+        #모든 글들을 대상으로
+        scrap_list=Total_Scrap.objects.filter(writer=user).order_by('-s_date')
+        #블로그 객체 세 개를 한 페이지로 자르기
+        paginator = Paginator(scrap_list,9)
+        #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
+        page = request.GET.get('page')
+        #request된 페이지를 얻어온 뒤 return 해 준다
+        scrap_posts = paginator.get_page(page)
+
+        print(scrap_posts)
+            
+        context = { 'scrap_cnt' : scrap_cnt,
+                    'scrap' : scrap,
+                    'scrap_posts' : scrap_posts,
+                    'scrap_list':scrap_list
+                    
                 }
         
         return render(request, 'Board/mypage.html', context)
@@ -125,3 +142,17 @@ def total_search(request):
 
     else:
         return render(request, 'Mainapp:home')
+
+
+def scrap_category(request, category):
+    scrap_boards = Total_Scrap.objects
+    #모든 글들을 대상으로
+    scrap_board_list=Total_Scrap.objects.filter(category=category).order_by('-s_date')
+    #블로그 객체 세 개를 한 페이지로 자르기
+    paginator = Paginator(scrap_board_list,9)
+    #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
+    page = request.GET.get('page')
+    #request된 페이지를 얻어온 뒤 return 해 준다
+    scrap_posts = paginator.get_page(page)
+    return render(request, 'Board/mypage.html', {'scrap_boards' : scrap_boards, 'scrap_posts':scrap_posts})
+
