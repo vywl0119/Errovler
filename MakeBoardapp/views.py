@@ -29,11 +29,23 @@ def detail_board(request, tb_no):
         like_yn = 'n'
     print(like_yn)    
     
+    
+    scrap = Total_Scrap.objects.filter(tb_no=tb_no, writer=username)
+    scrap_yn = ''
+    if scrap:
+        scrap_yn = 'y'
+    else:
+        scrap_yn = 'n'
+    print(scrap_yn)   
+
     context = {'board_detail': board_detail,
                 'comment_list': comment_list,
                 'comment_cnt': comment_cnt,
                 'like_yn':like_yn,
-                }
+                'scrap_yn':scrap_yn,
+                } 
+    
+   
     
     
     response = render(request, 'MakeBoard/detail_board.html',context)

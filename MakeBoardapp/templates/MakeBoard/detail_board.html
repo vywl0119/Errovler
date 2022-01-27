@@ -53,7 +53,27 @@
       width:22px;
       height:22px;
       background:url({%static 'images/rep.png'%});
-      background-position:-264px -418px;
+      background-position:-264px -396px;
+      text-indent:-9999px;
+      overflow:hidden;
+      border:none;
+    }
+    .btn-scrap {
+      display:inline-block;
+      width:20px;
+      height:27px;
+      background:url({%static 'images/scrp_b.png'%});
+      background-position:-160px -389px;
+      text-indent:-9999px;
+      overflow:hidden;
+      border:none;
+    }
+    .btn-scrap.active {
+      display:inline-block;
+      width:22px;
+      height:29px;
+      background:url({%static 'images/scrp.png'%});
+      background-position:-274px -423px;
       text-indent:-9999px;
       overflow:hidden;
       border:none;
@@ -86,30 +106,6 @@
         
         location.href=link;
     
-      }
-      else {
-        return;
-      }
-    }
-
-    function scrap_button() {
-      if (confirm("정말 스크랩하시겠습니까?") == true) {
-        var link = "{% url 'MakeBoardapp:scrap' board_detail.tb_no board_detail.category %}"
-        
-        location.href=link;
-    
-      }
-      else {
-        return;
-      }
-    }
-
-    function heart_button() {
-      if (confirm("좋아요") == true) {
-        var link = "{% url 'MakeBoardapp:like' board_detail.tb_no %}"
-          
-        location.href=link;
-      
       }
       else {
         return;
@@ -289,22 +285,23 @@
                       <ul class="my_comment_ul">
                         <li class="context_li" style="margin-top: 0px;">
                           <a href="{% url 'MakeBoardapp:like' board_detail.tb_no %}" class="float-left btn-like {%if like_yn == 'y' %} active {%endif%}">좋아요!</a>
-                        {% comment %} </text><input type="button" id='heart-button' onclick="heart_button()"> {% endcomment %}
                           <text style="margin:5px;">{{ board_detail.like }}</text>
                         </li>
+                        <li class="context_li" style="margin-top: 0px;">
+                          <a class="float-left btn-rep">댓글!</a>
+                          <text style="margin:5px;">{{comment_cnt}}</text>
+                        </li>
+                        <li class="context_li" style="margin-top: 0px;">
+                          {% if user.is_authenticated %}
+                            <li class="context_li" style="margin-top: 0px ">
+                              <a href="{% url 'MakeBoardapp:scrap' board_detail.tb_no board_detail.category%}" class="float-right btn-scrap {%if scrap_yn == 'y' %} active {%endif%}">스크랩!</a>
+                              <text style="margin:5px;">{{ board_detail.scrap }}</text>
+                            </li>
+                          {%endif%}
+                        </li>
                       </ul>
-                      <a class="float-left btn-rep">댓글!</a>
-                      {% comment %} </text><input type="button" id='rp-button'> {% endcomment %}
-                      <text style="margin:5px;">{{comment_cnt}}</text>
-                      {% if user.is_authenticated %}
-                      <input type="button" id='scrap-button' style="float:right;" onclick="scrap_button()">
-                      {%endif%}
                     </p>
                   </div>
-            
-
-                
-
                 <div class="mt-5"></div>
               </div>
               </div>
