@@ -9,7 +9,7 @@ from django.db.models import Q
 def qna_board(request):
     qna_boards = Total_Board.objects.filter(type='질문')
     #모든 글들을 대상으로
-    qna_board_list=Total_Board.objects.filter(type='질문').order_by('-tb_date')
+    qna_board_list=Total_Board.objects.filter(type='질문').order_by('-tb_no')
     #블로그 객체 9개를 한 페이지로 자르기
     paginator = Paginator(qna_board_list,9)
     #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
@@ -31,7 +31,7 @@ def qna_board(request):
 def sol_board(request):
     sol_boards = Total_Board.objects.filter(type='해결')
     #모든 글들을 대상으로
-    sol_board_list=Total_Board.objects.filter(type='해결').order_by('-tb_date')
+    sol_board_list=Total_Board.objects.filter(type='해결').order_by('-tb_no')
     #블로그 객체 세 개를 한 페이지로 자르기
     paginator = Paginator(sol_board_list,9)
     #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
