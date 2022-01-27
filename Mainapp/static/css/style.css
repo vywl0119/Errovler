@@ -880,6 +880,16 @@ h1, h2, h3, h4, h5,
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
   background: #fff; 
   margin-left: 10px;}
+.tutorial-item {
+  width: 350px;
+  height: 550px;
+  overflow: hidden;
+  padding: 20px;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  background: #fff; 
+  margin-left: 10px;}
   .tutorial-item .img-wrap {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 250px;
