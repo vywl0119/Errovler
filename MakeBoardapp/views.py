@@ -49,8 +49,7 @@ def writing(request):
     return render(request, 'MakeBoard/writing.html')
 
 
-
-def qna_board_write(request):
+def writing_board(request, type):
     login_session = request.session.get('login_session','')
     context = {'login_session': login_session}
 
@@ -60,6 +59,7 @@ def qna_board_write(request):
         return render(request, 'MakeBoard/writing.html', context)
 
     elif request.method == 'POST':
+        
         write_form = BoardPost(request.POST)
         if write_form.is_valid():
             writer = request.user.first_name
@@ -71,36 +71,10 @@ def qna_board_write(request):
                 type=write_form.type
             )
             total_board.save()
-            return redirect('/Board/qna_board')
-        else:
-            context['forms'] = write_form
-            if write_form.errors:
-                for value in write_form.errors.values():
-                    context['error'] = value
-            return render(request, 'MakeBoard/writing_error.html', context)
-
-def sol_board_write(request):
-    login_session = request.session.get('login_session','')
-    context = {'login_session': login_session}
-
-    if request.method == 'GET':
-        write_form = BoardPost()
-        context['forms'] = write_form
-        return render(request, 'MakeBoard/writing.html', context)
-
-    elif request.method == 'POST':
-        write_form = BoardPost(request.POST)
-        if write_form.is_valid():
-            writer = request.user.first_name
-            total_board = Total_Board(
-                title=write_form.title,
-                contents=write_form.contents,
-                writer =writer,
-                category=write_form.category,
-                type=write_form.type
-            )
-            total_board.save()
-            return redirect('/Board/sol_board')
+            if type == '해결':
+                return redirect('/Board/sol_board')
+            else:
+                return redirect('/Board/qna_board')
         else:
             context['forms'] = write_form
             if write_form.errors:
