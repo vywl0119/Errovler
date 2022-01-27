@@ -1792,6 +1792,9 @@ p>img {
 #profile_update_image{
   width: 180px;
   height: 180px;
+  border-radius: 70%;
+  overflow: hidden;
+  object-fit: cover;
   margin-left: 100px;
   margin-bottom: 5px;
 }
