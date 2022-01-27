@@ -70,36 +70,36 @@ def scrap_page(request):
                     
                 }
         
-        return render(request, 'Board/mypage.html', context)
+        return render(request, 'Board/scrap.html', context)
 
 
 def mypage(request):
         user = request.user.first_name
-        user_scrap = Total_Board.objects.filter(writer=user)
+        user_write = Total_Board.objects.filter(writer=user)
         
         tag_list = ['Python', 'Django', 'etc']
-        scrap_cnt = []
+        write_cnt = []
         
         for tag in tag_list:
-            cnt = user_scrap.filter(category=tag).count()
-            scrap_cnt.append(cnt)
+            cnt = user_write.filter(category=tag).count()
+            write_cnt.append(cnt)
             
-        scrap = Total_Board.objects.all()
+        write = Total_Board.objects.all()
         #모든 글들을 대상으로
-        scrap_list=Total_Board.objects.filter(writer=user).order_by('-tb_no')
+        write_list=Total_Board.objects.filter(writer=user).order_by('-tb_no')
         #블로그 객체 세 개를 한 페이지로 자르기
-        paginator = Paginator(scrap_list,9)
+        paginator = Paginator(write_list,9)
         #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
         page = request.GET.get('page')
         #request된 페이지를 얻어온 뒤 return 해 준다
-        scrap_posts = paginator.get_page(page)
+        write_posts = paginator.get_page(page)
 
-        print(scrap_posts)
+        print(write_posts)
             
-        context = { 'scrap_cnt' : scrap_cnt,
-                    'scrap' : scrap,
-                    'scrap_posts' : scrap_posts,
-                    'scrap_list':scrap_list
+        context = { 'write_cnt' : write_cnt,
+                    'write' : write,
+                    'write_posts' : write_posts,
+                    'write_list':write_list
                     
                 }
         
@@ -201,3 +201,27 @@ def scrap_category(request, category):
     scrap_posts = paginator.get_page(page)
     return render(request, 'Board/mypage.html', {'scrap_list' : scrap_board_list, 'scrap_posts':scrap_posts,'scrap_cnt':scrap_cnt})
 
+
+def write_category(request, category):
+    user = request.user.first_name
+
+    user_write = Total_Board.objects.filter(writer=user)
+        
+    tag_list = ['Python', 'Django', 'etc']
+    write_cnt = []
+        
+    for tag in tag_list:
+        cnt = user_write.filter(category=tag).count()
+        write_cnt.append(cnt)
+
+    print(category)
+    write_boards = Total_Board.objects.filter(writer=user)
+    #모든 글들을 대상으로
+    write_board_list=Total_Board.objects.filter(writer=user,category=category).order_by('-tb_date')
+    #블로그 객체 세 개를 한 페이지로 자르기
+    paginator = Paginator(write_board_list,9)
+    #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
+    page = request.GET.get('page')
+    #request된 페이지를 얻어온 뒤 return 해 준다
+    write_posts = paginator.get_page(page)
+    return render(request, 'Board/mypage.html', {'write_list' : write_board_list, 'write_posts':write_posts,'write_cnt':write_cnt})

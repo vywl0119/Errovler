@@ -61,7 +61,7 @@
                   <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
                   <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
                   {% if user.is_authenticated %} 
-                  <li><a href="{% url 'Boardapp:scrap_page' %}" class="nav-link">마이 페이지</a></li>
+                  <li><a href="{% url 'Boardapp:mypage' %}" class="nav-link">마이 페이지</a></li>
                   {% else %} 
                   <li class="active"><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
                   {% endif %}

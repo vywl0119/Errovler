@@ -62,7 +62,7 @@
                   <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
                   <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
                   <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
-                  <li class="active"><a href="{% url 'Boardapp:scrap_page' %}" class="nav-link">마이 페이지</a></li>
+                  <li class="active"><a href="{% url 'Boardapp:mypage' %}" class="nav-link">마이 페이지</a></li>
                   <li>
                     <a class='nav-link' href="{% url 'Mainapp:logout' %}">
                     {{ user.first_name }} 님 반갑습니다. (로그아웃)
@@ -105,7 +105,7 @@
           <div class="row m-5 align-items-center" style = "float: none; margin:100 auto">
             <div class="col-lg-10 mb-4 mb-lg-0" style="float: none; margin:0 auto;">
 
-              {% include 'Board/profile.html' %}   
+              {% include 'Board/write_profile.html' %}   
               
             </div>
           </div>
@@ -113,13 +113,16 @@
 
         <div class="category_container">
           <div id=error_categoty>
-          <a onclick="location.href='{% url 'Boardapp:scrap_category' 'python' %}'" class="cursor_pointer">  #파이썬 </a>
-        </div>
-          <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:scrap_category' 'Django' %}'" class="cursor_pointer">  #장고 </a>
+            <a onclick="location.href='{% url 'Boardapp:scrap_page' %}'" class="cursor_pointer"> 스크랩 </a>
           </div>
           <div id=error_categoty>
-            <a onclick="location.href='{% url 'Boardapp:scrap_category' 'etc' %}'" class="cursor_pointer">  #기타 </a>
+          <a onclick="location.href='{% url 'Boardapp:write_category' 'python' %}'" class="cursor_pointer">  #파이썬 </a>
+        </div>
+          <div id=error_categoty>
+            <a onclick="location.href='{% url 'Boardapp:write_category' 'Django' %}'" class="cursor_pointer">  #장고 </a>
+          </div>
+          <div id=error_categoty>
+            <a onclick="location.href='{% url 'Boardapp:write_category' 'etc' %}'" class="cursor_pointer">  #기타 </a>
           </div>
 
         </div>
@@ -128,24 +131,24 @@
       <div class="site-section bg-light">
       <div class="container">
         <div class="row">
-          {% for scrap in scrap_list %}
+          {% for write in write_list %}
           
           <div class="col-lg-4 col-md-6 mb-4" style="margin: 0 auto; width:50%;">
             <div class="board_container">
               <div class="post-entry-1 h-100">
                 <div class="post-entry-1-contents">
                    <div class = 'atagg'>
-                    <a href="{% url 'Boardapp:scrap_category' scrap.category %}" >#{{scrap.category}}</a>
+                    <a href="{% url 'Boardapp:write_category' write.category %}" >#{{write.category}}</a>
                   </div> 
-                  <h2><a href="{% url 'MakeBoardapp:detail_board' scrap.tb_no.tb_no %}">{{scrap.tb_no.title}}</a></h2>
-                  <span class="meta d-inline-block mb-3">{{ scrap.s_date }}<br>
-                  <span class="mx-2">by</span> <a href="#">{{scrap.writer}}</a></span>
+                  <h2><a href="{% url 'MakeBoardapp:detail_board' write.tb_no %}">{{write.title}}</a></h2>
+                  <span class="meta d-inline-block mb-3">{{ write.tb_date }}<br>
+                  <span class="mx-2">by</span> <a href="#">{{write.writer}}</a></span>
                   <p>  
                     {% autoescape off %}
                     {{ scrap.summary | safe}}
                     <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'>
                     {% endautoescape %}
-                     <a href="{% url 'MakeBoardapp:detail_board' scrap.tb_no.tb_no %}">....더보기</a> 
+                     <a href="{% url 'MakeBoardapp:detail_board' write.tb_no %}">....더보기</a> 
                   </p>
                 </div>
               </div>
