@@ -1728,4 +1728,17 @@ p>img {
 } 
 .profile_container .scrap_counter .scrap_errors .error .tag{
   font-size: 18px;
-} 
+}
+
+/* 인기 게시글 뷰 하단 조회수 */
+#view-icon {
+  margin-top: 5px;
+  float: right;
+  background: url( "static/images/view_icon.png" ) no-repeat;
+  background-size: 30px;
+  background-position: bottom;
+  height:25px;
+  width:25px;
+  border: 0px;
+  cursor: default;
+}
