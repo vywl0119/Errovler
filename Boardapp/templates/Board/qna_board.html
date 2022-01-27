@@ -142,28 +142,36 @@
       <div class="site-section bg-light">
       <div class="container">
         <div class="row">
-        {% for qna_board in qna_posts %}
-          {% if qna_board.title != None %}
-            <div class="col-lg-4 col-md-6 mb-4" style="margin: 0 auto; width:50%;">
-              <div class="board_container">
-                <div class="post-entry-1 h-100">
-                  <div class="post-entry-1-contents">
-                    <div class = 'atagg'>
-                      <a href="{% url 'Boardapp:qna_category' qna_board.category %}" >#{{qna_board.category}}</a>
-                    </div>
-                    <h2><a href="{% url 'MakeBoardapp:detail_board' qna_board.tb_no  %}">{{ qna_board.title }}</a></h2>
-                    <span class="meta d-inline-block mb-3">{{ qna_board.tb_date }}<br>
-                    <span class="mx-2">by</span> <a href="#">{{qna_board.writer}}</a></span>
-                    <p>
-                      {% autoescape off %}
-                      {{ qna_board.summary | safe}}
-                      <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'>
-                      {% endautoescape %}
-                      <a href="{% url 'MakeBoardapp:detail_board' qna_board.tb_no %}">....더보기</a>
-                    </p>
-                  </div>
+        {% for board in qna_posts %}
+          {% if board.title != None %}
+          <div class="d-flex tutorial-item mb-4">
+            <div class="img-wrap">
+              <div class = 'atagg'>
+                <a href="{% url 'Boardapp:sol_category' board.category %}" >#{{board.category}}</a>
+              </div>
+              <div class="board_title">
+                <h3><a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">{{board.title}}</a></h3>
+              </div>
+              <div class="board_create">
+                <p class="meta">
+                  <span class="mr-2 mb-2">by {{board.writer}}</span>
+                  <span class="mr-2 mb-2">{{board.b_date}}</span>
+                </p>  
+              </div>
+              <div class="board_content">
+                <p>{{ board.summary|safe }} <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
+              </div>
+                <div class="comment_container"> 
+                <div class="pt-4">
+                  <p>
+                    <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
+                    <input type="button" id='rp-button' style="cursor: default;"><text style="margin:5px;">{{ comment_cnt }}</text>
+                    <text style="margin:5px; float:right;">{{board.view}}</text>
+                    <img src="{%static 'images/view_icon.png' %}" id='view-icon'>
+                  </p>
                 </div>
               </div>
+            </div>
             </div>
           {% else %}
           {% endif %}

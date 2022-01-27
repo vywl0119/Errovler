@@ -872,6 +872,8 @@ h1, h2, h3, h4, h5,
 
 .tutorial-item {
   width: 350px;
+  height: 550px;
+  overflow: hidden;
   padding: 20px;
   border-radius: 0.5rem;
   -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
@@ -1822,4 +1824,14 @@ p>img {
   border: none;
   margin-top: 35px;
   margin-left: 150px;
+}
+
+/* board */
+.board_title{
+  height: 25px;
+  overflow: hidden;
+}
+.board_content{
+  height: 380px;
+  overflow: hidden;
 }
