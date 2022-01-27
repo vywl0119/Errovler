@@ -85,4 +85,37 @@ def upload(request):
     # return render(request, 'Main/signup.html')
 
 def profile_update(request):
-    return render(request, 'Main/profile_update.html')
+    username = request.user.first_name
+    profile = request.user.last_name
+    
+    login_session = request.session.get('login_session','')
+    context = {'login_session': login_session}
+
+    if request.method == 'GET':
+        context = {'currentname' : username, 
+                   'currentprofile' : profile
+                   }
+        return render(request, 'Main/profile_update.html', context)
+
+    # elif request.method == 'POST':
+    #     write_form = BoardPost(request.POST )
+    #     if write_form.is_valid():
+    #         board.tb_date = tb_date
+    #         board.writer = writer
+    #         board.title = write_form.title
+    #         board.contents=write_form.contents
+    #         category=write_form.category,
+    #         type=write_form.type
+
+
+    #         board.save()
+           
+    #         return redirect('MakeBoardapp:detail_board' , tb_no)
+
+    #     else:
+    #         context['forms'] = write_form
+    #         if write_form.errors:
+    #             for value in write_form.errors.values():
+    #                 context['error'] = value
+    #         return render(request, 'MakeBoard/writing_error.html', context)
+    # return render(request, 'Main/profile_update.html')

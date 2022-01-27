@@ -87,11 +87,11 @@
                             {% csrf_token %}
                             {% include "form_errors.html" %}
                             <div class="profile_form">
-                              <img src="{%static 'images/user.png' %}">
+                              <img src="{%static 'images/user.png' %}" id="profile_update_image">
                               <div class="upload_form">
                                 {% comment %} <label for="last_name">프로필</label> {% endcomment %}
                                   <input type="file" class="form-control" name="last_name"
-                                    id="last_name" onchange="alert(this.value)">
+                                    id="last_name" onchange="imageView(this)">
                               </div>
 
                               
@@ -161,12 +161,21 @@
 
     <script src="{% static 'js/main.js' %}"></script>
 
-    {% comment %} <script>
-      function fileCheck() {
-        var file = document.getElementById('fileInput');
-        var filePath = file.value;
-      }
-    </script> {% endcomment %}
+    <script>
+      function imageView(input) {
+             if (input.files && input.files[0]) {
+                 var reader = new FileReader();
+      
+                 reader.onload = function(e) {
+                     $('#profile_update_image').attr('src', e.target.result)
+                      .width(180)
+                      .height(180);
+                 }
+      
+                 reader.readAsDataURL(input.files[0]);
+             }
+         }
+     </script>
 
   </body>
 
