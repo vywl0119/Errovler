@@ -5,7 +5,7 @@ from Mainapp.models import Class_Board, Total_Comment, Total_Board
 import datetime 
 
 def home(request):
-    board_list = Total_Board.objects.order_by('-view')[:5]
+    board_list = Total_Board.objects.order_by('-view')[:3]
     dt_now = datetime.datetime.now()
     todays = dt_now.date()
     tomorrow = datetime.date.today() + datetime.timedelta(days=1)
@@ -13,7 +13,7 @@ def home(request):
     today_class = Class_Board.objects.get(cb_date = todays)
     next_class = Class_Board.objects.get(cb_date = tomorrow)
 
-    tb_no_list = [board_list[i].tb_no for i in range(5)]
+    tb_no_list = [board_list[i].tb_no for i in range(3)]
     comment_cnt_list = []
     
     for tb_no in tb_no_list:
@@ -41,8 +41,9 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             first_name = form.cleaned_data.get('first_name')
+            email = form.cleaned_data.get('profie_image')
 
-            user = authenticate(username=username, password=raw_password, first_name=first_name)
+            user = authenticate(username=username, password=raw_password, first_name=first_name, email=profile_image)
             login(request, user)
             return render(request, 'Main/login.html')
     else:

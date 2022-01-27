@@ -151,33 +151,30 @@
            
               <div class="d-flex tutorial-item mb-4">
                 <div class="img-wrap">
-                  <a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">
-                    <img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid">
-                  </a>
-                </div>
-                <div class="comment_container"> 
-                  <h3><a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">{{board.title}}</a></h3>
                   <div class = 'atagg'>
                     <a href="{% url 'Boardapp:sol_category' board.category %}" >#{{board.category}}</a>
                   </div>
-                  <p>{{ board.summary|safe }}</p>
-                  
+                  <h3><a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">{{board.title}}</a></h3>
                   <p class="meta">
-              
-                    <span class="mr-2 mb-2">{{board.writer}}</span>
+                    <span class="mr-2 mb-2">by {{board.writer}}</span>
                     <span class="mr-2 mb-2">{{board.b_date}}</span>
                   </p>
-                  
-                  <div class="pt-4">
-                    <p>
-                      <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
-                      <input type="button" id='rp-button'><text style="margin:5px;">{{ comment_cnt }}</text>
-                      <text style="margin:5px; float:right;">{{board.view}}</text>
-                      <input type="button" id='scrap-button' style="float:right;">
-                    </p>
+                  <p>{{ board.summary|safe }} <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
+                  <div class="comment_container"> 
+                   
+                    
+                    <div class="pt-4">
+                      <p>
+                        <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
+                        <input type="button" id='rp-button'><text style="margin:5px;">{{ comment_cnt }}</text>
+                        <text style="margin:5px; float:right;">{{board.view}}</text>
+                        <input type="button" id='scrap-button' style="float:right;">
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+                </div>
+               
            
             {% endfor%}
             

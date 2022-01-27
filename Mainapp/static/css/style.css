@@ -871,12 +871,13 @@ h1, h2, h3, h4, h5,
   letter-spacing: .1rem; }
 
 .tutorial-item {
-  width: 1100px;
+  width: 350px;
   padding: 20px;
   border-radius: 0.5rem;
-  -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
-  background: #fff; }
+  -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  background: #fff; 
+  margin-left: 10px;}
   .tutorial-item .img-wrap {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 250px;
