@@ -88,6 +88,12 @@
                             {% include "form_errors.html" %}
                             <div class="profile_form">
                               <img src="{%static 'images/user.png' %}">
+                              <div class="upload_form">
+                                <label for="fileInput">프로필</label>
+                                {% comment %} <input type="file" name="fileInput" id="fileInput" value="{{ form.fileInput.value | default_if_none:'' }}"> {% endcomment %}
+                                {% comment %} <input type="submit" value="전송"> {% endcomment %}
+                                <input type="text" class="form-control" name="fileInput" id="fileInput" value="{{ form.fileInput.value | default_if_none:'' }}">
+                              </div>
                             </div>
                             <div class="info_form">
                               <div class="form-group">
@@ -111,18 +117,18 @@
                                     id="first_name" value="{{ form.first_name.value | default_if_none:'' }}">
                               </div>
                               <div class="form-group">
-                                <button type="submit" class="btn btn-secondary">Sign Up</button>
+                                <input type="submit" class="btn btn-secondary" value="Sign Up"></input>
                               </div>
                             </div>
                           </form>
 
-                          <div class="upload_form">
+                          {% comment %} <div class="upload_form">
                             <form action="{% url 'Mainapp:upload' %}" method="post" enctype="multipart/form-data">
                               {% csrf_token %}
                               <input type="file" name="file">
                               <input type="submit" value="확인">
                             </form>
-                          </div>
+                          </div> {% endcomment %}
                         </div>
                       </div>
                     </div>
@@ -147,6 +153,13 @@
     <script src="{% static 'js/aos.js' %}"></script>
 
     <script src="{% static 'js/main.js' %}"></script>
+
+    {% comment %} <script>
+      function fileCheck() {
+        var file = document.getElementById('fileInput');
+        var filePath = file.value;
+      }
+    </script> {% endcomment %}
 
   </body>
 
