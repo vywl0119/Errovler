@@ -14,7 +14,7 @@
 
 [4. 개발 환경](#4.-개발-환경)
 
-[5. 일정](#5.-일정)
+[5. 개발 일정](#5.--일정)
 
 <br>
 
@@ -195,6 +195,6 @@
 
 <br>
 
-## 5. 일정
+## 5. 개발 일정
 
-![일정표](https://user-images.githubusercontent.com/43737828/150968173-8d975fd9-92e6-4762-9fac-75f87e5ec995.png)
+![image](https://user-images.githubusercontent.com/68097036/151492506-e5197cbe-d619-42e4-be5b-0196cbff3abb.png)
