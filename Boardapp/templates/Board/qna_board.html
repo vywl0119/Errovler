@@ -161,16 +161,16 @@
               <div class="board_content">
                 <p>{{ board.summary|safe }}<img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
               </div>
-                <div class="comment_container"> 
-                <div class="pt-4">
-                  <p>
-                    <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
-                    <input type="button" id='rp-button' style="cursor: default;"><text style="margin:5px;">{{ comment_cnt }}</text>
-                    <text style="margin:5px; float:right;">{{board.view}}</text>
-                    <img src="{%static 'images/view_icon.png' %}" id='view-icon'>
-                  </p>
-                </div>
+              <div class="comment_container"> 
+              <div class="pt-4">
+                <p>
+                  <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
+                  <input type="button" id='rp-button' style="cursor: default;"><text style="margin:5px;">{{ comment_cnt }}</text>
+                  <text style="margin:5px; float:right;">{{board.view}}</text>
+                  <img src="{%static 'images/view_icon.png' %}" id='view-icon'>
+                </p>
               </div>
+            </div>
             </div>
             </div>
           {% else %}
