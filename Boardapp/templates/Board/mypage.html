@@ -133,44 +133,35 @@
         <div class="row">
           {% for write in write_list %}
           
-          <div class="col-lg-4 col-md-6 mb-4" style="margin: 0 auto; width:50%;">
-            <div class="board_container">
-              <div class="post-entry-1 h-100">
-                <div class="post-entry-1-contents">
-                   <div class = 'atagg'>
-                    <a href="{% url 'Boardapp:write_category' write.category %}" >#{{write.category}}</a>
-                  </div> 
-                  <div class="board_title">
-                    <h2><a href="{% url 'MakeBoardapp:detail_board' write.tb_no %}">{{write.title}}</a></h2>
-                  </div>
-                  <div class="board_create">
-                      <p class="meta">
-                        <span class="mr-2 mb-2">{{write.tb_date}}</span><br>
-                        <span style="color:#78DCEC" class="mr-2 mb-2">by </span><span>{{write.writer}}</span>
-                      </p>  
-                    </div>
-                  <div class="board_content">
-                    <p>  
-                      {% autoescape off %}
-                      {{ scrap.summary | safe}}
-                      <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'>
-                      {% endautoescape %}
-                      <a href="{% url 'MakeBoardapp:detail_board' write.tb_no %}">....더보기</a> 
-                    </p>
-                </div>
-                <div class="comment_container"> 
-                  <div class="pt-4">
-                    <p>
-                      <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
-                      <input type="button" id='rp-button' style="cursor: default;"><text style="margin:5px;">{{ comment_cnt }}</text>
-                      <text style="margin:5px; float:right;">{{board.view}}</text>
-                      <img src="{%static 'images/view_icon.png' %}" id='view-icon'>
-                    </p>
-                  </div>
+          <div class="d-flex tutorial-item mb-4">
+            <div class="img-wrap">
+              <div class = 'atagg'>
+                <a href="{% url 'Boardapp:write_category' write.category %}" >#{{write.category}}</a>
+              </div>
+              <div class="board_title">
+                <h3><a href="{% url 'MakeBoardapp:detail_board' write.tb_no %}">{{write.title}}</a></h3>
+              </div>
+              <div class="board_create">
+                <p class="meta">
+                  <span class="mr-2 mb-2">{{write.tb_date}}</span><br>
+                  <span style="color:#78DCEC" class="mr-2 mb-2">by </span><span>{{write.writer}}</span>
+              </p>
+              </div>
+              <div class="board_content">
+                <p>{{ board.summary|safe }}<img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
+              </div>
+              <div class="comment_container"> 
+                <div class="pt-4">
+                  <p>
+                    <input type="button" id='heart-button'><text style="margin:5px;">{{ write.like }}</text>
+                    <input type="button" id='rp-button' style="cursor: default;"><text style="margin:5px;">{{ write.comment_cnt }}</text>
+                    <text style="margin:5px; float:right;">{{write.view}}</text>
+                    <img src="{%static 'images/view_icon.png' %}" id='view-icon'>
+                  </p>
                 </div>
               </div>
-          </div>
-        </div>
+            </div>
+            </div>
         {% endfor %}
   
         </div>
