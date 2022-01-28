@@ -44,7 +44,7 @@ def scrap_page(request):
         path = "../../../media/"
         profile = request.user.last_name
         profile_path = path + profile
-        user = request.user.first_name
+        user = request.user.username
         user_scrap = Total_Scrap.objects.filter(writer=user)
         
         tag_list = ['Python', 'Django', 'etc']
