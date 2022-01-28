@@ -138,24 +138,18 @@
               <div class="post-entry-1 h-100">
                 <div class="post-entry-1-contents">
                    <div class = 'atagg'>
-                    <a href="{% url 'Boardapp:write_category' write.category %}" >#{{write.category}}</a>
+                    <a href="{% url 'Boardapp:scrap_category' write.category %}" >#{{write.category}}</a>
                   </div> 
-                  <div class="board_title">
-                    <h2><a href="{% url 'MakeBoardapp:detail_board' write.tb_no %}">{{write.title}}</a></h2>
-                  </div>
-                  <div class="board_create">
-                      <p class="meta">
-                        <span class="mr-2 mb-2">{{write.tb_date}}</span><br>
-                        <span style="color:#78DCEC" class="mr-2 mb-2">by </span><span>{{write.writer}}</span>
-                      </p>  
-                    </div>
+                  <h2><a href="{% url 'MakeBoardapp:detail_board' write.tb_no %}">{{write.title}}</a></h2>
+                  <span class="meta d-inline-block mb-3">{{write.tb_date }}<br>
+                  <span class="mx-2">by</span> <a href="#">{{write.writer}}</a></span>
                   <div class="board_content">
                     <p>  
                       {% autoescape off %}
                       {{ scrap.summary | safe}}
                       <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'>
                       {% endautoescape %}
-                      <a href="{% url 'MakeBoardapp:detail_board' write.tb_no %}">....더보기</a> 
+                      {% comment %} <a href="{% url 'MakeBoardapp:detail_board' write.tb_no %}">....더보기</a>  {% endcomment %}
                     </p>
                 </div>
                 <div class="comment_container"> 
