@@ -126,8 +126,8 @@ def update_board(request, tb_no):
             board.writer = writer
             board.title = write_form.title
             board.contents=write_form.contents
-            category=write_form.category,
-            type=write_form.type
+            board.category=write_form.category,
+            board.type=write_form.type
 
 
             board.save()
