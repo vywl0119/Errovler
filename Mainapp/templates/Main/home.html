@@ -153,9 +153,13 @@
            
               <div class="d-flex tutorial-item mb-4">
                 <div class="img-wrap">
-                  <div class = 'atagg'>
-                    <a href="{% url 'Boardapp:sol_category' board.category %}" >#{{board.category}}</a>
-                  </div>
+                  {% if board.type ==  '질문' %}
+                <a href="{% url 'Boardapp:qna_board' %}" >{{board.type}}</a>
+              {% else %}
+                <a href="{% url 'Boardapp:sol_board' %}" >{{board.type}}</a>
+              {% endif %}
+
+                <a href="{% url 'Boardapp:sol_category' board.category %}" style="margin:5px; float:right;">#{{board.category}}</a>
                   <div class="board_title">
                     <h3><a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">{{board.title}}</a></h3>
                   </div>

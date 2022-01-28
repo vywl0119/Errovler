@@ -252,7 +252,7 @@
                       </text>
                     </li>
 
-                    {% if user.first_name ==  board_detail.writer %}
+                    {% if user.username ==  board_detail.username %}
                       <li class="context_li" style="margin-left: 20px;">
                         <a onclick="modify_button()" class="cursor_pointer">
                           수정
@@ -290,7 +290,7 @@
                         </li>
                         <li class="context_li" style="margin-top: 0px;">
                           <a class="float-left btn-rep">댓글!</a>
-                          <text style="margin:5px;">{{comment_cnt}}</text>
+                          <text style="margin:5px;">{{board_detail.comment_cnt}}</text>
                         </li>
                         <li class="context_li" style="margin-top: 0px;">
                           {% if user.is_authenticated %}
@@ -359,7 +359,7 @@
                             </div>
                           <p style="font-size:110%;">{{item.contents}}</p>
 
-                          {% if user.first_name ==  item.writer %}
+                          {% if user.username ==  item.username %}
                           <div class="atagg">
                               <a onclick="location.href='{% url 'MakeBoardapp:comment_updateurl' board_detail.tb_no item.c_no %}'">  수정 </a>
                               <a onclick="location.href='{% url 'MakeBoardapp:comment_delete' board_detail.tb_no item.c_no %}'"> 삭제 </a><br>

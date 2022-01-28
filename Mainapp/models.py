@@ -32,6 +32,7 @@ class Total_Comment(models.Model):
     c_date = models.DateTimeField(null=False, auto_now_add=True)
     contents = models.CharField(max_length=500, null=False)
     writer = models.CharField(max_length=45, null=False)
+    username = models.CharField(max_length=45, null=False)
 
     class Meta:
         db_table = 'Total_Comment'
