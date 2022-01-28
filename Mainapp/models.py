@@ -13,6 +13,7 @@ class Total_Board(models.Model):
     contents = models.TextField(null=False)
     view = models.PositiveIntegerField(null=False, default=0)
     like = models.IntegerField( null=False, default=0)
+    comment_cnt = models.IntegerField( null=False, default=0)
     
     def summary(self):
         return self.contents[:100]

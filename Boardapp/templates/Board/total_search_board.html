@@ -141,16 +141,34 @@
                       {% endif %}
                       <a href="{% url 'Boardapp:total_category' board.category %}" >#{{board.category}}</a>
                     </div>
-                    <h2><a href="{% url 'MakeBoardapp:detail_board' board.tb_no  %}">{{ board.title }}</a></h2>
-                    <span class="meta d-inline-block mb-3">{{ board.tb_date }}<br>
-                    <span class="mx-2">by</span> <a href="#">{{board.writer}}</a></span>
-                    <p>
-                      {% autoescape off %}
-                      {{ qna_board.summary | safe}}
-                      <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'>
-                      {% endautoescape %}
-                      <a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">....더보기</a>
-                    </p>
+                    <div class="board_title">
+                      <h2><a href="{% url 'MakeBoardapp:detail_board' board.tb_no  %}">{{ board.title }}</a></h2>
+                    </div>
+                    <div class="board_create">
+                      <p class="meta">
+                        <span class="mr-2 mb-2">{{board.tb_date}}</span><br>
+                        <span style="color:#78DCEC" class="mr-2 mb-2">by </span><span>{{board.writer}}</span>
+                      </p>  
+                    </div>
+                    <div class="board_content">
+                      <p>
+                        {% autoescape off %}
+                        {{ qna_board.summary | safe}}
+                        <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'>
+                        {% endautoescape %}
+                        <a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">....더보기</a>
+                      </p>
+                    </div>
+                    <div class="comment_container"> 
+                      <div class="pt-4">
+                        <p>
+                          <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
+                          <input type="button" id='rp-button' style="cursor: default;"><text style="margin:5px;">{{ comment_cnt }}</text>
+                          <text style="margin:5px; float:right;">{{board.view}}</text>
+                          <img src="{%static 'images/view_icon.png' %}" id='view-icon'>
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -153,6 +153,10 @@ def total_comment(request):
                 username = request.user.first_name
                 comment = Total_Comment.objects.create(tb_no_id=tb_no, contents=contents, writer = username)
                 comment.save()
+
+                board = Total_Board.objects.get(tb_no=tb_no)
+                board.comment_cnt = board.comment_cnt+1
+                board.save()
                
                 return redirect('MakeBoardapp:detail_board' , tb_no)
             except:
@@ -186,6 +190,12 @@ def comment_delete(request, tb_no, c_no):
       
         comment = Total_Comment.objects.get(c_no=c_no)
         comment.delete()
+
+        board = Total_Board.objects.get(tb_no=tb_no)
+        board.comment_cnt = board.comment_cnt-1
+        board.save()
+
+        
         return redirect('MakeBoardapp:detail_board' , tb_no)
     except:
         return redirect('MakeBoardapp:detail_board' , tb_no)

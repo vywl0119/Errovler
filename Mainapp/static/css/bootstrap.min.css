@@ -74,7 +74,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem; }
+  margin-bottom: 0rem; }
 
 abbr[title],
 abbr[data-original-title] {
@@ -6748,8 +6748,9 @@ button.bg-dark:focus {
 
 .pt-4,
 .py-4 {
-  padding-top: 1rem !important; }
-
+  padding-top: 0.2rem !important; }
+.home_pt-4{
+  padding-top: 2.2rem !important;}
 .pr-4,
 .px-4 {
   padding-right: 1.rem !important; }
