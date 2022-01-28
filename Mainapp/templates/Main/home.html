@@ -160,12 +160,12 @@
                     <h3><a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">{{board.title}}</a></h3>
                   </div>
                   <p class="meta">
-                    <span class="mr-2 mb-2">by {{board.writer}}</span>
-                    <span class="mr-2 mb-2">{{board.b_date}}</span>
+                    <span class="mr-2 mb-2">{{board.tb_date}}</span><br>
+                    <span style="color:#78DCEC" class="mr-2 mb-2">by </span><span>{{board.writer}}</span>
                   </p>
                   <p>{{ board.summary|safe }} <img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
                   <div class="comment_container"> 
-                    <div class="pt-4">
+                    <div class="home_pt-4">
                       <p>
                         <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
                         <input type="button" id='rp-button' style="cursor: default;"><text style="margin:5px;">{{ comment_cnt }}</text>

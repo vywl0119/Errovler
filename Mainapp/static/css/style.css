@@ -903,7 +903,7 @@ h1, h2, h3, h4, h5,
       color: #000;
     }
   .tutorial-item *:last-child {
-    margin-bottom: 0; }
+    margin-bottom: 10; }
 
 .meta {
   color: #a6a6a6; }
@@ -1846,5 +1846,6 @@ p>img {
 }
 .board_content{
   height: 380px;
+  padding-top: 10px;
   overflow: hidden;
 }
