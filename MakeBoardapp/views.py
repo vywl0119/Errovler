@@ -19,7 +19,7 @@ def detail_board(request, tb_no):
     comment_list = Total_Comment.objects.filter(tb_no = tb_no)
     comment_cnt = len(comment_list)
 
-    username = request.user.first_name
+    username = request.user.username
     
     like = Total_Like_Board.objects.filter(tb_no=tb_no, writer=username)
     like_yn = ''
@@ -83,12 +83,15 @@ def writing_board(request, type):
         write_form = BoardPost(request.POST)
         if write_form.is_valid():
             writer = request.user.first_name
+            username = request.user.username
+            print(username)
             total_board = Total_Board(
                 title=write_form.title,
                 contents=write_form.contents,
                 writer =writer,
                 category=write_form.category,
-                type=write_form.type
+                type=write_form.type,
+                username=username
             )
             total_board.save()
             if type == '해결':
@@ -195,7 +198,7 @@ def comment_delete(request, tb_no, c_no):
         board.comment_cnt = board.comment_cnt-1
         board.save()
 
-        
+
         return redirect('MakeBoardapp:detail_board' , tb_no)
     except:
         return redirect('MakeBoardapp:detail_board' , tb_no)
@@ -240,7 +243,7 @@ def comment_update(request, c_no):
 
 def scrap(request, tb_no, category):
     print('scrap', tb_no, category)
-    writer=request.user.first_name
+    writer=request.user.username
     check_scrap_board=Total_Scrap.objects.filter(tb_no=tb_no)
 
     if check_scrap_board.exists():
@@ -257,7 +260,7 @@ def scrap(request, tb_no, category):
 def like(request, tb_no):
     print('like')
     board = Total_Board.objects.get(tb_no=tb_no)
-    writer=request.user.first_name
+    writer=request.user.username
     check_like_board = Total_Like_Board.objects.filter(tb_no=tb_no)
 
     if check_like_board.exists():
