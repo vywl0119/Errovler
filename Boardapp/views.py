@@ -17,27 +17,19 @@ def qna_board(request):
     #request된 페이지를 얻어온 뒤 return 해 준다
     qna_posts = paginator.get_page(page)
 
-    # category_list = QnA_Board.objects.values('category')
-    # seen = []
-    # for key, val in category_list.items():
-    #     if val not in seen:
-    #         seen.append(val)
-            
-    # for i in seen:
-    #     print(i)
-
     return render(request, 'Board/qna_board.html', {'qna_boards' : qna_boards, 'qna_posts':qna_posts})
 
-def sol_board(request):
+def sol_board(request):    
     sol_boards = Total_Board.objects.filter(type='해결')
     #모든 글들을 대상으로
     sol_board_list=Total_Board.objects.filter(type='해결').order_by('-tb_no')
-    #블로그 객체 세 개를 한 페이지로 자르기
+    #블로그 객체 9개를 한 페이지로 자르기
     paginator = Paginator(sol_board_list,9)
     #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
     page = request.GET.get('page')
     #request된 페이지를 얻어온 뒤 return 해 준다
     sol_posts = paginator.get_page(page)
+
     return render(request, 'Board/sol_board.html', {'sol_boards' : sol_boards, 'sol_posts':sol_posts})
 
 def scrap_page(request):
@@ -176,8 +168,8 @@ def total_search(request):
         #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
         page = request.GET.get('page')
         #request된 페이지를 얻어온 뒤 return 해 준다
-        posts = paginator.get_page(page)
-        return render(request, 'Board/total_search_board.html', {'boards' : board_list, 'posts':posts, 'q':q})
+        total_posts = paginator.get_page(page)
+        return render(request, 'Board/total_search_board.html', {'boards' : board_list, 'total_posts':total_posts, 'q':q})
 
     else:
         return render(request, 'Mainapp:home')

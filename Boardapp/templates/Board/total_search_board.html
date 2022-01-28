@@ -3,11 +3,7 @@
 <html lang="en">
 
   <head>
-    <style>
-      .atagg {
-        text-align: right;
-      }
-    </style>
+   
     <title>에러블러 &mdash; Board</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -66,7 +62,7 @@
                   
                   <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
                   <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
-                  <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
+                  <li class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
                   <li><a href="{% url 'Boardapp:mypage' %}" class="nav-link">마이 페이지</a></li>
                   <li>
                     <a class='nav-link' href="{% url 'Mainapp:logout' %}">
@@ -88,8 +84,8 @@
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
                   <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
-                  <li class="active"><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
-                  <li class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">질문 게시판</a></li>
+                  <li class="active"><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">해결 게시판</a></li>
 
                   <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
                  
@@ -113,33 +109,35 @@
               <form action="{% url 'Boardapp:total_search' %}" method="POST" class="d-flex search-form">
                 <span class="icon-"></span>
                 {% csrf_token %}
-                <input type="search" name="q" value="{{q}}" class="form-control mr-2 w-100" >
+                <input type="search" name="q" value="{{q}}" class="form-control mr-2 w-100">
                 <button type="summit" class="btn btn-primary px-4 mr-2" value ="검색">검색</button>
-                {% if user.is_authenticated %} {% with '질문' as type %}
+                {% if user.is_authenticated %}{% with '질문' as type %}
                 <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_board" type %}'">글쓰기</Button>
                 {% endwith %}
                 {%endif%}
+
               </form>
+              
             </div>
           </div>
         </div>
         
+    
+   
       <div class="site-section bg-light">
       <div class="container">
         <div class="row">
-        {% for board in posts %}
+        {% for board in total_posts %}
           {% if board.title != None %}
           <div class="d-flex tutorial-item mb-4">
             <div class="img-wrap">
-          
               {% if board.type ==  '질문' %}
-                <a href="{% url 'Boardapp:qna_board' %}" >{{board.type}}</a>
+                <a href="{% url 'Boardapp:sol_board' %}" >{{board.type}}</a>
               {% else %}
                 <a href="{% url 'Boardapp:sol_board' %}" >{{board.type}}</a>
               {% endif %}
 
-                <a href="{% url 'Boardapp:sol_category' board.category %}" style="margin:5px; float:right;">#{{board.category}}</a>
-              
+                <a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}" style="margin:5px; float:right;">#{{board.category}}</a>
               <div class="board_title">
                 <h3><a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">{{board.title}}</a></h3>
               </div>
@@ -147,21 +145,21 @@
                 <p class="meta">
                   <span class="mr-2 mb-2">{{board.tb_date}}</span><br>
                   <span style="color:#78DCEC" class="mr-2 mb-2">by </span><span>{{board.writer}}</span>
-              </p>
+                </p>  
               </div>
               <div class="board_content">
                 <p>{{ board.summary|safe }}<img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
               </div>
               <div class="comment_container"> 
-                <div class="pt-4">
-                  <p>
-                    <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
-                    <input type="button" id='rp-button' style="cursor: default;"><text style="margin:5px;">{{ board.comment_cnt }}</text>
-                    <text style="margin:5px; float:right;">{{board.view}}</text>
-                    <img src="{%static 'images/view_icon.png' %}" id='view-icon'>
-                  </p>
-                </div>
+              <div class="pt-4">
+                <p>
+                  <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
+                  <input type="button" id='rp-button' style="cursor: default;"><text style="margin:5px;">{{ board.comment_cnt }}</text>
+                  <text style="margin:5px; float:right;">{{board.view}}</text>
+                  <img src="{%static 'images/view_icon.png' %}" id='view-icon'>
+                </p>
               </div>
+            </div>
             </div>
             </div>
           {% else %}
@@ -174,18 +172,18 @@
         <div class="row_pagination">
           <div class="col-5">
             <div class="custom-pagination">
-              {%if posts.has_previous%}
+              {%if total_posts.has_previous%}
               <a href="?page=1"> << </a>
-              <a href="?page={{qna_posts.previous_page_number}}"> < </a>
+              <a href="?page={{total_posts.previous_page_number}}"> < </a>
               {%endif%}
 
-              <span>{{qna_posts.number}}</span>
+              <span>{{total_posts.number}}</span>
               <span>of</span>
-              <span>{{qna_posts.paginator.num_pages}}</span>
+              <span>{{total_posts.paginator.num_pages}}</span>
 
-              {%if qna_posts.has_next%}
-              <a href="?page={{posts.next_page_number}}"> > </a>
-              <a href="?page={{posts.paginator.num_pages}}"> >> </a>
+              {%if total_posts.has_next%}
+              <a href="?page={{total_posts.next_page_number}}"> > </a>
+              <a href="?page={{total_posts.paginator.num_pages}}"> >> </a>
               {%endif%}
             </div>
           </div>
@@ -213,4 +211,3 @@
   </body>
 
 </html>
-

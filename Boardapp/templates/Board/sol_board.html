@@ -3,11 +3,7 @@
 <html lang="en">
 
   <head>
-    <style>
-      .atagg {
-        text-align: right;
-      }
-    </style>
+   
     <title>에러블러 &mdash; Board</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -84,12 +80,12 @@
             <div class="col-9  text-right">
               
               <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span class="icon-menu h3 text-black"></span></a></span>
-              
+
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
                   <li><a href="{% url 'Mainapp:home' %}" class="nav-link">홈</a></li>
-                  <li><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">질문 게시판</a></li>
-                  <li class="active"><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">해결 게시판</a></li>
+                  <li><a href="{% url 'Boardapp:sol_board' %}" class="nav-link">질문 게시판</a></li>
+                  <li class="active"><a href="{% url 'Boardapp:qna_board' %}" class="nav-link">해결 게시판</a></li>
 
                   <li><a href="{% url 'Mainapp:login' %}" class="nav-link">회원가입/로그인</a></li>
                  
@@ -115,16 +111,17 @@
                 {% csrf_token %}
                 <input type="search" name="q" value="{{q}}" class="form-control mr-2 w-100" placeholder="궁금한 에러를 검색해보세요!(Ex.글 제목, 글 내용, 작성자..)">
                 <button type="summit" class="btn btn-primary px-4 mr-2" value ="검색">검색</button>
-                {% if user.is_authenticated %} {% with '해결' as type %}
+                {% if user.is_authenticated %}{% with '질문' as type %}
                 <Button id="writing_button" type="button" class="btn btn-primary px-4 " onclick="location.href='{% url "MakeBoardapp:writing_board" type %}'">글쓰기</Button>
                 {% endwith %}
                 {%endif%}
+
               </form>
               
             </div>
           </div>
         </div>
-
+        
         <div class="category_container">
           <div id=error_categoty>
           <a onclick="location.href='{% url 'Boardapp:sol_category' 'python' %}'" class="cursor_pointer">  #파이썬 </a>
@@ -142,29 +139,29 @@
       <div class="container">
         <div class="row">
         {% for board in sol_posts %}
-  
-        <div class="d-flex tutorial-item mb-4">
-          <div class="img-wrap">
-            {% if board.type ==  '질문' %}
-                <a href="{% url 'Boardapp:qna_board' %}" >{{board.type}}</a>
+          {% if board.title != None %}
+          <div class="d-flex tutorial-item mb-4">
+            <div class="img-wrap">
+              {% if board.type ==  '질문' %}
+                <a href="{% url 'Boardapp:sol_board' %}" >{{board.type}}</a>
               {% else %}
                 <a href="{% url 'Boardapp:sol_board' %}" >{{board.type}}</a>
               {% endif %}
 
                 <a href="{% url 'Boardapp:sol_category' board.category %}" style="margin:5px; float:right;">#{{board.category}}</a>
-            <div class="board_title">
-              <h3><a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">{{board.title}}</a></h3>
-            </div>
-            <div class="board_create">
-              <p class="meta">
-                <span class="mr-2 mb-2">{{board.tb_date}}</span><br>
-                <span style="color:#78DCEC" class="mr-2 mb-2">by </span><span>{{board.writer}}</span>
-            </p>
-            </div>
-            <div class="board_content">
-              <p>{{ board.summary|safe }}<img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
-            </div>
-            <div class="comment_container"> 
+              <div class="board_title">
+                <h3><a href="{% url 'MakeBoardapp:detail_board' board.tb_no %}">{{board.title}}</a></h3>
+              </div>
+              <div class="board_create">
+                <p class="meta">
+                  <span class="mr-2 mb-2">{{board.tb_date}}</span><br>
+                  <span style="color:#78DCEC" class="mr-2 mb-2">by </span><span>{{board.writer}}</span>
+                </p>  
+              </div>
+              <div class="board_content">
+                <p>{{ board.summary|safe }}<img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
+              </div>
+              <div class="comment_container"> 
               <div class="pt-4">
                 <p>
                   <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
@@ -174,8 +171,10 @@
                 </p>
               </div>
             </div>
-          </div>
-          </div>
+            </div>
+            </div>
+          {% else %}
+          {% endif %}
         {% endfor %}
   
         </div>
@@ -186,16 +185,16 @@
             <div class="custom-pagination">
               {%if sol_posts.has_previous%}
               <a href="?page=1"> << </a>
-              <a href="?page={{posts.previous_page_number}}"> < </a>
+              <a href="?page={{sol_posts.previous_page_number}}"> < </a>
               {%endif%}
 
               <span>{{sol_posts.number}}</span>
               <span>of</span>
-              <span>{{posts.paginator.num_pages}}</span>
+              <span>{{sol_posts.paginator.num_pages}}</span>
 
               {%if sol_posts.has_next%}
-              <a href="?page={{posts.next_page_number}}"> > </a>
-              <a href="?page={{posts.paginator.num_pages}}"> >> </a>
+              <a href="?page={{sol_posts.next_page_number}}"> > </a>
+              <a href="?page={{sol_posts.paginator.num_pages}}"> >> </a>
               {%endif%}
             </div>
           </div>
@@ -223,4 +222,3 @@
   </body>
 
 </html>
-
