@@ -144,7 +144,7 @@
         <div class="row">
         {% for board in qna_posts %}
           {% if board.title != None %}
-          <div class="d-flex tutorial-item mb-4">
+          <div class="d-flex tutorial-item mb-4" style="margin: 15px;">
             <div class="img-wrap">
               <div class = 'atagg'>
                 <a href="{% url 'Boardapp:sol_category' board.category %}" >#{{board.category}}</a>
@@ -164,7 +164,7 @@
                 <div class="comment_container"> 
                 <div class="pt-4">
                   <p>
-                    <input type="button" id='heart-button'><text style="margin:5px;">{{ board.like }}</text>
+                    <input type="button" id='heart-button' style="cursor: default;"><text style="margin:5px;">{{ board.like }}</text>
                     <input type="button" id='rp-button' style="cursor: default;"><text style="margin:5px;">{{ comment_cnt }}</text>
                     <text style="margin:5px; float:right;">{{board.view}}</text>
                     <img src="{%static 'images/view_icon.png' %}" id='view-icon'>

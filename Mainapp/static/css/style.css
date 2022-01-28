@@ -1841,8 +1841,11 @@ p>img {
 
 /* board */
 .board_title{
+  /* width: 300px; */
   height: 25px;
   overflow: hidden;
+  /* white-space: nowrap; */
+  margin-top: 5px;
 }
 .board_content{
   height: 380px;

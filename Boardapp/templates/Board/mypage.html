@@ -140,8 +140,10 @@
                    <div class = 'atagg'>
                     <a href="{% url 'Boardapp:write_category' write.category %}" >#{{write.category}}</a>
                   </div> 
-                  <h2><a href="{% url 'MakeBoardapp:detail_board' write.tb_no %}">{{write.title}}</a></h2>
-                  <span class="meta d-inline-block mb-3">{{ write.tb_date }}<br>
+                  <div class="board_title" style="margin-bottom:10px">
+                    <h2><a href="{% url 'MakeBoardapp:detail_board' write.tb_no %}">{{write.title}}</a></h2>
+                  </div>
+                    <span class="meta d-inline-block mb-3">{{ write.tb_date }}<br>
                   <span class="mx-2">by</span> <a href="#">{{write.writer}}</a></span>
                   <p>  
                     {% autoescape off %}
