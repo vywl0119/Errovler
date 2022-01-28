@@ -184,6 +184,10 @@ def total_search(request):
 
 
 def scrap_category(request, category):
+    path = "../../../media/"
+    profile = request.user.last_name
+    profile_path = path + profile
+        
     user = request.user.first_name
 
     user_scrap = Total_Scrap.objects.filter(writer=user)
@@ -205,10 +209,13 @@ def scrap_category(request, category):
     page = request.GET.get('page')
     #request된 페이지를 얻어온 뒤 return 해 준다
     scrap_posts = paginator.get_page(page)
-    return render(request, 'Board/scrap.html', {'scrap_list' : scrap_board_list, 'scrap_posts':scrap_posts,'scrap_cnt':scrap_cnt})
+    return render(request, 'Board/scrap.html', {'scrap_list' : scrap_board_list, 'scrap_posts':scrap_posts,'scrap_cnt':scrap_cnt, 'currentprofile' : profile_path})
 
 
 def write_category(request, category):
+    path = "../../../media/"
+    profile = request.user.last_name
+    profile_path = path + profile
     user = request.user.first_name
 
     user_write = Total_Board.objects.filter(writer=user)
@@ -230,4 +237,4 @@ def write_category(request, category):
     page = request.GET.get('page')
     #request된 페이지를 얻어온 뒤 return 해 준다
     write_posts = paginator.get_page(page)
-    return render(request, 'Board/mypage.html', {'write_list' : write_board_list, 'write_posts':write_posts,'write_cnt':write_cnt})
+    return render(request, 'Board/mypage.html', {'write_list' : write_board_list, 'write_posts':write_posts,'write_cnt':write_cnt, 'currentprofile' : profile_path})
