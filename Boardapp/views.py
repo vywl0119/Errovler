@@ -80,8 +80,8 @@ def mypage(request):
         path = "../../../media/"
         profile = request.user.last_name
         profile_path = path + profile 
-        user = request.user.first_name
-        user_write = Total_Board.objects.filter(writer=user)
+        user = request.user.username
+        user_write = Total_Board.objects.filter(username=user)
         
         tag_list = ['Python', 'Django', 'etc']
         write_cnt = []
@@ -92,7 +92,7 @@ def mypage(request):
             
         write = Total_Board.objects.all()
         #모든 글들을 대상으로
-        write_list=Total_Board.objects.filter(writer=user).order_by('-tb_no')
+        write_list=Total_Board.objects.filter(username=user).order_by('-tb_no')
         #블로그 객체 세 개를 한 페이지로 자르기
         paginator = Paginator(write_list,9)
         #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
@@ -188,9 +188,9 @@ def scrap_category(request, category):
     profile = request.user.last_name
     profile_path = path + profile
         
-    user = request.user.first_name
+    username = request.user.username
 
-    user_scrap = Total_Scrap.objects.filter(writer=user)
+    user_scrap = Total_Scrap.objects.filter(writer=username)
         
     tag_list = ['Python', 'Django', 'etc']
     scrap_cnt = []
@@ -200,9 +200,9 @@ def scrap_category(request, category):
         scrap_cnt.append(cnt)
 
     print(category)
-    scrap_boards = Total_Scrap.objects.filter(writer=user)
+    scrap_boards = Total_Scrap.objects.filter(writer=username)
     #모든 글들을 대상으로
-    scrap_board_list=Total_Scrap.objects.filter(writer=user,category=category).order_by('-s_date')
+    scrap_board_list=Total_Scrap.objects.filter(writer=username,category=category).order_by('-s_date')
     #블로그 객체 세 개를 한 페이지로 자르기
     paginator = Paginator(scrap_board_list,9)
     #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )
@@ -216,9 +216,9 @@ def write_category(request, category):
     path = "../../../media/"
     profile = request.user.last_name
     profile_path = path + profile
-    user = request.user.first_name
+    user = request.user.username
 
-    user_write = Total_Board.objects.filter(writer=user)
+    user_write = Total_Board.objects.filter(username=user)
         
     tag_list = ['Python', 'Django', 'etc']
     write_cnt = []
@@ -228,9 +228,9 @@ def write_category(request, category):
         write_cnt.append(cnt)
 
     print(category)
-    write_boards = Total_Board.objects.filter(writer=user)
+    write_boards = Total_Board.objects.filter(username=user)
     #모든 글들을 대상으로
-    write_board_list=Total_Board.objects.filter(writer=user,category=category).order_by('-tb_date')
+    write_board_list=Total_Board.objects.filter(username=user,category=category).order_by('-tb_date')
     #블로그 객체 세 개를 한 페이지로 자르기
     paginator = Paginator(write_board_list,9)
     #request된 페이지가 뭔지를 알아내고 (request페이지를 변수에 담아냄 )

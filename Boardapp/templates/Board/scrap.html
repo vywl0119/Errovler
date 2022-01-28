@@ -3,6 +3,12 @@
 <html lang="en">
 
   <head>
+    <style>
+      .atagg {
+        text-align: right;
+      }
+    </style>
+    
     <title>에러블러 &mdash; Board</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -134,12 +140,20 @@
           
           <div class="d-flex tutorial-item mb-4">
             <div class="img-wrap">
-              <div class = 'atagg'>
-                <a href="{% url 'Boardapp:scrap_category' scrap.category %}" >#{{scrap.category}}</a>
-              </div>
+             
+                {% if scrap.type ==  '질문' %}
+                  <a href="{% url 'Boardapp:qna_board' %}" >{{scrap.tb_no.type}}</a>
+                {% else %}
+                  <a href="{% url 'Boardapp:sol_board' %}" >{{scrap.tb_no.type}}</a>
+                {% endif %}
+              
+                <a href="{% url 'Boardapp:sol_category' scrap.tb_no.category %}" style="margin:5px; float:right;">#{{scrap.tb_no.category}}</a>
+            
               <div class="board_title">
                 <h3><a href="{% url 'MakeBoardapp:detail_board' scrap.tb_no.tb_no %}">{{scrap.tb_no.title}}</a></h3>
               </div>
+                
+              
               <div class="board_create">
                 <p class="meta">
                   <span class="mr-2 mb-2">{{scrap.tb_no.tb_date}}</span><br>
@@ -147,7 +161,7 @@
               </p>
               </div>
               <div class="board_content">
-                <p>{{ board.summary|safe }}<img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
+                <p>{{ scrap.tb_no.summary|safe }}<img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
               </div>
               <div class="comment_container"> 
                 <div class="pt-4">

@@ -135,9 +135,13 @@
           
           <div class="d-flex tutorial-item mb-4">
             <div class="img-wrap">
-              <div class = 'atagg'>
-                <a href="{% url 'Boardapp:write_category' write.category %}" >#{{write.category}}</a>
-              </div>
+              {% if write.type ==  '질문' %}
+                <a href="{% url 'Boardapp:qna_board' %}" >{{write.type}}</a>
+              {% else %}
+                <a href="{% url 'Boardapp:sol_board' %}" >{{write.type}}</a>
+              {% endif %}
+
+                <a href="{% url 'Boardapp:sol_category' write.category %}"style="margin:5px; float:right;" >#{{write.category}}</a>
               <div class="board_title">
                 <h3><a href="{% url 'MakeBoardapp:detail_board' write.tb_no %}">{{write.title}}</a></h3>
               </div>
@@ -148,7 +152,7 @@
               </p>
               </div>
               <div class="board_content">
-                <p>{{ board.summary|safe }}<img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
+                <p>{{ write.summary|safe }}<img id=basic_image src='' onerror='this.src="{% static 'images/img_1.jpg' %}"'></p>
               </div>
               <div class="comment_container"> 
                 <div class="pt-4">
