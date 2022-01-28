@@ -153,8 +153,10 @@ def total_comment(request):
         if contents:
             try:
                 print(contents)
-                username = request.user.first_name
-                comment = Total_Comment.objects.create(tb_no_id=tb_no, contents=contents, writer = username)
+                nickname = request.user.first_name
+                username = request.user.username
+
+                comment = Total_Comment.objects.create(tb_no_id=tb_no, contents=contents, writer = nickname, username=username)
                 comment.save()
 
                 board = Total_Board.objects.get(tb_no=tb_no)
